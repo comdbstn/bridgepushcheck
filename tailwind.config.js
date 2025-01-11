@@ -3,12 +3,7 @@ import animate from "tailwindcss-animate";
 
 export default {
     darkMode: ["class"],
-    content: [
-        './pages/**/*.{ts,tsx}',
-        './components/**/*.{ts,tsx}',
-        './app/**/*.{ts,tsx}',
-        './src/**/*.{ts,tsx}',
-    ],
+    content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
     theme: {
         container: {
             center: true,
@@ -18,6 +13,11 @@ export default {
             },
         },
         extend: {
+            fontFamily: {
+                sans: ["Pretendard", "system-ui", "-apple-system", "sans-serif"],
+                aggro: ['"SB Aggro"', "sans-serif"],
+                tway: ['"Tway Fly"', "sans-serif"],
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
