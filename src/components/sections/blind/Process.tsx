@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { useRef } from "react";
 import { MessageSquare, FileEdit, Upload, BarChart, ArrowRight } from "lucide-react";
 
