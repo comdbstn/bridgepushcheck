@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { ResponsiveContainer } from "recharts";
 import { cn } from "@/lib/utils";
 
 export type ChartConfig = {
@@ -13,18 +13,11 @@ const ChartContainer = React.forwardRef<
     HTMLDivElement,
     React.ComponentProps<"div"> & {
         config: ChartConfig;
-        children: React.ReactNode;
+        children: React.ReactElement;
     }
 >(({ className, children, ...props }, ref) => {
     return (
-        <div
-            ref={ref}
-            className={cn(
-                "flex aspect-video justify-center text-xs",
-                className
-            )}
-            {...props}
-        >
+        <div ref={ref} className={cn("flex aspect-video justify-center text-xs", className)} {...props}>
             <ResponsiveContainer>{children}</ResponsiveContainer>
         </div>
     );
