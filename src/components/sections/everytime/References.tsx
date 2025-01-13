@@ -64,6 +64,7 @@ export function References() {
                             </motion.div>
                         ))}
                     </div>
+                    {/* 포트폴리오 전체보기 버튼 임시 비활성화
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -79,6 +80,7 @@ export function References() {
                             포트폴리오 전체보기
                         </a>
                     </motion.div>
+                    */}
                 </div>
             </section>
 

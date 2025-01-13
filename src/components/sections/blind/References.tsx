@@ -5,23 +5,23 @@ import { X } from "lucide-react";
 const references = [
     {
         id: 1,
-        image: "https://myquark-image-label.s3.ap-northeast-2.amazonaws.com/boltlab/bridgemarketing/everytime_1.png",
-        alt: "Reference 1",
+        image: "/blind_reference/1.jpeg",
+        alt: "블라인드 레퍼런스 1",
     },
     {
         id: 2,
-        image: "https://myquark-image-label.s3.ap-northeast-2.amazonaws.com/boltlab/bridgemarketing/everytime_2.png",
-        alt: "Reference 2",
+        image: "/blind_reference/2.jpeg",
+        alt: "블라인드 레퍼런스 2",
     },
     {
         id: 3,
-        image: "https://myquark-image-label.s3.ap-northeast-2.amazonaws.com/boltlab/bridgemarketing/everytime_3.png",
-        alt: "Reference 3",
+        image: "/blind_reference/3.jpeg",
+        alt: "블라인드 레퍼런스 3",
     },
     {
         id: 4,
-        image: "https://myquark-image-label.s3.ap-northeast-2.amazonaws.com/boltlab/bridgemarketing/everytime_4.png",
-        alt: "Reference 4",
+        image: "/blind_reference/4.png",
+        alt: "블라인드 레퍼런스 4",
     },
 ];
 
@@ -54,7 +54,7 @@ export function References() {
                                 <img
                                     src={ref.image}
                                     alt={ref.alt}
-                                    className='rounded-lg shadow-lg w-full hover:shadow-xl transition-all duration-300'
+                                    className='rounded-lg shadow-lg w-full aspect-[4/3] object-cover object-top hover:shadow-xl transition-all duration-300'
                                 />
                                 <div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 rounded-lg transition-all duration-300 flex items-center justify-center'>
                                     <span className='text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 rounded-full text-sm font-medium'>
@@ -64,6 +64,7 @@ export function References() {
                             </motion.div>
                         ))}
                     </div>
+                    {/* 포트폴리오 전체보기 버튼 임시 비활성화
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -79,6 +80,7 @@ export function References() {
                             포트폴리오 전체보기
                         </a>
                     </motion.div>
+                    */}
                 </div>
             </section>
 
@@ -104,7 +106,7 @@ export function References() {
                             exit={{ scale: 0.9, opacity: 0 }}
                             src={selectedImage}
                             alt='Selected reference'
-                            className='w-full h-auto rounded-lg shadow-2xl'
+                            className='w-full h-[80vh] object-contain rounded-lg shadow-2xl'
                             onClick={(e) => e.stopPropagation()}
                         />
                     </div>
