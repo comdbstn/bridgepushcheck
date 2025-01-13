@@ -99,15 +99,14 @@ export function Pricing() {
                                     </div>
                                     <p className='text-gray-600 mb-6 font-tway'>{plan.description}</p>
 
-                                    <Button
-                                        className={`w-full mb-8 ${
-                                            plan.highlighted
-                                                ? "bg-gradient-to-r from-[#00A9FF] to-[#0077FF] hover:from-[#0077FF] hover:to-[#00A9FF]"
-                                                : ""
-                                        }`}
+                                    <a
+                                        href='https://pf.kakao.com/_xgKMxbxj'
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                        className='mt-8 inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#00A9FF] to-[#0077FF] hover:from-[#0077FF] hover:to-[#00A9FF] text-white rounded-full font-bold text-lg transition-all duration-300 hover:scale-105'
                                     >
                                         {plan.ctaText}
-                                    </Button>
+                                    </a>
 
                                     <div className='space-y-4'>
                                         {plan.features.map((feature) => (
