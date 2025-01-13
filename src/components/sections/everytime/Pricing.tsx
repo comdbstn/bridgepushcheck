@@ -110,7 +110,7 @@ export function Pricing() {
                                         href='https://pf.kakao.com/_xgKMxbxj'
                                         target='_blank'
                                         rel='noopener noreferrer'
-                                        className='mt-8 inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#C62917] to-[#E54B3C] hover:from-[#E54B3C] hover:to-[#C62917] text-white rounded-full font-bold text-lg transition-all duration-300 hover:scale-105'
+                                        className='w-full block text-center py-3 bg-gradient-to-r from-[#C62917] to-[#E54B3C] hover:from-[#E54B3C] hover:to-[#C62917] text-white rounded-full font-bold transition-all duration-300 hover:scale-[1.02] mb-8'
                                     >
                                         {plan.ctaText}
                                     </a>
