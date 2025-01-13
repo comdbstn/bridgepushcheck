@@ -107,10 +107,14 @@ export function Pricing() {
                                     <p className='text-gray-600 mb-6 font-tway'>{plan.description}</p>
 
                                     <a
-                                        href='https://pf.kakao.com/_xgKMxbxj'
+                                        href='http://pf.kakao.com/_CYGdn/chat'
                                         target='_blank'
                                         rel='noopener noreferrer'
-                                        className='w-full block text-center py-3 bg-gradient-to-r from-[#C62917] to-[#E54B3C] hover:from-[#E54B3C] hover:to-[#C62917] text-white rounded-full font-bold transition-all duration-300 hover:scale-[1.02] mb-8'
+                                        className={`w-full block text-center py-3 ${
+                                            plan.highlighted
+                                                ? "bg-gradient-to-r from-[#C62917] to-[#E54B3C] hover:from-[#E54B3C] hover:to-[#C62917]"
+                                                : "bg-gray-900 hover:bg-gray-800"
+                                        } text-white rounded-full font-bold transition-all duration-300 hover:scale-[1.02] mb-8`}
                                     >
                                         {plan.ctaText}
                                     </a>
