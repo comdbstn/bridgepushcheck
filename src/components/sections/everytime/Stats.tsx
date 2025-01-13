@@ -149,7 +149,7 @@ export function Stats() {
                             {[
                                 { label: "전국 캠퍼스", value: "397개" },
                                 { label: "누적 가입자 수", value: "700만+" },
-                                { label: "월간 사용자 수", value: "280만" },
+                                { label: "월간 사용자 수", value: "280만+" },
                             ].map((stat, index) => (
                                 <motion.div
                                     key={stat.label}

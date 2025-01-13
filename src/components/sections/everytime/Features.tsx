@@ -42,8 +42,9 @@ export function Features() {
                     viewport={{ once: true }}
                     className='text-gray-600 text-center mb-12 max-w-2xl mx-auto px-4 font-tway'
                 >
-                    대학생 마케팅의 새로운 기준을 제시합니다. 정확한 타겟팅과 높은 도달률로 귀사의 마케팅 목표를
-                    달성하세요.
+                    대학생 마케팅의 새로운 기준을 제시합니다. 
+                    <br />
+                    정확한 타겟팅과 높은 도달률로 귀사의 마케팅 목표를 달성하세요.
                 </motion.p>
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8'>
                     {features.map((feature, index) => (

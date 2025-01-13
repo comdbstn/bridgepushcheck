@@ -59,7 +59,7 @@ export function Process() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className='text-gray-600 text-center mb-16 max-w-2xl mx-auto'
+                    className='text-gray-600 text-center mb-16 max-w-2xl mx-auto font-tway'
                 >
                     체계적인 프로세스로 효과적인 마케팅을 진행합니다
                 </motion.p>

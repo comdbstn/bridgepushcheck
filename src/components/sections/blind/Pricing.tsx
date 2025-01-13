@@ -60,7 +60,7 @@ export function Pricing() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className='text-gray-600'
+                        className='text-gray-600 font-tway'
                     >
                         프로젝트 규모와 목표에 맞는 최적의 플랜을 선택하세요
                     </motion.p>

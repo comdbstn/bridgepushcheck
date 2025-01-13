@@ -155,7 +155,7 @@ export function Stats() {
                             {[
                                 { label: "글로벌 가입자", value: "800만+" },
                                 { label: "한국 가입자", value: "600만+" },
-                                { label: "월간 활성 사용자", value: "900만" },
+                                { label: "월간 활성 사용자", value: "900만+" },
                             ].map((stat, index) => (
                                 <motion.div
                                     key={stat.label}

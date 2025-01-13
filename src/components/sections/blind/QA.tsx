@@ -103,7 +103,7 @@ export function QA() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className='text-gray-600 text-center mb-12'
+                        className='text-gray-600 text-center mb-12 font-tway'
                     >
                         블라인드 마케팅에 대해 궁금하신 점을 확인하세요
                     </motion.p>

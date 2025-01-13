@@ -74,9 +74,9 @@ export function Hero() {
 
                         <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-12 pb-8 sm:pb-0'>
                             {[
-                                { number: totalUsers, suffix: "만", label: "글로벌 가입자", ref: totalRef },
-                                { number: koreanUsers, suffix: "만", label: "한국 가입자", ref: koreanRef },
-                                { number: mau, suffix: "만", label: "월간 활성 사용자", ref: mauRef },
+                                { number: totalUsers, suffix: "만+", label: "글로벌 가입자", ref: totalRef },
+                                { number: koreanUsers, suffix: "만+", label: "한국 가입자", ref: koreanRef },
+                                { number: mau, suffix: "만+", label: "월간 활성 사용자", ref: mauRef },
                             ].map((stat, index) => (
                                 <motion.div
                                     key={stat.label}
@@ -86,7 +86,7 @@ export function Hero() {
                                     className='p-4 sm:p-6 mx-4 sm:mx-0 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 group'
                                     ref={stat.ref}
                                 >
-                                    <h3 className='text-2xl sm:text-4xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300'>
+                                    <h3 className='text-2xl sm:text-4xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300 font-aggro'>
                                         <span className='text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60'>
                                             {formatNumber(stat.number, stat.suffix)}
                                         </span>

@@ -42,8 +42,9 @@ export function Industries() {
                     viewport={{ once: true }}
                     className='text-gray-600 text-center mb-12 max-w-2xl mx-auto px-4 font-tway'
                 >
-                    대학생의 높은 구매력과 트렌드 민감도를 활용할 수 있는 다양한 업종에서 에브리타임 마케팅을 통해
-                    성공적인 결과를 얻고 있습니다.
+                    대학생의 높은 구매력과 트렌드 민감도를 활용할 수 있는 다양한 업종에서
+                    <br />
+                    에브리타임 마케팅을 통해 성공적인 결과를 얻고 있습니다.
                 </motion.p>
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8'>
                     {industries.map((industry, index) => (

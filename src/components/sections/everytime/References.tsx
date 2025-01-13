@@ -64,6 +64,21 @@ export function References() {
                             </motion.div>
                         ))}
                     </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className='mt-12 text-center'
+                    >
+                        <a
+                            href='https://bridgemarketing.xyz/portfolio'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#C62917] to-[#E54B3C] hover:from-[#E54B3C] hover:to-[#C62917] text-white rounded-full font-bold text-lg transition-all duration-300 hover:scale-105'
+                        >
+                            포트폴리오 전체보기
+                        </a>
+                    </motion.div>
                 </div>
             </section>
 
