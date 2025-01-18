@@ -1,4 +1,3 @@
-import React from "react";
 import Hero from "@/components/sections/tiktok/Hero";
 import Features from "@/components/sections/tiktok/Features";
 import Industries from "@/components/sections/tiktok/Industries";
