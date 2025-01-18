@@ -98,7 +98,7 @@ const Hero: React.FC = () => {
                             variants={itemVariants}
                             className='grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-8'
                         >
-                            {stats.map((stat, index) => (
+                            {stats.map((stat) => (
                                 <div
                                     key={stat.label}
                                     className='p-4 sm:p-6 mx-4 sm:mx-0 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 group'
