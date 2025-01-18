@@ -1,17 +1,21 @@
 import React from "react";
-import Hero from "../components/sections/tiktok/Hero";
-import Features from "../components/sections/tiktok/Features";
-import Industries from "../components/sections/tiktok/Industries";
-import Stats from "../components/sections/tiktok/Stats";
-import Process from "../components/sections/tiktok/Process";
-import Pricing from "../components/sections/tiktok/Pricing";
-import References from "../components/sections/tiktok/References";
-import QA from "../components/sections/tiktok/QA";
-import Footer from "../components/sections/tiktok/Footer";
+import Hero from "@/components/sections/tiktok/Hero";
+import Features from "@/components/sections/tiktok/Features";
+import Industries from "@/components/sections/tiktok/Industries";
+import Stats from "@/components/sections/tiktok/Stats";
+import Process from "@/components/sections/tiktok/Process";
+import Pricing from "@/components/sections/tiktok/Pricing";
+import References from "@/components/sections/tiktok/References";
+import QA from "@/components/sections/tiktok/QA";
+import Footer from "@/components/sections/tiktok/Footer";
+import { BackButton } from "@/components/navigation/back-button";
+import { KakaoChatButton } from "@/components/chat/kakao-chat-button";
 
-export const TikTokPage: React.FC = () => {
+export function TikTokPage() {
     return (
-        <div className='bg-white dark:bg-gray-900'>
+        <div className='min-h-screen w-full bg-white overflow-hidden'>
+            <BackButton />
+            <KakaoChatButton />
             <Hero />
             <Features />
             <Industries />
@@ -23,4 +27,4 @@ export const TikTokPage: React.FC = () => {
             <Footer />
         </div>
     );
-};
+}
