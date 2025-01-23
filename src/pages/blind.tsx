@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/blind/Hero";
+import { Products } from "@/components/sections/blind/Products";
 import { Features } from "@/components/sections/blind/Features";
 import { Stats } from "@/components/sections/blind/Stats";
 import { Pricing } from "@/components/sections/blind/Pricing";
@@ -16,6 +17,7 @@ export function BlindPage() {
       <BackButton />
       <KakaoChatButton />
       <Hero />
+      <Products />
       <Features />
       <Stats />
       <Pricing />
