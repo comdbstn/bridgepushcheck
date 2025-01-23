@@ -14,7 +14,7 @@ import { KakaoChatButton } from "@/components/chat/kakao-chat-button";
 
 export function EverytimePage() {
     return (
-        <div className='min-h-screen w-full bg-white overflow-hidden'>
+        <div className="min-h-screen w-full bg-white overflow-hidden">
             <BackButton />
             <KakaoChatButton />
             <Hero />
@@ -22,10 +22,10 @@ export function EverytimePage() {
             <Features />
             <Stats />
             <Advantages />
-            <Pricing />
             <Industries />
             <References />
             <Process />
+            <Pricing />
             <QA />
             <Footer />
         </div>

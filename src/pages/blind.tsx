@@ -22,10 +22,10 @@ export function BlindPage() {
       <Features />
       <Stats />
       <Advantages />
-      <Pricing />
       <Industries />
       <References />
       <Process />
+      <Pricing />
       <QA />
       <Footer />
     </div>

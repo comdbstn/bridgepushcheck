@@ -22,10 +22,10 @@ export function TiktokPage() {
             <Features />
             <Stats />
             <Advantages />
-            <Pricing />
             <Industries />
             <References />
             <Process />
+            <Pricing />
             <QA />
             <Footer />
         </div>
