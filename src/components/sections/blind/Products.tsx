@@ -9,12 +9,12 @@ export function Products() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="mb-8"
+                    className="mb-12"
                 >
-                    <span className="text-blue-600 font-semibold text-lg font-tway mb-4 block">
+                    <span className="text-blue-600 font-semibold text-lg font-tway mb-6 block">
                         BLIND VIRAL MARKETING
                     </span>
-                    <h2 className="text-5xl font-bold mb-6 font-aggro bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                    <h2 className="text-[3.5rem] leading-tight font-bold mb-6 font-aggro bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                         블라인드 바이럴 마케팅
                     </h2>
                 </motion.div>
