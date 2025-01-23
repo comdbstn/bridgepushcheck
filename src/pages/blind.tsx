@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/blind/Hero";
 import { Products } from "@/components/sections/blind/Products";
 import { Features } from "@/components/sections/blind/Features";
 import { Stats } from "@/components/sections/blind/Stats";
+import { Advantages } from "@/components/sections/blind/Advantages";
 import { Pricing } from "@/components/sections/blind/Pricing";
 import { Industries } from "@/components/sections/blind/Industries";
 import { References } from "@/components/sections/blind/References";
@@ -20,6 +21,7 @@ export function BlindPage() {
       <Products />
       <Features />
       <Stats />
+      <Advantages />
       <Pricing />
       <Industries />
       <References />
