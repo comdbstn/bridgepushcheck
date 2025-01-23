@@ -1,6 +1,8 @@
 import { Hero } from "@/components/sections/everytime/Hero";
+import { Products } from "@/components/sections/everytime/Products";
 import { Features } from "@/components/sections/everytime/Features";
 import { Stats } from "@/components/sections/everytime/Stats";
+import { Advantages } from "@/components/sections/everytime/Advantages";
 import { Pricing } from "@/components/sections/everytime/Pricing";
 import { Industries } from "@/components/sections/everytime/Industries";
 import { References } from "@/components/sections/everytime/References";
@@ -16,8 +18,10 @@ export function EverytimePage() {
             <BackButton />
             <KakaoChatButton />
             <Hero />
+            <Products />
             <Features />
             <Stats />
+            <Advantages />
             <Pricing />
             <Industries />
             <References />
