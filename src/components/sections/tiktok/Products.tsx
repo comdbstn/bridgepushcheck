@@ -32,17 +32,6 @@ export function Products() {
                         <span className="text-black font-semibold">놀라운 마케팅 상품, 틱톡 시딩</span>을 소개합니다.
                     </p>
                     
-                    <div className="mb-10">
-                        <video 
-                            className="w-full rounded-xl shadow-lg"
-                            controls
-                            poster="/images/tiktok/thumbnail.jpg"
-                        >
-                            <source src="/videos/tictik.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    
                     <div className="space-y-6">
                         <div className="flex items-center text-gray-700 group">
                             <ArrowRight className="w-6 h-6 text-black mr-3 group-hover:translate-x-1 transition-transform" />
