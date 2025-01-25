@@ -47,7 +47,7 @@ export function InsightsPage() {
             <Navbar />
             <main>
                 {/* 히어로 섹션 */}
-                <section className="pt-32 pb-24 relative overflow-hidden">
+                <section className="pt-40 pb-20 relative overflow-hidden">
                     <motion.div 
                         className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]"
                         initial={{ opacity: 0 }}
