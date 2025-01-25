@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Loading } from "@/components/ui/loading";
 
 interface Project {
     title: string;
@@ -26,16 +27,21 @@ interface Project {
     };
 }
 
-export function PortfolioPage() {
+export default function PortfolioPage() {
+    const [isLoading, setIsLoading] = useState(true);
     const { scrollYProgress } = useScroll();
     const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
+    const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
 
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        const timer = setTimeout(() => setIsLoading(false), 1000);
+        return () => clearTimeout(timer);
     }, []);
+
+    if (isLoading) return <Loading />;
 
     const projects: Project[] = [
         {

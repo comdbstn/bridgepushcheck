@@ -4,18 +4,26 @@ import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useEffect, useRef, useState } from "react";
+import { Loading } from "@/components/ui/loading";
 
 // 로고 배열 생성
 const clientLogos = Array.from({ length: 40 }, (_, i) => `/logo/${i}.png`);
 
-export function MainPage() {
+export default function MainPage() {
+    const [isLoading, setIsLoading] = useState(true);
     const { scrollYProgress } = useScroll();
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+    const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        const timer = setTimeout(() => setIsLoading(false), 1000);
+        return () => clearTimeout(timer);
     }, []);
+
+    if (isLoading) return <Loading />;
 
     const handleMouseMove = (e: React.MouseEvent) => {
         const { clientX, clientY } = e;
@@ -27,10 +35,6 @@ export function MainPage() {
     const gradientX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
     const gradientY = useTransform(mouseY, [0, window.innerHeight], [0, 100]);
     const background = useMotionTemplate`radial-gradient(circle at ${gradientX}% ${gradientY}%, rgba(147,51,234,0.15), transparent 70%)`;
-
-    // 스크롤 기반 애니메이션
-    const scaleProgress = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-    const opacityProgress = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
     // 숫자 카운팅 애니메이션을 위한 커스텀 훅
     const useCountAnimation = (end: number, duration: number = 2) => {
