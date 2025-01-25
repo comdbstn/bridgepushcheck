@@ -7,28 +7,30 @@ export function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     {/* 로고 */}
                     <Link to="/" className="flex items-center">
-                        <img src="/logo/bridge.png" alt="Bridge Marketing" className="h-8" />
+                        <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                            Bridge Marketing
+                        </span>
                     </Link>
 
                     {/* 네비게이션 링크 */}
                     <div className="hidden md:flex items-center space-x-8">
-                        <Link to="/" className="text-gray-600 hover:text-gray-900 font-tway">
+                        <Link to="/" className="text-gray-600 hover:text-purple-600 font-tway transition-colors">
                             메인
                         </Link>
-                        <Link to="/portfolio" className="text-gray-600 hover:text-gray-900 font-tway">
+                        <Link to="/portfolio" className="text-gray-600 hover:text-purple-600 font-tway transition-colors">
                             포트폴리오
                         </Link>
-                        <Link to="/insight" className="text-gray-600 hover:text-gray-900 font-tway">
+                        <Link to="/insight" className="text-gray-600 hover:text-purple-600 font-tway transition-colors">
                             인사이트
                         </Link>
-                        <Link to="/service" className="text-gray-600 hover:text-gray-900 font-tway">
+                        <Link to="/service" className="text-gray-600 hover:text-purple-600 font-tway transition-colors">
                             서비스
                         </Link>
                         <a
                             href="http://pf.kakao.com/_CYGdn/chat"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-6 py-2 bg-blue-600 text-white rounded-full font-tway hover:bg-blue-700 transition-colors"
+                            className="px-6 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full font-tway hover:from-purple-700 hover:to-indigo-700 transition-all hover:shadow-lg"
                         >
                             문의하기
                         </a>

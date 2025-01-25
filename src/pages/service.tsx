@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/navigation/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 export function ServicePage() {
     const services = [
@@ -47,7 +48,9 @@ export function ServicePage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-16"
                     >
-                        <h1 className="text-4xl font-bold mb-4 font-aggro">브릿지마케팅 서비스</h1>
+                        <h1 className="text-4xl font-bold mb-4 font-aggro bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                            브릿지마케팅 서비스
+                        </h1>
                         <p className="text-gray-600 text-lg font-tway">
                             다양한 플랫폼에서 효과적인 바이럴 마케팅을 제공합니다
                         </p>
@@ -82,7 +85,7 @@ export function ServicePage() {
                                         <div className="space-y-4 mb-6">
                                             {service.features.map((feature) => (
                                                 <div key={feature} className="flex items-center text-gray-600">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2" />
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mr-2" />
                                                     <span className="text-sm font-tway">{feature}</span>
                                                 </div>
                                             ))}
@@ -91,10 +94,10 @@ export function ServicePage() {
                                         <div className="flex items-center justify-between">
                                             <div className="font-tway">
                                                 <span className="text-gray-500">최소 </span>
-                                                <span className="text-2xl font-bold text-blue-600">{service.price}만원</span>
+                                                <span className="text-2xl font-bold text-purple-600">{service.price}만원</span>
                                                 <span className="text-gray-500"> ~</span>
                                             </div>
-                                            <div className="flex items-center text-blue-600 group">
+                                            <div className="flex items-center text-purple-600 group">
                                                 <span className="font-tway mr-2">자세히 보기</span>
                                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                             </div>
@@ -106,6 +109,7 @@ export function ServicePage() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 } 
