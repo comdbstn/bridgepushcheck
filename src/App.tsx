@@ -8,7 +8,7 @@ import { PortfolioPage } from "@/pages/portfolio";
 
 function App() {
     return (
-        <Router>
+        <Router basename="/service">
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/service" element={<ServicePage />} />
