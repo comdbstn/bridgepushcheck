@@ -9,7 +9,11 @@ export function Footer() {
                         {/* 회사 정보 */}
                         <div className="space-y-2">
                             <div className="mb-4">
-                                <img src="/logo/bridgemlogo.png" alt="Bridge Marketing" className="h-8" />
+                                <div className="flex flex-col">
+                                    <span className="text-xl font-bold text-white mb-2">
+                                        bridgemarketing
+                                    </span>
+                                </div>
                             </div>
                             <div className="space-y-3 text-gray-600">
                                 <div className="flex items-center gap-2">
