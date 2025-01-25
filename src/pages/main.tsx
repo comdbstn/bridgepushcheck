@@ -148,11 +148,9 @@ export function MainPage() {
                                 transition={{ duration: 0.8 }}
                                 className="inline-block relative"
                             >
-                                <motion.div
-                                    className="text-xl text-purple-400 mb-2"
-                                >
+                                <div className="text-xl text-purple-400 mb-2">
                                     누적 고객사
-                                </motion.div>
+                                </div>
                                 <div className="text-6xl md:text-7xl font-bold text-purple-400 mb-4 relative z-10">716</div>
                                 <motion.div
                                     animate={{
