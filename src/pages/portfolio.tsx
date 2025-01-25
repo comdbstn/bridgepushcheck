@@ -6,19 +6,27 @@ import { useState } from "react";
 
 interface Project {
     title: string;
+    clientName: string;
     description: string;
-    image: string;
-    detailImages: string[];
-    platforms: {
+    workImage: string;
+    platform: {
         name: string;
         icon: string;
-    }[];
-    category: string;
+    };
     details: {
-        client: string;
+        budget: string;
         period: string;
-        goals: string[];
-        results: string[];
+        kpi: {
+            target: string;
+            result: string;
+            achievement: string;
+        }[];
+        consultation: {
+            background: string;
+            solution: string;
+            decision: string;
+        };
+        workImages: string[];
     };
 }
 
@@ -27,86 +35,125 @@ export function PortfolioPage() {
 
     const projects: Project[] = [
         {
-            title: "에브리타임 대학생 마케팅",
-            description: "대학생 타겟 맞춤형 바이럴 마케팅",
-            image: "https://picsum.photos/800/600?random=1",
-            detailImages: [
-                "https://picsum.photos/800/600?random=2",
-                "https://picsum.photos/800/600?random=3",
-                "https://picsum.photos/800/600?random=4"
-            ],
-            platforms: [
-                { name: "에브리타임", icon: "/logo/everytime-logo.png" }
-            ],
-            category: "바이럴 마케팅",
+            title: "에브리타임",
+            clientName: "스타벅스 코리아",
+            description: "프리미엄 커피 브랜드로, 최고 품질의 아라비카 원두로 만든 음료와 다양한 푸드를 제공하며, 편안한 카페 문화를 선도하는 기업",
+            workImage: "https://picsum.photos/800/600?random=1",
+            platform: {
+                name: "에브리타임",
+                icon: "/logo/everytime.png"
+            },
             details: {
-                client: "에브리타임",
-                period: "2023.01 - 2023.06",
-                goals: [
-                    "대학생 타겟 인지도 향상",
-                    "앱 다운로드 수 증가",
-                    "실사용자 확보"
+                budget: "3,000만원 / 월",
+                period: "2023.01 - 2023.06 (6개월)",
+                kpi: [
+                    {
+                        target: "브랜드 인지도",
+                        result: "45% 상승",
+                        achievement: "목표 대비 130% 달성"
+                    },
+                    {
+                        target: "방문자 수",
+                        result: "일 평균 3,000명",
+                        achievement: "목표 대비 150% 달성"
+                    },
+                    {
+                        target: "구매 전환율",
+                        result: "8.5%",
+                        achievement: "목표 대비 120% 달성"
+                    }
                 ],
-                results: [
-                    "월간 활성 사용자 30% 증가",
-                    "앱 다운로드 50% 상승",
-                    "커뮤니티 참여도 2배 증가"
+                consultation: {
+                    background: "대학생을 타겟으로 한 신규 메뉴 출시에 따른 브랜드 인지도 향상 필요",
+                    solution: "에브리타임 커뮤니티를 활용한 자연스러운 바이럴 마케팅 제안",
+                    decision: "대학생들의 주요 커뮤니티인 에브리타임을 통해 타겟층과 직접 소통하는 전략 채택"
+                },
+                workImages: [
+                    "https://picsum.photos/800/600?random=4",
+                    "https://picsum.photos/800/600?random=5",
+                    "https://picsum.photos/800/600?random=6"
                 ]
             }
         },
         {
-            title: "블라인드 직장인 마케팅",
-            description: "직장인 타겟 맞춤형 바이럴 마케팅",
-            image: "https://picsum.photos/800/600?random=5",
-            detailImages: [
-                "https://picsum.photos/800/600?random=6",
-                "https://picsum.photos/800/600?random=7",
-                "https://picsum.photos/800/600?random=8"
-            ],
-            platforms: [
-                { name: "블라인드", icon: "/logo/blind-logo.png" }
-            ],
-            category: "바이럴 마케팅",
+            title: "블라인드",
+            clientName: "CU 편의점",
+            description: "대한민국 대표 편의점 브랜드로, 신선한 식품과 다양한 생활용품을 24시간 편리하게 제공하는 리테일 기업",
+            workImage: "https://picsum.photos/800/600?random=2",
+            platform: {
+                name: "블라인드",
+                icon: "/logo/blind.png"
+            },
             details: {
-                client: "블라인드",
-                period: "2023.03 - 2023.08",
-                goals: [
-                    "직장인 커뮤니티 내 브랜드 인지도 향상",
-                    "자연스러운 입소문 마케팅",
-                    "충성 사용자 확보"
+                budget: "2,500만원 / 월",
+                period: "2023.03 - 2023.08 (6개월)",
+                kpi: [
+                    {
+                        target: "신규 상품 매출",
+                        result: "75% 상승",
+                        achievement: "목표 대비 125% 달성"
+                    },
+                    {
+                        target: "앱 다운로드",
+                        result: "일 평균 5,000건",
+                        achievement: "목표 대비 140% 달성"
+                    },
+                    {
+                        target: "멤버십 가입률",
+                        result: "32% 증가",
+                        achievement: "목표 대비 110% 달성"
+                    }
                 ],
-                results: [
-                    "브랜드 언급량 200% 증가",
-                    "자발적 리뷰 작성 3배 증가",
-                    "앱 설치 전환율 45% 향상"
+                consultation: {
+                    background: "직장인 타겟의 신규 PB상품 출시와 멤버십 서비스 강화에 따른 마케팅 필요",
+                    solution: "블라인드 커뮤니티를 활용한 직장인 타겟 입소문 마케팅과 리뷰 프로모션 제안",
+                    decision: "직장인들의 솔직한 리뷰를 통한 신뢰도 구축 및 구매 전환율 향상 전략 채택"
+                },
+                workImages: [
+                    "https://picsum.photos/800/600?random=7",
+                    "https://picsum.photos/800/600?random=8",
+                    "https://picsum.photos/800/600?random=9"
                 ]
             }
         },
         {
-            title: "틱톡 MZ세대 마케팅",
-            description: "MZ세대 타겟 맞춤형 바이럴 마케팅",
-            image: "https://picsum.photos/800/600?random=9",
-            detailImages: [
-                "https://picsum.photos/800/600?random=10",
-                "https://picsum.photos/800/600?random=11",
-                "https://picsum.photos/800/600?random=12"
-            ],
-            platforms: [
-                { name: "틱톡", icon: "/logo/tiktok-logo.png" }
-            ],
-            category: "바이럴 마케팅",
+            title: "틱톡",
+            clientName: "틱톡 코리아",
+            description: "전 세계 10억명 이상의 사용자가 이용하는 숏폼 동영상 플랫폼으로, MZ세대를 중심으로 강력한 영향력을 가진 소셜 미디어",
+            workImage: "https://picsum.photos/800/600?random=3",
+            platform: {
+                name: "틱톡",
+                icon: "/logo/tiktok.png"
+            },
             details: {
-                client: "틱톡",
-                period: "2023.05 - 2023.10",
-                goals: [
-                    "MZ세대 타겟 인플루언서 마케팅",
-                    "바이럴 콘텐츠 제작",
-                    "브랜드 인지도 향상"
+                budget: "3,500만원 / 월",
+                period: "2023.05 - 2023.10 (6개월)",
+                kpi: [
+                    {
+                        target: "동영상 조회수",
+                        result: "100만 뷰 달성",
+                        achievement: "목표 대비 135% 달성"
+                    },
+                    {
+                        target: "팔로워 수",
+                        result: "25만명 달성",
+                        achievement: "목표 대비 145% 달성"
+                    },
+                    {
+                        target: "해시태그 참여",
+                        result: "12만건 달성",
+                        achievement: "목표 대비 160% 달성"
+                    }
                 ],
-                results: [
-                    "콘텐츠 조회수 100만 달성",
-                    "해시태그 챌린지 참여자 5만명 돌파",
-                    "브랜드 팔로워 300% 증가"
+                consultation: {
+                    background: "MZ세대를 타겟으로 한 브랜드 인지도 향상 및 참여형 마케팅 필요",
+                    solution: "틱톡의 특성을 활용한 바이럴 챌린지 및 인플루언서 마케팅 제안",
+                    decision: "트렌디한 숏폼 콘텐츠와 해시태그 챌린지를 통한 브랜드 인게이지먼트 강화"
+                },
+                workImages: [
+                    "https://picsum.photos/800/600?random=10",
+                    "https://picsum.photos/800/600?random=11",
+                    "https://picsum.photos/800/600?random=12"
                 ]
             }
         }
@@ -142,8 +189,7 @@ export function PortfolioPage() {
                                 transition={{ delay: 0.4, duration: 0.8 }}
                                 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent"
                             >
-                                성공적인 프로젝트<br />
-                                포트폴리오
+                                고객사 포트폴리오
                             </motion.h1>
                         </motion.div>
                     </div>
@@ -155,7 +201,7 @@ export function PortfolioPage() {
                         <div className="grid md:grid-cols-3 gap-8">
                             {projects.map((project, index) => (
                                 <motion.div
-                                    key={project.title}
+                                    key={project.clientName}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
@@ -165,11 +211,11 @@ export function PortfolioPage() {
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
                                     <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-2xl overflow-hidden border border-gray-800 group-hover:border-purple-500/50 transition-all duration-500">
-                                        {/* 이미지 */}
+                                        {/* 작업 이미지 */}
                                         <div className="relative aspect-[4/3] overflow-hidden">
                                             <img
-                                                src={project.image}
-                                                alt={project.title}
+                                                src={project.workImage}
+                                                alt={project.clientName}
                                                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
@@ -179,30 +225,25 @@ export function PortfolioPage() {
                                         <div className="p-6">
                                             {/* 플랫폼 아이콘 */}
                                             <div className="flex gap-3 mb-4">
-                                                {project.platforms.map((platform) => (
-                                                    <div
-                                                        key={platform.name}
-                                                        className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm p-1.5 group-hover:bg-white/20 transition-colors"
-                                                    >
-                                                        <img
-                                                            src={platform.icon}
-                                                            alt={platform.name}
-                                                            className="w-full h-full object-contain"
-                                                        />
-                                                    </div>
-                                                ))}
+                                                <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm p-1.5 group-hover:bg-white/20 transition-colors">
+                                                    <img
+                                                        src={project.platform.icon}
+                                                        alt={project.platform.name}
+                                                        className="w-full h-full object-contain"
+                                                    />
+                                                </div>
                                             </div>
 
-                                            {/* 카테고리 */}
+                                            {/* 상품명 */}
                                             <div className="text-sm text-purple-400 mb-2">
-                                                {project.category}
+                                                {project.title}
                                             </div>
 
-                                            {/* 제목 & 설명 */}
+                                            {/* 업체명 & 소개 */}
                                             <h3 className="text-xl font-bold text-white mb-2">
-                                                {project.title}
+                                                {project.clientName}
                                             </h3>
-                                            <p className="text-gray-400 mb-4">
+                                            <p className="text-gray-400 mb-4 line-clamp-2">
                                                 {project.description}
                                             </p>
 
@@ -212,15 +253,6 @@ export function PortfolioPage() {
                                                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                                             </div>
                                         </div>
-
-                                        {/* 하단 그라데이션 라인 */}
-                                        <motion.div
-                                            initial={{ scaleX: 0 }}
-                                            whileInView={{ scaleX: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.8 }}
-                                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"
-                                        />
                                     </div>
                                 </motion.div>
                             ))}
@@ -230,21 +262,21 @@ export function PortfolioPage() {
             </main>
             <Footer />
 
-            {/* 프로젝트 상세 모달 */}
+            {/* 프로젝트 상세 모달 수정 */}
             <AnimatePresence>
                 {selectedProject && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 overflow-y-auto"
                         onClick={() => setSelectedProject(null)}
                     >
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
-                            className="relative w-full max-w-4xl bg-gray-900 rounded-2xl overflow-hidden"
+                            className="relative w-full max-w-4xl bg-gray-900 rounded-2xl overflow-hidden my-8"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* 닫기 버튼 */}
@@ -255,71 +287,95 @@ export function PortfolioPage() {
                                 <X className="w-6 h-6" />
                             </button>
 
-                            {/* 이미지 슬라이더 */}
+                            {/* 메인 이미지 */}
                             <div className="relative aspect-video">
                                 <img
-                                    src={selectedProject.image}
-                                    alt={selectedProject.title}
+                                    src={selectedProject.workImage}
+                                    alt={selectedProject.clientName}
                                     className="w-full h-full object-cover"
                                 />
                             </div>
 
                             {/* 콘텐츠 */}
                             <div className="p-8">
-                                <div className="flex items-center gap-4 mb-6">
-                                    {selectedProject.platforms.map((platform) => (
-                                        <div
-                                            key={platform.name}
-                                            className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm p-2"
-                                        >
-                                            <img
-                                                src={platform.icon}
-                                                alt={platform.name}
-                                                className="w-full h-full object-contain"
-                                            />
-                                        </div>
-                                    ))}
+                                {/* 헤더 정보 */}
+                                <div className="flex items-center gap-4 mb-8">
+                                    <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm p-2">
+                                        <img
+                                            src={selectedProject.platform.icon}
+                                            alt={selectedProject.platform.name}
+                                            className="w-full h-full object-contain"
+                                        />
+                                    </div>
                                     <div>
                                         <div className="text-sm text-purple-400 mb-1">
-                                            {selectedProject.category}
+                                            {selectedProject.title}
                                         </div>
                                         <h3 className="text-2xl font-bold text-white">
-                                            {selectedProject.title}
+                                            {selectedProject.clientName}
                                         </h3>
                                     </div>
                                 </div>
 
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-white mb-4">프로젝트 개요</h4>
-                                        <div className="space-y-2 text-gray-400">
-                                            <p><span className="text-purple-400">클라이언트:</span> {selectedProject.details.client}</p>
-                                            <p><span className="text-purple-400">진행 기간:</span> {selectedProject.details.period}</p>
-                                        </div>
+                                {/* 프로젝트 개요 */}
+                                <div className="grid grid-cols-2 gap-4 mb-8">
+                                    <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20">
+                                        <div className="text-sm text-purple-400 mb-1">집행 비용</div>
+                                        <div className="text-white">{selectedProject.details.budget}</div>
                                     </div>
-
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-white mb-4">프로젝트 목표</h4>
-                                        <ul className="space-y-2">
-                                            {selectedProject.details.goals.map((goal, index) => (
-                                                <li key={index} className="flex items-start gap-2 text-gray-400">
-                                                    <div className="h-1.5 w-1.5 rounded-full bg-purple-500 mt-2" />
-                                                    <span>{goal}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                    <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20">
+                                        <div className="text-sm text-purple-400 mb-1">진행 기간</div>
+                                        <div className="text-white">{selectedProject.details.period}</div>
                                     </div>
                                 </div>
 
-                                <div className="mt-8">
-                                    <h4 className="text-lg font-semibold text-white mb-4">프로젝트 결과</h4>
-                                    <div className="grid md:grid-cols-3 gap-4">
-                                        {selectedProject.details.results.map((result, index) => (
+                                {/* KPI 달성 현황 */}
+                                <div className="mb-8">
+                                    <h4 className="text-lg font-semibold text-white mb-4">KPI 달성 현황</h4>
+                                    <div className="grid grid-cols-3 gap-4">
+                                        {selectedProject.details.kpi.map((item, index) => (
                                             <div
                                                 key={index}
                                                 className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20"
                                             >
-                                                <p className="text-gray-300">{result}</p>
+                                                <div className="text-sm text-purple-400 mb-1">{item.target}</div>
+                                                <div className="text-2xl font-bold text-white mb-2">{item.result}</div>
+                                                <div className="text-sm text-green-400">{item.achievement}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 상담 내용 */}
+                                <div className="mb-8">
+                                    <h4 className="text-lg font-semibold text-white mb-4">프로젝트 진행 과정</h4>
+                                    <div className="space-y-6">
+                                        <div>
+                                            <h5 className="text-purple-400 mb-2">Background</h5>
+                                            <p className="text-gray-400">{selectedProject.details.consultation.background}</p>
+                                        </div>
+                                        <div>
+                                            <h5 className="text-purple-400 mb-2">Solution</h5>
+                                            <p className="text-gray-400">{selectedProject.details.consultation.solution}</p>
+                                        </div>
+                                        <div>
+                                            <h5 className="text-purple-400 mb-2">Decision</h5>
+                                            <p className="text-gray-400">{selectedProject.details.consultation.decision}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 작업 이미지 갤러리 */}
+                                <div>
+                                    <h4 className="text-lg font-semibold text-white mb-4">작업 결과물</h4>
+                                    <div className="grid grid-cols-3 gap-4">
+                                        {selectedProject.details.workImages.map((image, index) => (
+                                            <div key={index} className="aspect-[4/3] rounded-xl overflow-hidden">
+                                                <img
+                                                    src={image}
+                                                    alt={`작업 이미지 ${index + 1}`}
+                                                    className="w-full h-full object-cover"
+                                                />
                                             </div>
                                         ))}
                                     </div>
