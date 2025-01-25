@@ -18,7 +18,7 @@ export function ServicePage() {
             title: "에브리타임",
             description: "대학생 커뮤니티 1위 에브리타임에서 진행되는 마케팅 서비스입니다.",
             features: ["대학생 타겟 마케팅", "실시간 반응 분석", "맞춤형 컨텐츠 제작"],
-            minPrice: "200만원",
+            minPrice: "1만원",
             image: "/logo/everytime.png",
             link: "/everytime"
         },
@@ -26,7 +26,7 @@ export function ServicePage() {
             title: "블라인드",
             description: "직장인들의 솔직한 이야기가 있는 블라인드에서 진행되는 마케팅 서비스입니다.",
             features: ["직장인 타겟 마케팅", "실시간 모니터링", "전문가 컨설팅"],
-            minPrice: "300만원",
+            minPrice: "5만원",
             image: "/logo/blind.png",
             link: "/blind"
         },
@@ -34,7 +34,7 @@ export function ServicePage() {
             title: "틱톡",
             description: "글로벌 숏폼 플랫폼 틱톡에서 진행되는 마케팅 서비스입니다.",
             features: ["MZ세대 타겟 마케팅", "트렌드 분석", "바이럴 영상 제작"],
-            minPrice: "500만원",
+            minPrice: "25만원",
             image: "/logo/tiktok.png",
             link: "/tiktok"
         }
