@@ -405,34 +405,14 @@ export function MainPage() {
                 </section>
 
                 {/* 서비스 섹션 */}
-                <section className="py-24 relative overflow-hidden">
-                    <div className="absolute inset-0">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]" />
-                        <motion.div
-                            animate={{
-                                scale: [1, 1.2, 1],
-                                opacity: [0.3, 0.6, 0.3]
-                            }}
-                            transition={{
-                                duration: 8,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-                        />
-                    </div>
+                <section className="py-32 relative">
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="container mx-auto px-4 relative"
+                        className="container mx-auto px-4"
                     >
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-center mb-16"
-                        >
+                        <div className="text-center mb-16">
                             <motion.span
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -447,37 +427,36 @@ export function MainPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.2 }}
-                                className="text-4xl font-bold mb-4 text-white font-display"
+                                className="text-3xl md:text-4xl font-bold mb-6"
                             >
-                                다양한 플랫폼에서 효과적인<br className="md:hidden" />
-                                바이럴 마케팅을 제공합니다
+                                다양한 플랫폼에서 효과적인<br />바이럴 마케팅을 제공합니다
                             </motion.h2>
-                        </motion.div>
+                        </div>
                         <div className="grid md:grid-cols-3 gap-8">
                             {[
                                 {
-                                    icon: "/logo/everytime-logo.png",
+                                    icon: "/logo/everytime.png",
                                     title: "에브리타임",
                                     description: "대학생 타겟 바이럴 마케팅",
                                     features: ["학교별 타겟팅", "실제 재학생 마케팅", "높은 도달률"],
                                     gradient: "from-[#FFD1D1] to-[#FFE5E5]",
-                                    link: "https://everytime.kr"
+                                    link: "/everytime"
                                 },
                                 {
-                                    icon: "/logo/blind-logo.png",
+                                    icon: "/logo/blind.png",
                                     title: "블라인드",
                                     description: "직장인 타겟 바이럴 마케팅",
                                     features: ["직장인 타겟팅", "자연스러운 바이럴", "높은 신뢰도"],
                                     gradient: "from-[#E5F7FF] to-[#F5FBFF]",
-                                    link: "https://www.teamblind.com/kr/"
+                                    link: "/blind"
                                 },
                                 {
-                                    icon: "/logo/tiktok-logo.png",
+                                    icon: "/logo/tiktok.png",
                                     title: "틱톡",
                                     description: "MZ세대 타겟 바이럴 마케팅",
                                     features: ["MZ세대 타겟팅", "숏폼 콘텐츠", "높은 전환율"],
                                     gradient: "from-[#00F2EA] to-[#FF0050]",
-                                    link: "https://www.tiktok.com"
+                                    link: "/tiktok"
                                 }
                             ].map((service, index) => (
                                 <motion.div
@@ -489,32 +468,20 @@ export function MainPage() {
                                     className="group relative"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                                    <a
-                                        href={service.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <Link
+                                        to={service.link}
                                         className="block relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500/50 transition-all duration-500 hover:shadow-lg hover:shadow-purple-500/10 transform-gpu hover:-translate-y-1"
                                     >
                                         <div className={`p-8 bg-gradient-to-br ${service.gradient} relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
-                                            <motion.div
-                                                animate={{
-                                                    scale: [1, 1.2, 1],
-                                                    opacity: [0.5, 0.8, 0.5]
-                                                }}
-                                                transition={{
-                                                    duration: 3,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut"
-                                                }}
-                                                className="absolute inset-0 bg-white/20 blur-3xl rounded-full"
+                                            <img
+                                                src={service.icon}
+                                                alt={service.title}
+                                                className="h-12 w-12 object-contain mb-4"
                                             />
-                                            <div className="relative">
-                                                <div className="w-12 h-12 rounded-xl bg-black/20 backdrop-blur-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                                                    <img src={service.icon} alt={service.title} className="w-8 h-8 object-contain" />
-                                                </div>
-                                                <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.title}</h3>
-                                                <p className="text-gray-800">{service.description}</p>
-                                            </div>
+                                            <h3 className="text-xl font-bold text-gray-900 mb-2">
+                                                {service.title}
+                                            </h3>
+                                            <p className="text-gray-700">{service.description}</p>
                                         </div>
 
                                         <div className="p-6">
@@ -533,17 +500,78 @@ export function MainPage() {
                                                     </motion.li>
                                                 ))}
                                             </ul>
-                                            <motion.div
-                                                initial={{ opacity: 0, x: -20 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ delay: 0.8 }}
-                                                className="mt-6 flex items-center text-purple-400 group-hover:text-purple-300 transition-colors"
-                                            >
-                                                <span className="font-medium">자세히 보기</span>
-                                                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                                            </motion.div>
                                         </div>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </section>
+
+                {/* 마케팅의 패러다임 섹션 */}
+                <section className="py-32 relative">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="container mx-auto px-4"
+                    >
+                        <div className="text-center mb-16">
+                            <motion.span
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                                className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-6 border border-purple-500/20 backdrop-blur-sm"
+                            >
+                                Our Process
+                            </motion.span>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="text-3xl md:text-4xl font-bold mb-6"
+                            >
+                                마케팅의 패러다임<br />이제는 달라져야 합니다
+                            </motion.h2>
+                        </div>
+                        <div className="grid md:grid-cols-4 gap-8">
+                            {[
+                                {
+                                    step: "01",
+                                    title: "무료 상담",
+                                    description: "프로젝트의 목표와 요구사항을 파악하고 최적의 전략을 제안합니다."
+                                },
+                                {
+                                    step: "02",
+                                    title: "맞춤 전략 수립",
+                                    description: "데이터 분석을 통해 타겟 고객과 플랫폼별 최적화된 전략을 수립합니다."
+                                },
+                                {
+                                    step: "03",
+                                    title: "실행 및 모니터링",
+                                    description: "전문 마케터가 전략을 실행하고 실시간으로 성과를 모니터링합니다."
+                                },
+                                {
+                                    step: "04",
+                                    title: "성과 분석 및 개선",
+                                    description: "데이터 기반으로 성과를 분석하고 지속적인 개선점을 도출합니다."
+                                }
+                            ].map((process, index) => (
+                                <motion.div
+                                    key={process.step}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.2 }}
+                                    className="group relative"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                                    <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-800 group-hover:border-purple-500/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-500">
+                                        <div className="text-4xl font-bold text-purple-400 mb-4">{process.step}</div>
+                                        <h3 className="text-xl font-bold text-white mb-4">{process.title}</h3>
+                                        <p className="text-gray-400">{process.description}</p>
                                         <motion.div
                                             initial={{ scaleX: 0 }}
                                             whileInView={{ scaleX: 1 }}
@@ -551,28 +579,10 @@ export function MainPage() {
                                             transition={{ duration: 0.8 }}
                                             className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"
                                         />
-                                    </a>
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.6 }}
-                            className="flex justify-center mt-12"
-                        >
-                            <Link
-                                to="/service"
-                                className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-tway text-lg overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                <div className="relative flex items-center">
-                                    서비스 전체보기
-                                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                                </div>
-                            </Link>
-                        </motion.div>
                     </motion.div>
                 </section>
 
@@ -659,87 +669,6 @@ export function MainPage() {
                             </motion.div>
                         </div>
                     </motion.div>
-                </section>
-
-                {/* 추가 섹션: 프로세스 */}
-                <section className="py-24 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/5 to-black" />
-                    <div className="container mx-auto px-4 relative">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-center mb-16"
-                        >
-                            <motion.span
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5 }}
-                                className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-6 border border-purple-500/20 backdrop-blur-sm"
-                            >
-                                Our Process
-                            </motion.span>
-                            <motion.h2
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                                className="text-4xl font-bold mb-4 text-white font-display"
-                            >
-                                체계적인 프로세스로<br className="md:hidden" />
-                                최상의 결과를 만듭니다
-                            </motion.h2>
-                        </motion.div>
-
-                        <div className="grid md:grid-cols-4 gap-8">
-                            {[
-                                {
-                                    step: "01",
-                                    title: "무료 상담",
-                                    description: "프로젝트의 목표와 요구사항을 파악하고 최적의 전략을 제안합니다."
-                                },
-                                {
-                                    step: "02",
-                                    title: "맞춤 전략 수립",
-                                    description: "데이터 분석을 통해 타겟 고객과 플랫폼별 최적화된 전략을 수립합니다."
-                                },
-                                {
-                                    step: "03",
-                                    title: "실행 및 모니터링",
-                                    description: "전문 마케터가 전략을 실행하고 실시간으로 성과를 모니터링합니다."
-                                },
-                                {
-                                    step: "04",
-                                    title: "성과 분석 및 개선",
-                                    description: "데이터 기반으로 성과를 분석하고 지속적인 개선점을 도출합니다."
-                                }
-                            ].map((process, index) => (
-                                <motion.div
-                                    key={process.step}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.2 }}
-                                    className="group relative"
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                                    <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-800 group-hover:border-purple-500/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-500">
-                                        <div className="text-4xl font-bold text-purple-400 mb-4">{process.step}</div>
-                                        <h3 className="text-xl font-bold text-white mb-4">{process.title}</h3>
-                                        <p className="text-gray-400">{process.description}</p>
-                                        <motion.div
-                                            initial={{ scaleX: 0 }}
-                                            whileInView={{ scaleX: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.8 }}
-                                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"
-                                        />
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
                 </section>
             </main>
             <Footer />
