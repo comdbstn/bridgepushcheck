@@ -129,7 +129,7 @@ export function MainPage() {
                                                 {item.description}
                                             </p>
 
-                                            {"stat" in item ? (
+                                            {"stat" in item && item.stat ? (
                                                 <div className="bg-purple-500/10 rounded-xl p-4 text-center mt-4">
                                                     <div className="text-3xl font-bold text-purple-400">
                                                         {item.stat.value}{item.stat.unit}
