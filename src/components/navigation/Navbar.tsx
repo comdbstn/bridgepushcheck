@@ -18,7 +18,7 @@ export function Navbar() {
                         <Link to="/portfolio" className="text-gray-600 hover:text-purple-600 font-tway transition-colors">
                             포트폴리오
                         </Link>
-                        <Link to="/insight" className="text-gray-600 hover:text-purple-600 font-tway transition-colors">
+                        <Link to="/insights" className="text-gray-600 hover:text-purple-600 font-tway transition-colors">
                             인사이트
                         </Link>
                         <Link to="/service" className="text-gray-600 hover:text-purple-600 font-tway transition-colors">

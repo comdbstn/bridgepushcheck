@@ -11,8 +11,13 @@ import { QA } from "@/components/sections/everytime/QA";
 import { Footer } from "@/components/sections/everytime/Footer";
 import { BackButton } from "@/components/navigation/back-button";
 import { KakaoChatButton } from "@/components/chat/kakao-chat-button";
+import { useEffect } from "react";
 
 export function EverytimePage() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="min-h-screen w-full bg-white overflow-hidden">
             <BackButton />

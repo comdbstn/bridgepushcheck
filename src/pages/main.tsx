@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowRight, Bot, Zap, Sparkles, Code2 } from "lucide-react";
+import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -160,22 +160,22 @@ export function MainPage() {
                                             />
                                             <div className="relative p-6 rounded-2xl bg-purple-500/5 border border-purple-500/10 backdrop-blur-sm">
                                                 <motion.div
-                                                    className="text-3xl font-bold text-purple-400 mb-2"
-                                            initial={{ opacity: 0, y: 10 }}
+                                                    className="text-4xl md:text-5xl font-bold text-purple-400 mb-2"
+                                                    initial={{ opacity: 0, y: 10 }}
                                                     whileInView={{ opacity: 1, y: 0 }}
                                                     viewport={{ once: true }}
-                                            transition={{ delay: 1 + index * 0.2 }}
-                                        >
+                                                    transition={{ delay: 1 + index * 0.2 }}
+                                                >
                                                     {count}{stat.suffix}
-                                        </motion.div>
-                                        <motion.div
-                                                    className="text-gray-400"
-                                            initial={{ opacity: 0 }}
+                                                </motion.div>
+                                                <motion.div
+                                                    className="text-lg text-gray-400"
+                                                    initial={{ opacity: 0 }}
                                                     whileInView={{ opacity: 1 }}
                                                     viewport={{ once: true }}
-                                            transition={{ delay: 1.2 + index * 0.2 }}
-                                        >
-                                            {stat.label}
+                                                    transition={{ delay: 1.2 + index * 0.2 }}
+                                                >
+                                                    {stat.label}
                                                 </motion.div>
                                             </div>
                                         </motion.div>
@@ -339,27 +339,27 @@ export function MainPage() {
                                     title: "경험과 인사이트의 결과, 성공",
                                     icon: <Sparkles className="h-8 w-8" />,
                                     description: [
-                                        "브릿지마케팅은 직접 창업을 진행해왔고, 마케팅 업계에서 9년의 경력을 가진 시니어 인재가 직접 담당합니다.",
-                                        "고객사의 입장에서 프로젝트를 바라보고 함께 성장하겠습니다.",
-                                        "간단한 문의만 받아도 모든 인사이트를 얻어가실 수 있습니다."
+                                        "9년 경력의 시니어 마케터가 직접 담당",
+                                        "고객사 맞춤형 프로젝트 진행",
+                                        "무료 상담을 통한 인사이트 제공"
                                     ]
                                 },
                                 {
                                     title: "데이터와 수치로 정형화된 KPI",
                                     icon: <Bot className="h-8 w-8" />,
                                     description: [
-                                        "BridgeMarketing은 모든 매체의 KPI를 학습하여 고도화된 AI마케터와 함께합니다.",
-                                        "단순히 감과 경험에 의지하지 않습니다.",
-                                        "모든 매체의 특징과 성능 및 전환율을 정확하게 인지하고있습니다.",
-                                        "비용, 매출, 기대수익 및 roas를 정확하게 계상하여 제안드립니다."
+                                        "AI 기반 매체별 KPI 분석",
+                                        "정확한 성과 측정 및 분석",
+                                        "ROAS 기반 마케팅 전략 수립"
                                     ]
                                 },
                                 {
                                     title: "신속한 커뮤니케이션과 리포트",
                                     icon: <Zap className="h-8 w-8" />,
                                     description: [
-                                        "전담 마케터를 배정한 후,\n전화 및 카카오톡을 통해 실시간 소통을 진행합니다.",
-                                        "또한 구글 스프레드 시트와 엑셀 등을 활용하여\n일별, 주별, 월별 데이터를 아카이빙하여 고객사에 제공합니다."
+                                        "전담 마케터 1:1 배정",
+                                        "실시간 카카오톡 소통",
+                                        "주간/월간 데이터 리포트 제공"
                                     ]
                                 }
                             ].map((point, index) => (
@@ -524,6 +524,24 @@ export function MainPage() {
                                 </motion.div>
                             ))}
                         </div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.8 }}
+                            className="flex justify-center mt-12"
+                        >
+                            <Link
+                                to="/service"
+                                className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl overflow-hidden"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="relative flex items-center">
+                                    서비스 전체보기
+                                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                </div>
+                            </Link>
+                        </motion.div>
                     </motion.div>
                 </section>
 
