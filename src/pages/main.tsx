@@ -5,6 +5,9 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useEffect, useRef, useState } from "react";
 
+// 로고 배열 생성
+const clientLogos = Array.from({ length: 40 }, (_, i) => `/logo/${i}.png`);
+
 export function MainPage() {
     const { scrollYProgress } = useScroll();
     const mouseX = useMotionValue(0);
@@ -300,30 +303,24 @@ export function MainPage() {
                             </motion.div>
                         </motion.div>
 
-                        {/* 로고 슬라이더 */}
-                        <div className="overflow-hidden relative py-10">
-                            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
-                            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
-                            <motion.div
-                                animate={{ x: [0, -2000] }}
-                                transition={{
-                                    duration: 30,
-                                    repeat: Infinity,
-                                    ease: "linear",
-                                    repeatType: "loop"
-                                }}
-                                className="flex gap-12"
-                            >
-                                {Array.from({ length: 30 }).map((_, index) => (
-                                    <motion.div
-                                        key={index}
-                                        whileHover={{ scale: 1.05 }}
-                                        className="w-32 h-16 bg-gradient-to-br from-purple-500/5 to-indigo-500/5 rounded-lg flex items-center justify-center border border-purple-500/10 backdrop-blur-sm"
-                                    >
-                                        <div className="w-20 h-8 bg-purple-500/10 rounded" />
-                                    </motion.div>
-                                ))}
-                            </motion.div>
+                        {/* 누적 고객사 로고 그리드 */}
+                        <div className="grid grid-cols-4 md:grid-cols-8 gap-6 mt-12">
+                            {clientLogos.map((logo, index) => (
+                                <motion.div 
+                                    key={index}
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    transition={{ duration: 0.3, delay: index * 0.02 }}
+                                    viewport={{ once: true }}
+                                    className="flex items-center justify-center p-3"
+                                >
+                                    <img 
+                                        src={logo} 
+                                        alt={`Client ${index + 1}`} 
+                                        className="h-10 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                                    />
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </section>
@@ -741,4 +738,17 @@ export function MainPage() {
             <Footer />
         </>
     );
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 20));
+    }
+}
+
+.animate-scroll {
+    animation: scroll 40s linear infinite;
 } 
