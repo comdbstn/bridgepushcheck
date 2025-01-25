@@ -304,23 +304,35 @@ export function MainPage() {
                         </motion.div>
 
                         {/* 누적 고객사 로고 그리드 */}
-                        <div className="grid grid-cols-4 md:grid-cols-8 gap-6 mt-12">
-                            {clientLogos.map((logo, index) => (
-                                <motion.div 
-                                    key={index}
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    transition={{ duration: 0.3, delay: index * 0.02 }}
-                                    viewport={{ once: true }}
-                                    className="flex items-center justify-center p-3"
+                        <div className="relative w-full overflow-hidden">
+                            {[0, 1, 2].map((row) => (
+                                <motion.div
+                                    key={row}
+                                    className="flex gap-8 py-4"
+                                    initial={{ x: row % 2 === 0 ? "0%" : "-100%" }}
+                                    animate={{ x: row % 2 === 0 ? "-100%" : "0%" }}
+                                    transition={{
+                                        duration: 50,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }}
                                 >
-                                    <img 
-                                        src={logo} 
-                                        alt={`Client ${index + 1}`} 
-                                        className="h-10 w-auto grayscale hover:grayscale-0 transition-all duration-300"
-                                    />
+                                    {[...clientLogos, ...clientLogos].slice(row * 13, (row + 1) * 13).map((logo, index) => (
+                                        <div
+                                            key={index}
+                                            className="flex-shrink-0"
+                                        >
+                                            <img
+                                                src={logo}
+                                                alt={`Client ${index + 1}`}
+                                                className="h-[60px] w-[150px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                            />
+                                        </div>
+                                    ))}
                                 </motion.div>
                             ))}
+                            <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
+                            <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
                         </div>
                     </div>
                 </section>
@@ -738,17 +750,4 @@ export function MainPage() {
             <Footer />
         </>
     );
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-250px * 20));
-    }
-}
-
-.animate-scroll {
-    animation: scroll 40s linear infinite;
 } 
