@@ -257,11 +257,360 @@ export function MainPage() {
                             }}
                         />
                     </motion.div>
-                    
-                    {/* ... 나머지 섹션들의 코드도 비슷한 방식으로 애니메이션 개선 ... */}
+                    <div className="container mx-auto px-4 relative">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="text-center mb-16"
+                        >
+                            <motion.div
+                                initial={{ scale: 0.9 }}
+                                whileInView={{ scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                                className="inline-block relative"
+                            >
+                                <div className="text-xl text-purple-400 mb-2">
+                                    누적 고객사
+                                </div>
+                                <div className="text-6xl md:text-7xl font-bold text-purple-400 mb-4 relative z-10">716</div>
+                                <motion.div
+                                    animate={{
+                                        scale: [1, 1.2, 1],
+                                        opacity: [0.3, 0.6, 0.3]
+                                    }}
+                                    transition={{
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                        repeatType: "reverse"
+                                    }}
+                                    className="absolute inset-0 bg-purple-500/20 blur-3xl rounded-full"
+                                />
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2, duration: 0.8 }}
+                                className="text-2xl text-gray-300"
+                            >
+                                업체 총 작업 건수 34,000건
+                            </motion.div>
+                        </motion.div>
+
+                        {/* 로고 슬라이더 */}
+                        <div className="overflow-hidden relative py-10">
+                            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
+                            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
+                            <motion.div
+                                animate={{ x: [0, -2000] }}
+                                transition={{
+                                    duration: 30,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                    repeatType: "loop"
+                                }}
+                                className="flex gap-12"
+                            >
+                                {Array.from({ length: 30 }).map((_, index) => (
+                                    <motion.div
+                                        key={index}
+                                        whileHover={{ scale: 1.05 }}
+                                        className="w-32 h-16 bg-gradient-to-br from-purple-500/5 to-indigo-500/5 rounded-lg flex items-center justify-center border border-purple-500/10 backdrop-blur-sm"
+                                    >
+                                        <div className="w-20 h-8 bg-purple-500/10 rounded" />
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+                    </div>
                 </section>
-                
-                {/* ... 기존 섹션들 계속 ... */}
+
+                {/* 포인트 섹션 */}
+                <section className="py-24 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/5 to-black" />
+                    <div className="container mx-auto px-4 relative">
+                        <div className="grid md:grid-cols-3 gap-12">
+                            {[
+                                {
+                                    title: "경험과 인사이트의 결과, 성공",
+                                    icon: <Sparkles className="h-8 w-8" />,
+                                    description: [
+                                        "브릿지마케팅은 직접 창업을 진행해왔고, 마케팅 업계에서 9년의 경력을 가진 시니어 인재가 직접 담당합니다.",
+                                        "고객사의 입장에서 프로젝트를 바라보고 함께 성장하겠습니다.",
+                                        "간단한 문의만 받아도 모든 인사이트를 얻어가실 수 있습니다."
+                                    ]
+                                },
+                                {
+                                    title: "데이터와 수치로 정형화된 KPI",
+                                    icon: <Bot className="h-8 w-8" />,
+                                    description: [
+                                        "BridgeMarketing은 모든 매체의 KPI를 학습하여 고도화된 AI마케터와 함께합니다.",
+                                        "단순히 감과 경험에 의지하지 않습니다.",
+                                        "모든 매체의 특징과 성능 및 전환율을 정확하게 인지하고있습니다.",
+                                        "비용, 매출, 기대수익 및 roas를 정확하게 계상하여 제안드립니다."
+                                    ]
+                                },
+                                {
+                                    title: "신속한 커뮤니케이션과 리포트",
+                                    icon: <Zap className="h-8 w-8" />,
+                                    description: [
+                                        "전담 마케터를 배정한 후,\n전화 및 카카오톡을 통해 실시간 소통을 진행합니다.",
+                                        "또한 구글 스프레드 시트와 엑셀 등을 활용하여\n일별, 주별, 월별 데이터를 아카이빙하여 고객사에 제공합니다."
+                                    ]
+                                }
+                            ].map((point, index) => (
+                                <motion.div
+                                    key={point.title}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.2, duration: 0.8 }}
+                                    className="group relative"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                                    <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-800 group-hover:border-purple-500/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-500 h-full">
+                                        <div className="flex items-center gap-4 mb-8">
+                                            <div className="relative">
+                                                <motion.div
+                                                    animate={{
+                                                        scale: [1, 1.2, 1],
+                                                        opacity: [0.5, 0.8, 0.5]
+                                                    }}
+                                                    transition={{
+                                                        duration: 3,
+                                                        repeat: Infinity,
+                                                        ease: "easeInOut"
+                                                    }}
+                                                    className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full"
+                                                />
+                                                <div className="relative rounded-xl bg-gradient-to-br from-purple-500/10 to-indigo-500/10 p-4">
+                                                    <div className="text-purple-400 group-hover:text-purple-300 transition-colors">
+                                                        {point.icon}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h3 className="text-2xl font-bold text-white">{point.title}</h3>
+                                        </div>
+                                        <div className="space-y-4">
+                                            {point.description.map((text, i) => (
+                                                <motion.p
+                                                    key={i}
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    whileInView={{ opacity: 1, x: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ delay: 0.4 + i * 0.1 }}
+                                                    className="text-gray-400 leading-relaxed whitespace-pre-line"
+                                                >
+                                                    {text}
+                                                </motion.p>
+                                            ))}
+                                        </div>
+                                        <motion.div
+                                            initial={{ scaleX: 0 }}
+                                            whileInView={{ scaleX: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.8 }}
+                                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"
+                                        />
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* 서비스 섹션 */}
+                <section className="py-32 relative">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="container mx-auto px-4"
+                    >
+                        <div className="text-center mb-16">
+                            <motion.span
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                                className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-6 border border-purple-500/20 backdrop-blur-sm"
+                            >
+                                Our Services
+                            </motion.span>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="text-3xl md:text-4xl font-bold mb-6"
+                            >
+                                다양한 플랫폼에서 효과적인<br />바이럴 마케팅을 제공합니다
+                            </motion.h2>
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {[
+                                {
+                                    icon: "/logo/everytime.png",
+                                    title: "에브리타임",
+                                    description: "대학생 타겟 바이럴 마케팅",
+                                    features: ["학교별 타겟팅", "실제 재학생 마케팅", "높은 도달률"],
+                                    gradient: "from-[#FFD1D1] to-[#FFE5E5]",
+                                    link: "/everytime"
+                                },
+                                {
+                                    icon: "/logo/blind.png",
+                                    title: "블라인드",
+                                    description: "직장인 타겟 바이럴 마케팅",
+                                    features: ["직장인 타겟팅", "자연스러운 바이럴", "높은 신뢰도"],
+                                    gradient: "from-[#E5F7FF] to-[#F5FBFF]",
+                                    link: "/blind"
+                                },
+                                {
+                                    icon: "/logo/tiktok.png",
+                                    title: "틱톡",
+                                    description: "MZ세대 타겟 바이럴 마케팅",
+                                    features: ["MZ세대 타겟팅", "숏폼 콘텐츠", "높은 전환율"],
+                                    gradient: "from-[#00F2EA] to-[#FF0050]",
+                                    link: "/tiktok"
+                                }
+                            ].map((service, index) => (
+                                <motion.div
+                                    key={service.title}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.2 }}
+                                    className="group relative"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                                    <Link
+                                        to={service.link}
+                                        className="block relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500/50 transition-all duration-500 hover:shadow-lg hover:shadow-purple-500/10 transform-gpu hover:-translate-y-1"
+                                    >
+                                        <div className={`p-8 bg-gradient-to-br ${service.gradient} relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
+                                            <img
+                                                src={service.icon}
+                                                alt={service.title}
+                                                className="h-12 w-12 object-contain mb-4"
+                                            />
+                                            <h3 className="text-xl font-bold text-gray-900 mb-2">
+                                                {service.title}
+                                            </h3>
+                                            <p className="text-gray-700">{service.description}</p>
+                                        </div>
+
+                                        <div className="p-6">
+                                            <ul className="space-y-3">
+                                                {service.features.map((feature, fIndex) => (
+                                                    <motion.li
+                                                        key={fIndex}
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        whileInView={{ opacity: 1, x: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ delay: 0.6 + fIndex * 0.1 }}
+                                                        className="flex items-start gap-2 text-gray-400 group-hover:text-gray-300 transition-colors"
+                                                    >
+                                                        <div className="h-1.5 w-1.5 rounded-full bg-purple-500 mt-2" />
+                                                        <span>{feature}</span>
+                                                    </motion.li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </section>
+
+                {/* CTA 섹션 */}
+                <section className="py-32 relative overflow-hidden">
+                    <div className="absolute inset-0">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.2),transparent_70%)]" />
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.3, 0.6, 0.3]
+                            }}
+                            transition={{
+                                duration: 8,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-transparent blur-3xl"
+                        />
+                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="container mx-auto px-4 relative"
+                    >
+                        <div className="max-w-3xl mx-auto text-center">
+                            <motion.span
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                                className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-6 border border-purple-500/20 backdrop-blur-sm"
+                            >
+                                Ready to Start?
+                            </motion.span>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent font-display"
+                            >
+                                지금 시작하세요
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.4 }}
+                                className="text-xl text-gray-300 mb-12 leading-relaxed"
+                            >
+                                브릿지마케팅과 함께라면<br className="md:hidden" />
+                                당신의 마케팅이 더욱 특별해집니다.
+                                <br />
+                                지금 바로 무료 상담을 받아보세요.
+                            </motion.p>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.6 }}
+                                className="flex justify-center"
+                            >
+                                <a
+                                    href="http://pf.kakao.com/_CYGdn/chat"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group relative px-10 py-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-tway text-lg overflow-hidden"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <div className="relative flex items-center">
+                                        상담 시작하기
+                                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.8, duration: 0.8 }}
+                                        className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                    />
+                                </a>
+                            </motion.div>
+                        </div>
+                    </motion.div>
+                </section>
             </main>
             <Footer />
         </>
