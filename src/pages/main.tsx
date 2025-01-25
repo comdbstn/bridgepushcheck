@@ -10,6 +10,10 @@ export function MainPage() {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const handleMouseMove = (e: React.MouseEvent) => {
         const { clientX, clientY } = e;
         mouseX.set(clientX);
@@ -70,25 +74,19 @@ export function MainPage() {
             <main className="min-h-screen bg-black text-white" onMouseMove={handleMouseMove}>
                 {/* 히어로 섹션 */}
                 <section className="relative min-h-screen flex items-center pt-20">
-                        <motion.div 
+                    <motion.div 
                         className="absolute inset-0" 
                         style={{ background }}
                     />
                     <div className="container mx-auto px-4 relative">
-                        <motion.div
-                            style={{
-                                scale: scaleProgress,
-                                opacity: opacityProgress
-                            }}
-                            className="max-w-4xl mx-auto text-center"
-                        >
+                        <div className="max-w-4xl mx-auto text-center">
                             <motion.span
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ 
-                                    duration: 0.5,
+                                    duration: 0.3,
                                     type: "spring",
-                                    stiffness: 100 
+                                    stiffness: 150 
                                 }}
                                 whileHover={{
                                     scale: 1.05,
@@ -102,9 +100,9 @@ export function MainPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{
-                                    duration: 0.8,
+                                    duration: 0.4,
                                     type: "spring",
-                                    stiffness: 100
+                                    stiffness: 150
                                 }}
                                 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent font-aggro leading-tight"
                             >
@@ -115,7 +113,7 @@ export function MainPage() {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.6, duration: 0.8 }}
+                                transition={{ delay: 0.2, duration: 0.4 }}
                                 className="grid grid-cols-3 gap-8 my-16"
                             >
                                 {[
@@ -124,7 +122,8 @@ export function MainPage() {
                                     { value: 4.9, suffix: "", label: "평균 만족도" }
                                 ].map((stat, index) => {
                                     const { count, ref } = useCountAnimation(
-                                        typeof stat.value === 'number' ? stat.value : 0
+                                        typeof stat.value === 'number' ? stat.value : 0,
+                                        1.5 // 카운팅 애니메이션 시간 단축
                                     );
                                     
                                     return (
@@ -135,9 +134,9 @@ export function MainPage() {
                                             whileInView={{ opacity: 1, scale: 1 }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                delay: 0.8 + index * 0.2,
+                                                delay: 0.3 + index * 0.1,
                                                 type: "spring",
-                                                stiffness: 100
+                                                stiffness: 150
                                             }}
                                             whileHover={{ 
                                                 scale: 1.05,
@@ -187,7 +186,7 @@ export function MainPage() {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.4, duration: 0.8 }}
+                                transition={{ delay: 0.4, duration: 0.4 }}
                                 className="flex flex-col sm:flex-row items-center justify-center gap-6"
                             >
                                 <Link
@@ -230,7 +229,7 @@ export function MainPage() {
                                     <span className="relative">문의하기</span>
                                 </motion.a>
                             </motion.div>
-                        </motion.div>
+                        </div>
                     </div>
                 </section>
 
