@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ArrowRight, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface Project {
@@ -9,17 +9,13 @@ interface Project {
     clientName: string;
     description: string;
     workImage: string;
-    platform: {
-        name: string;
-        icon: string;
-    };
+    logo: string;
     details: {
         budget: string;
         period: string;
         kpi: {
             target: string;
             result: string;
-            achievement: string;
         }[];
         consultation: {
             background: string;
@@ -31,379 +27,336 @@ interface Project {
 }
 
 export function PortfolioPage() {
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const { scrollYProgress } = useScroll();
-    const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
+
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const projects: Project[] = [
         {
-            title: "에브리타임",
-            clientName: "스타벅스 코리아",
-            description: "대학생 타겟 바이럴 마케팅을 통한 브랜드 인지도 향상 및 매출 증대",
-            workImage: "https://picsum.photos/800/600?random=1",
-            platform: {
-                name: "에브리타임",
-                icon: "/logo/everytime.png"
-            },
+            title: "스타벅스 코리아",
+            clientName: "에브리타임",
+            description: "대학생 커뮤니티를 활용한 브랜드 인지도 향상 및 신제품 프로모션",
+            workImage: "https://picsum.photos/800/600",
+            logo: "/logo/everytime.png",
             details: {
-                budget: "3,000만원 / 월",
+                budget: "2,000만원 / 월",
                 period: "2023.01 - 2023.06 (6개월)",
                 kpi: [
                     {
-                        target: "브랜드 인지도",
-                        result: "300% 상승",
-                        achievement: "목표 대비 150% 달성"
+                        target: "브랜드 언급량",
+                        result: "300% 증가"
                     },
                     {
-                        target: "매장 방문율",
-                        result: "250% 상승",
-                        achievement: "목표 대비 125% 달성"
-                    },
-                    {
-                        target: "앱 다운로드",
-                        result: "180% 상승",
-                        achievement: "목표 대비 120% 달성"
+                        target: "이벤트 참여율",
+                        result: "목표 대비 180% 달성"
                     }
                 ],
                 consultation: {
-                    background: "대학생들의 카페 선호도 1위 브랜드임에도 불구하고, 실제 방문 및 구매로 이어지는 전환율이 낮았습니다.",
-                    solution: "에브리타임을 통해 대학생들이 자주 방문하는 시간대의 프로모션과 신메뉴 정보를 자연스럽게 노출하는 전략을 제안했습니다.",
-                    decision: "각 대학별 인기 게시판을 통한 자연스러운 바이럴 마케팅으로, 실제 방문을 유도하는 캠페인을 진행했습니다."
+                    background: "MZ세대, 특히 대학생을 타겟으로 한 마케팅 강화 필요",
+                    solution: "에브리타임 커뮤니티 특성을 활용한 자연스러운 바이럴 마케팅",
+                    decision: "대학생들의 일상적인 대화 속에서 자연스러운 브랜드 노출"
                 },
                 workImages: [
                     "https://picsum.photos/800/600",
-                    "https://picsum.photos/800/601",
-                    "https://picsum.photos/800/602"
+                    "https://picsum.photos/800/600",
+                    "https://picsum.photos/800/600"
                 ]
             }
         },
         {
-            title: "블라인드",
-            clientName: "CU 편의점",
-            description: "대한민국 대표 편의점 브랜드로, 신선한 식품과 다양한 생활용품을 24시간 편리하게 제공하는 리테일 기업",
-            workImage: "https://picsum.photos/800/600?random=2",
-            platform: {
-                name: "블라인드",
-                icon: "/logo/blind.png"
-            },
+            title: "CU 편의점",
+            clientName: "블라인드",
+            description: "직장인 커뮤니티를 통한 신제품 출시 및 브랜드 인지도 강화",
+            workImage: "https://picsum.photos/800/600",
+            logo: "/logo/blind.png",
             details: {
                 budget: "2,500만원 / 월",
                 period: "2023.03 - 2023.08 (6개월)",
                 kpi: [
                     {
-                        target: "신규 상품 매출",
-                        result: "75% 상승",
-                        achievement: "목표 대비 125% 달성"
+                        target: "제품 리뷰 수",
+                        result: "250% 증가"
                     },
                     {
-                        target: "앱 다운로드",
-                        result: "일 평균 5,000건",
-                        achievement: "목표 대비 140% 달성"
-                    },
-                    {
-                        target: "멤버십 가입률",
-                        result: "32% 증가",
-                        achievement: "목표 대비 110% 달성"
+                        target: "매출 증가율",
+                        result: "전년 대비 45% 상승"
                     }
                 ],
                 consultation: {
-                    background: "직장인 타겟의 신규 PB상품 출시와 멤버십 서비스 강화에 따른 마케팅 필요",
-                    solution: "블라인드 커뮤니티를 활용한 직장인 타겟 입소문 마케팅과 리뷰 프로모션 제안",
-                    decision: "직장인들의 솔직한 리뷰를 통한 신뢰도 구축 및 구매 전환율 향상 전략 채택"
+                    background: "직장인 간편식 시장 공략을 위한 타겟 마케팅 필요",
+                    solution: "블라인드 커뮤니티의 특성을 활용한 입소문 마케팅",
+                    decision: "실제 직장인들의 생생한 후기를 통한 신뢰도 구축"
                 },
                 workImages: [
-                    "https://picsum.photos/800/600?random=7",
-                    "https://picsum.photos/800/600?random=8",
-                    "https://picsum.photos/800/600?random=9"
+                    "https://picsum.photos/800/600",
+                    "https://picsum.photos/800/600",
+                    "https://picsum.photos/800/600"
                 ]
             }
         },
         {
-            title: "틱톡",
-            clientName: "틱톡 코리아",
-            description: "전 세계 10억명 이상의 사용자가 이용하는 숏폼 동영상 플랫폼으로, MZ세대를 중심으로 강력한 영향력을 가진 소셜 미디어",
-            workImage: "https://picsum.photos/800/600?random=3",
-            platform: {
-                name: "틱톡",
-                icon: "/logo/tiktok.png"
-            },
+            title: "틱톡 코리아",
+            clientName: "틱톡",
+            description: "숏폼 콘텐츠를 활용한 브랜드 인지도 향상 및 유저 확보",
+            workImage: "https://picsum.photos/800/600",
+            logo: "/logo/tiktok.png",
             details: {
                 budget: "3,500만원 / 월",
                 period: "2023.05 - 2023.10 (6개월)",
                 kpi: [
                     {
                         target: "동영상 조회수",
-                        result: "100만 뷰 달성",
-                        achievement: "목표 대비 135% 달성"
+                        result: "500만 달성"
                     },
                     {
-                        target: "팔로워 수",
-                        result: "25만명 달성",
-                        achievement: "목표 대비 145% 달성"
-                    },
-                    {
-                        target: "해시태그 참여",
-                        result: "12만건 달성",
-                        achievement: "목표 대비 160% 달성"
+                        target: "앱 설치수",
+                        result: "목표 대비 220% 달성"
                     }
                 ],
                 consultation: {
-                    background: "MZ세대를 타겟으로 한 브랜드 인지도 향상 및 참여형 마케팅 필요",
-                    solution: "틱톡의 특성을 활용한 바이럴 챌린지 및 인플루언서 마케팅 제안",
-                    decision: "트렌디한 숏폼 콘텐츠와 해시태그 챌린지를 통한 브랜드 인게이지먼트 강화"
+                    background: "MZ세대 타겟 마케팅 강화 및 플랫폼 인지도 제고 필요",
+                    solution: "인플루언서 협업 및 바이럴 영상 제작",
+                    decision: "트렌디한 콘텐츠로 자연스러운 플랫폼 홍보"
                 },
                 workImages: [
-                    "https://picsum.photos/800/600?random=10",
-                    "https://picsum.photos/800/600?random=11",
-                    "https://picsum.photos/800/600?random=12"
+                    "https://picsum.photos/800/600",
+                    "https://picsum.photos/800/600",
+                    "https://picsum.photos/800/600"
                 ]
             }
         }
     ];
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     return (
-        <>
+        <div className="min-h-screen bg-black">
             <Navbar />
-            <main className="min-h-screen bg-black text-white pt-20">
-                {/* 히어로 섹션 */}
-                <section className="relative py-24">
-                    <motion.div
-                        className="absolute inset-0"
+            <main>
+                <section className="pt-40 pb-20 relative overflow-hidden">
+                    <motion.div 
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 1 }}
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black" />
+                        transition={{ duration: 0.3, type: "spring", stiffness: 150 }}
+                    />
+                    <div className="container mx-auto px-4">
                         <motion.div
-                            className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.2),transparent_70%)]"
-                            animate={{
-                                scale: [1, 1.2, 1],
-                                opacity: [0.3, 0.6, 0.3]
-                            }}
-                            transition={{
-                                duration: 8,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                        />
-                    </motion.div>
-                    <div className="container mx-auto px-4 relative">
-                        <motion.div
+                            style={{ opacity, scale }}
                             className="max-w-4xl mx-auto text-center"
-                            style={{ opacity }}
                         >
-                            <motion.span
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5 }}
-                                className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-8 border border-purple-500/20 backdrop-blur-sm"
-                            >
-                                Our Portfolio
-                            </motion.span>
-                            <motion.h1
+                            <motion.h1 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2, duration: 0.8 }}
-                                className="text-4xl md:text-6xl font-bold mb-8"
+                                transition={{ duration: 0.3 }}
+                                className="text-4xl md:text-5xl font-bold text-white mb-6"
                             >
-                                성공적인 프로젝트로<br />입증된 실력
+                                포트폴리오
                             </motion.h1>
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4, duration: 0.8 }}
+                                transition={{ duration: 0.3, delay: 0.1 }}
                                 className="text-xl text-gray-400"
                             >
-                                브릿지마케팅과 함께한 클라이언트들의<br />성공 스토리를 확인하세요
+                                브릿지마케팅의 성공 사례를 만나보세요
                             </motion.p>
                         </motion.div>
                     </div>
                 </section>
 
-                {/* 프로젝트 그리드 */}
-                <section className="py-24 relative">
+                <section className="py-24">
                     <div className="container mx-auto px-4">
-                        <div className="grid md:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {projects.map((project, index) => (
                                 <motion.div
                                     key={project.title}
-                                    initial={{ opacity: 0, y: 20 }}
+                                    initial={{ opacity: 0, y: 40 }}
                                     whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: index * 0.1 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: index * 0.2 }}
-                                    className="group relative"
                                     onClick={() => setSelectedProject(project)}
+                                    className="group cursor-pointer"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                                    <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-800 group-hover:border-purple-500/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-500 cursor-pointer transform-gpu group-hover:-translate-y-1">
-                                        <div className="flex items-center gap-4 mb-6">
-                                            <motion.img
-                                                src={project.platform.icon}
-                                                alt={project.platform.name}
-                                                className="w-12 h-12 object-contain"
-                                                whileHover={{ scale: 1.1 }}
-                                                transition={{ type: "spring", stiffness: 300 }}
-                                            />
-                                            <div>
-                                                <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
-                                                <p className="text-gray-400">{project.clientName}</p>
-                                            </div>
-                                        </div>
-                                        <p className="text-gray-400 mb-6">{project.description}</p>
-                                        <motion.button
-                                            whileHover={{ x: 5 }}
-                                            transition={{ type: "spring", stiffness: 400 }}
-                                            className="flex items-center text-purple-400 group"
-                                        >
-                                            View Details
-                                            <ArrowRight className="w-4 h-4 ml-2" />
-                                        </motion.button>
-                                        <motion.div
-                                            initial={{ scaleX: 0 }}
-                                            whileInView={{ scaleX: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.8 }}
-                                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"
+                                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                                        <img 
+                                            src={project.workImage} 
+                                            alt={project.title}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                         />
+                                        <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                                            <h3 className="text-2xl font-bold text-white mb-2">
+                                                {project.title}
+                                            </h3>
+                                            <div className="flex items-center gap-2 mb-4">
+                                                <img 
+                                                    src={project.logo} 
+                                                    alt={project.clientName}
+                                                    className="h-6"
+                                                />
+                                                <span className="text-purple-400">
+                                                    {project.clientName}
+                                                </span>
+                                            </div>
+                                            <p className="text-gray-400 line-clamp-2">
+                                                {project.description}
+                                            </p>
+                                        </div>
                                     </div>
                                 </motion.div>
                             ))}
                         </div>
                     </div>
                 </section>
-
-                {/* 프로젝트 상세 모달 */}
-                {selectedProject && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-                        onClick={() => setSelectedProject(null)}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-gray-900 rounded-2xl p-8"
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <button
-                                onClick={() => setSelectedProject(null)}
-                                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-                            >
-                                <X className="w-6 h-6" />
-                            </button>
-
-                            <div className="flex items-center gap-4 mb-8">
-                                <motion.img
-                                    src={selectedProject.platform.icon}
-                                    alt={selectedProject.platform.name}
-                                    className="w-16 h-16 object-contain"
-                                    whileHover={{ scale: 1.1 }}
-                                    transition={{ type: "spring", stiffness: 300 }}
-                                />
-                                <div>
-                                    <h2 className="text-2xl font-bold text-white mb-1">{selectedProject.title}</h2>
-                                    <p className="text-gray-400">{selectedProject.clientName}</p>
-                                </div>
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-8 mb-8">
-                                <div>
-                                    <h3 className="text-xl font-bold text-white mb-4">프로젝트 개요</h3>
-                                    <div className="space-y-4">
-                                        <div>
-                                            <p className="text-gray-400 mb-2">예산</p>
-                                            <p className="text-white">{selectedProject.details.budget}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-gray-400 mb-2">기간</p>
-                                            <p className="text-white">{selectedProject.details.period}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-white mb-4">KPI 달성</h3>
-                                    <div className="space-y-4">
-                                        {selectedProject.details.kpi.map((item, index) => (
-                                            <motion.div
-                                                key={item.target}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ delay: index * 0.1 }}
-                                                className="bg-purple-500/10 rounded-lg p-4"
-                                            >
-                                                <p className="text-gray-400 mb-2">{item.target}</p>
-                                                <p className="text-2xl font-bold text-purple-400">{item.result}</p>
-                                                <p className="text-sm text-gray-400">{item.achievement}</p>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="mb-8">
-                                <h3 className="text-xl font-bold text-white mb-4">컨설팅 내용</h3>
-                                <div className="space-y-6">
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.2 }}
-                                    >
-                                        <h4 className="text-purple-400 mb-2">Background</h4>
-                                        <p className="text-gray-400">{selectedProject.details.consultation.background}</p>
-                                    </motion.div>
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.3 }}
-                                    >
-                                        <h4 className="text-purple-400 mb-2">Solution</h4>
-                                        <p className="text-gray-400">{selectedProject.details.consultation.solution}</p>
-                                    </motion.div>
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.4 }}
-                                    >
-                                        <h4 className="text-purple-400 mb-2">Decision</h4>
-                                        <p className="text-gray-400">{selectedProject.details.consultation.decision}</p>
-                                    </motion.div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 className="text-xl font-bold text-white mb-4">실제 작업물</h3>
-                                <div className="grid md:grid-cols-2 gap-4">
-                                    {selectedProject.details.workImages.map((image, index) => (
-                                        <motion.div
-                                            key={image}
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{ delay: index * 0.1 }}
-                                            className="relative aspect-video rounded-lg overflow-hidden group"
-                                        >
-                                            <motion.img
-                                                src={image}
-                                                alt={`Work sample ${index + 1}`}
-                                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
             </main>
             <Footer />
-        </>
+
+            {/* 프로젝트 상세 모달 */}
+            {selectedProject && (
+                <div className="fixed inset-0 bg-black/80 z-50 overflow-y-auto">
+                    <div className="min-h-screen px-4 py-12">
+                        <div className="relative max-w-4xl mx-auto bg-gray-900 rounded-2xl overflow-hidden">
+                            <button
+                                onClick={() => setSelectedProject(null)}
+                                className="absolute top-4 right-4 text-gray-400 hover:text-white z-10"
+                            >
+                                <X className="h-6 w-6" />
+                            </button>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <div className="relative aspect-video">
+                                    <img 
+                                        src={selectedProject.workImage}
+                                        alt={selectedProject.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
+                                </div>
+
+                                <div className="p-8">
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <img 
+                                            src={selectedProject.logo}
+                                            alt={selectedProject.clientName}
+                                            className="h-8"
+                                        />
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-white">
+                                                {selectedProject.title}
+                                            </h3>
+                                            <p className="text-purple-400">
+                                                {selectedProject.clientName}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-6 mb-8">
+                                        <div>
+                                            <h4 className="text-lg font-semibold text-white mb-2">
+                                                프로젝트 기간
+                                            </h4>
+                                            <p className="text-gray-400">
+                                                {selectedProject.details.period}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg font-semibold text-white mb-2">
+                                                집행 비용
+                                            </h4>
+                                            <p className="text-gray-400">
+                                                {selectedProject.details.budget}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-8">
+                                        <h4 className="text-lg font-semibold text-white mb-4">
+                                            KPI 달성
+                                        </h4>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            {selectedProject.details.kpi.map((item, index) => (
+                                                <motion.div
+                                                    key={item.target}
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                                    className="bg-gray-800/50 rounded-lg p-4"
+                                                >
+                                                    <div className="text-sm text-gray-400 mb-2">
+                                                        {item.target}
+                                                    </div>
+                                                    <div className="text-xl font-bold text-purple-400">
+                                                        {item.result}
+                                                    </div>
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                        <div>
+                                            <h4 className="text-lg font-semibold text-white mb-2">
+                                                진행 배경
+                                            </h4>
+                                            <p className="text-gray-400">
+                                                {selectedProject.details.consultation.background}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg font-semibold text-white mb-2">
+                                                해결 방안
+                                            </h4>
+                                            <p className="text-gray-400">
+                                                {selectedProject.details.consultation.solution}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg font-semibold text-white mb-2">
+                                                실행 결정
+                                            </h4>
+                                            <p className="text-gray-400">
+                                                {selectedProject.details.consultation.decision}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-8">
+                                        <h4 className="text-lg font-semibold text-white mb-4">
+                                            실제 작업물
+                                        </h4>
+                                        <div className="grid grid-cols-3 gap-4">
+                                            {selectedProject.details.workImages.map((image, index) => (
+                                                <motion.div
+                                                    key={index}
+                                                    initial={{ opacity: 0, scale: 0.8 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                                    className="relative aspect-square rounded-lg overflow-hidden"
+                                                >
+                                                    <img 
+                                                        src={image}
+                                                        alt={`Work ${index + 1}`}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 } 

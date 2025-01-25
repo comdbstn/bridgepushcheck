@@ -6,6 +6,7 @@ import { BlindPage } from "@/pages/blind";
 import { TiktokPage } from "@/pages/tiktok";
 import { PortfolioPage } from "@/pages/portfolio";
 import { InsightsPage } from "@/pages/insights";
+import { InsightDetailPage } from "@/pages/insight-detail";
 
 function App() {
     return (
@@ -14,7 +15,7 @@ function App() {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/service" element={<ServicePage />} />
                 <Route path="/insights" element={<InsightsPage />} />
-                <Route path="/insights/:id" element={<InsightsPage />} />
+                <Route path="/insights/:id" element={<InsightDetailPage />} />
                 <Route path="/everytime" element={<EverytimePage />} />
                 <Route path="/blind" element={<BlindPage />} />
                 <Route path="/tiktok" element={<TiktokPage />} />
