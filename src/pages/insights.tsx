@@ -25,7 +25,7 @@ export default function InsightsPage() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        const timer = setTimeout(() => setIsLoading(false), 1000);
+        const timer = setTimeout(() => setIsLoading(false), 300);
         return () => clearTimeout(timer);
     }, []);
 
@@ -78,82 +78,73 @@ export default function InsightsPage() {
         <div className="min-h-screen bg-black">
             <Navbar />
             <main>
-                <section className="pt-40 pb-20 relative overflow-hidden">
-                    <motion.div 
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3, type: "spring", stiffness: 150 }}
-                    />
+                <section className="pt-40 pb-20">
                     <div className="container mx-auto px-4">
                         <motion.div
-                            style={{ opacity, scale }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4 }}
                             className="max-w-4xl mx-auto text-center"
                         >
-                            <motion.h1 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="text-4xl md:text-5xl font-bold text-white mb-6"
-                            >
-                                Our Insights
-                            </motion.h1>
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: 0.1 }}
-                                className="text-xl text-gray-400"
-                            >
-                                브릿지마케팅의 전문적인 마케팅 인사이트를 만나보세요
-                            </motion.p>
+                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                                인사이트
+                            </h1>
+                            <p className="text-xl text-gray-400">
+                                브릿지마케팅의 마케팅 인사이트를 만나보세요
+                            </p>
                         </motion.div>
                     </div>
                 </section>
 
                 <section className="py-24">
                     <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {posts.map((post, index) => (
                                 <motion.div
                                     key={post.id}
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    className="group"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                                    className="group bg-gray-900/50 rounded-2xl overflow-hidden hover:bg-gray-800/50 transition-colors"
                                 >
-                                    <Link to={`/insights/${post.id}`}>
-                                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
+                                    <Link to={`/insights/${post.id}`} className="block p-6">
+                                        <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-6">
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
                                             <img 
                                                 src={post.thumbnail} 
                                                 alt={post.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                                             />
-                                            <div className="absolute top-6 left-6 z-20">
-                                                <span className="px-3 py-1 bg-purple-500/20 backdrop-blur-sm rounded-full text-purple-400 text-sm">
+                                            <div className="absolute top-4 left-4 z-20">
+                                                <span className="px-3 py-1 bg-purple-500/20 backdrop-blur-sm rounded-full text-purple-400 text-sm border border-purple-500/20">
                                                     {post.category}
                                                 </span>
                                             </div>
                                         </div>
                                         <div className="space-y-4">
                                             <div className="flex items-center gap-4 text-sm text-gray-400">
-                                                <span>{post.date}</span>
-                                                <span>•</span>
-                                                <span>{post.readTime} 읽기</span>
+                                                <div className="flex items-center gap-1">
+                                                    <Calendar className="w-4 h-4" />
+                                                    <span>{post.date}</span>
+                                                </div>
+                                                <div className="flex items-center gap-1">
+                                                    <Clock className="w-4 h-4" />
+                                                    <span>{post.readTime} 읽기</span>
+                                                </div>
                                             </div>
-                                            <h2 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                                            <h2 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors line-clamp-2">
                                                 {post.title}
                                             </h2>
                                             <p className="text-gray-400 line-clamp-2">
                                                 {post.description}
                                             </p>
-                                            <div className="flex flex-wrap gap-2">
+                                            <div className="flex flex-wrap gap-2 pt-2">
                                                 {post.tags.map(tag => (
                                                     <span 
                                                         key={tag}
-                                                        className="px-3 py-1 bg-gray-800 rounded-full text-gray-400 text-sm"
+                                                        className="inline-flex items-center gap-1 px-3 py-1 bg-gray-800/50 rounded-full text-gray-400 text-sm group-hover:bg-purple-500/10 group-hover:text-purple-400 transition-colors"
                                                     >
+                                                        <Tag className="w-3 h-3" />
                                                         {tag}
                                                     </span>
                                                 ))}

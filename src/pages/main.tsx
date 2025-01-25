@@ -7,73 +7,88 @@ import { useEffect, useRef, useState } from "react";
 import { Loading } from "@/components/ui/loading";
 
 // 로고 배열 생성
-const clientLogos = Array.from({ length: 40 }, (_, i) => `/logo/${i}.png`);
+const clientLogos = [
+    "/logo/0.png", "/logo/1.jpg", "/logo/2.png", "/logo/3.png", 
+    "/logo/4.jpg", "/logo/5.png", "/logo/6.png", "/logo/7.svg", 
+    "/logo/8.jpg", "/logo/9.png", "/logo/10.png", "/logo/12.png", 
+    "/logo/13.png", "/logo/14.png", "/logo/15.png", "/logo/16.png", 
+    "/logo/17.png", "/logo/18.png", "/logo/19.jpg", "/logo/20.png",
+    "/logo/21.png", "/logo/22.png", "/logo/23.png", "/logo/24.png", 
+    "/logo/25.jpg", "/logo/26.png", "/logo/27.png", "/logo/28.jpg", 
+    "/logo/29.png", "/logo/30.png", "/logo/31.png", "/logo/32.png",
+    "/logo/33.webp", "/logo/34.png", "/logo/35.png", "/logo/36.png",
+    "/logo/37.webp", "/logo/38.png", "/logo/39.jpg"
+];
 
-export default function MainPage() {
+export function MainPage() {
+    // 1. State Hooks
     const [isLoading, setIsLoading] = useState(true);
+    const [statsCounts, setStatsCounts] = useState([0, 0, 0]);
+
+    // 2. Motion Hooks
     const { scrollYProgress } = useScroll();
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
     const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
     const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+    const gradientX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
+    const gradientY = useTransform(mouseY, [0, window.innerHeight], [0, 100]);
+    const background = useMotionTemplate`radial-gradient(circle at ${gradientX}% ${gradientY}%, rgba(147,51,234,0.15), transparent 70%)`;
 
+    // 3. Ref Hooks
+    const statsRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
+
+    // 4. Constants
+    const statsData = [
+        { value: 92, suffix: "%", label: "고객사 재구매율" },
+        { value: 34000, suffix: "+", label: "누적 작업횟수" },
+        { value: 4.9, suffix: "", label: "평균 만족도" }
+    ];
+
+    // 5. Effect Hooks
     useEffect(() => {
         window.scrollTo(0, 0);
-        const timer = setTimeout(() => setIsLoading(false), 1000);
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+            // 로딩이 끝나면 바로 통계 카운트 시작
+            statsData.forEach((stat, index) => {
+                let startTime: number;
+                const endValue = stat.value;
+                const duration = 1.5;
+
+                const animate = (currentTime: number) => {
+                    if (!startTime) startTime = currentTime;
+                    const progress = (currentTime - startTime) / (duration * 1000);
+
+                    if (progress < 1) {
+                        setStatsCounts(prev => {
+                            const newCounts = [...prev];
+                            newCounts[index] = Math.floor(endValue * progress);
+                            return newCounts;
+                        });
+                        requestAnimationFrame(animate);
+                    } else {
+                        setStatsCounts(prev => {
+                            const newCounts = [...prev];
+                            newCounts[index] = endValue;
+                            return newCounts;
+                        });
+                    }
+                };
+                requestAnimationFrame(animate);
+            });
+        }, 500);
         return () => clearTimeout(timer);
     }, []);
 
-    if (isLoading) return <Loading />;
-
+    // 6. Event Handlers
     const handleMouseMove = (e: React.MouseEvent) => {
         const { clientX, clientY } = e;
         mouseX.set(clientX);
         mouseY.set(clientY);
     };
 
-    // 배경 그라데이션 애니메이션
-    const gradientX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
-    const gradientY = useTransform(mouseY, [0, window.innerHeight], [0, 100]);
-    const background = useMotionTemplate`radial-gradient(circle at ${gradientX}% ${gradientY}%, rgba(147,51,234,0.15), transparent 70%)`;
-
-    // 숫자 카운팅 애니메이션을 위한 커스텀 훅
-    const useCountAnimation = (end: number, duration: number = 2) => {
-        const [count, setCount] = useState(0);
-        const nodeRef = useRef<HTMLDivElement>(null);
-
-        useEffect(() => {
-            const node = nodeRef.current;
-            if (!node) return;
-
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            let startTime: number;
-                            const animate = (currentTime: number) => {
-                                if (!startTime) startTime = currentTime;
-                                const progress = (currentTime - startTime) / (duration * 1000);
-                                
-                                if (progress < 1) {
-                                    setCount(Math.floor(end * progress));
-                                    requestAnimationFrame(animate);
-                                } else {
-                                    setCount(end);
-                                }
-                            };
-                            requestAnimationFrame(animate);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-
-            observer.observe(node);
-            return () => observer.disconnect();
-        }, [end, duration]);
-
-        return { count, ref: nodeRef };
-    };
+    if (isLoading) return <Loading />;
 
     return (
         <>
@@ -123,70 +138,59 @@ export default function MainPage() {
                                 transition={{ delay: 0.2, duration: 0.4 }}
                                 className="grid grid-cols-3 gap-8 my-16"
                             >
-                                {[
-                                    { value: 92, suffix: "%", label: "고객사 재구매율" },
-                                    { value: 34000, suffix: "+", label: "누적 작업횟수" },
-                                    { value: 4.9, suffix: "", label: "평균 만족도" }
-                                ].map((stat, index) => {
-                                    const { count, ref } = useCountAnimation(
-                                        typeof stat.value === 'number' ? stat.value : 0,
-                                        1.5 // 카운팅 애니메이션 시간 단축
-                                    );
-                                    
-                                    return (
+                                {statsData.map((stat, index) => (
                                     <motion.div
                                         key={stat.label}
-                                            ref={ref}
+                                        ref={statsRefs[index]}
                                         initial={{ opacity: 0, scale: 0.9 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ 
-                                                delay: 0.3 + index * 0.1,
-                                                type: "spring",
-                                                stiffness: 150
-                                            }}
-                                            whileHover={{ 
-                                                scale: 1.05,
-                                                transition: { duration: 0.2 }
-                                            }}
-                                            className="relative group"
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ 
+                                            delay: 0.3 + index * 0.1,
+                                            type: "spring",
+                                            stiffness: 150
+                                        }}
+                                        whileHover={{ 
+                                            scale: 1.05,
+                                            transition: { duration: 0.2 }
+                                        }}
+                                        className="relative group"
                                     >
                                         <motion.div
-                                                className="absolute inset-0 bg-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                                                initial={false}
-                                                animate={{
-                                                    scale: [1, 1.2, 1],
-                                                    opacity: [0.5, 0.8, 0.5]
-                                                }}
-                                                transition={{
-                                                    duration: 3,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut"
-                                                }}
-                                            />
-                                            <div className="relative p-6 rounded-2xl bg-purple-500/5 border border-purple-500/10 backdrop-blur-sm">
-                                                <motion.div
-                                                    className="text-4xl md:text-5xl font-bold text-purple-400 mb-2"
-                                                    initial={{ opacity: 0, y: 10 }}
-                                                    whileInView={{ opacity: 1, y: 0 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ delay: 1 + index * 0.2 }}
-                                                >
-                                                    {count}{stat.suffix}
-                                                </motion.div>
-                                                <motion.div
-                                                    className="text-lg text-gray-400"
-                                                    initial={{ opacity: 0 }}
-                                                    whileInView={{ opacity: 1 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ delay: 1.2 + index * 0.2 }}
-                                                >
-                                                    {stat.label}
-                                                </motion.div>
-                                            </div>
-                                        </motion.div>
-                                    );
-                                })}
+                                            className="absolute inset-0 bg-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                                            initial={false}
+                                            animate={{
+                                                scale: [1, 1.2, 1],
+                                                opacity: [0.5, 0.8, 0.5]
+                                            }}
+                                            transition={{
+                                                duration: 3,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            }}
+                                        />
+                                        <div className="relative p-6 rounded-2xl bg-purple-500/5 border border-purple-500/10 backdrop-blur-sm">
+                                            <motion.div
+                                                className="text-4xl md:text-5xl font-bold text-purple-400 mb-2"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ delay: 1 + index * 0.2 }}
+                                            >
+                                                {statsCounts[index]}{stat.suffix}
+                                            </motion.div>
+                                            <motion.div
+                                                className="text-lg text-gray-400"
+                                                initial={{ opacity: 0 }}
+                                                whileInView={{ opacity: 1 }}
+                                                viewport={{ once: true }}
+                                                transition={{ delay: 1.2 + index * 0.2 }}
+                                            >
+                                                {stat.label}
+                                            </motion.div>
+                                        </div>
+                                    </motion.div>
+                                ))}
                             </motion.div>
 
                             {/* CTA 버튼 */}
@@ -548,15 +552,13 @@ export default function MainPage() {
                 <section className="py-32 relative">
                     <motion.div
                         initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
+                        animate={{ opacity: 1 }}
                         className="container mx-auto px-4"
                     >
                         <div className="text-center mb-16">
                             <motion.span
                                 initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
+                                animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5 }}
                                 className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-6 border border-purple-500/20 backdrop-blur-sm"
                             >
@@ -564,8 +566,7 @@ export default function MainPage() {
                             </motion.span>
                             <motion.h2
                                 initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
                                 className="text-3xl md:text-4xl font-bold mb-6"
                             >

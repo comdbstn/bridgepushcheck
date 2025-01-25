@@ -37,7 +37,7 @@ export default function PortfolioPage() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        const timer = setTimeout(() => setIsLoading(false), 1000);
+        const timer = setTimeout(() => setIsLoading(false), 500);
         return () => clearTimeout(timer);
     }, []);
 
@@ -143,34 +143,20 @@ export default function PortfolioPage() {
         <div className="min-h-screen bg-black">
             <Navbar />
             <main>
-                <section className="pt-40 pb-20 relative overflow-hidden">
-                    <motion.div 
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3, type: "spring", stiffness: 150 }}
-                    />
+                <section className="pt-40 pb-20">
                     <div className="container mx-auto px-4">
                         <motion.div
-                            style={{ opacity, scale }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4 }}
                             className="max-w-4xl mx-auto text-center"
                         >
-                            <motion.h1 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="text-4xl md:text-5xl font-bold text-white mb-6"
-                            >
+                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                                 포트폴리오
-                            </motion.h1>
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: 0.1 }}
-                                className="text-xl text-gray-400"
-                            >
+                            </h1>
+                            <p className="text-xl text-gray-400">
                                 브릿지마케팅의 성공 사례를 만나보세요
-                            </motion.p>
+                            </p>
                         </motion.div>
                     </div>
                 </section>
@@ -181,10 +167,9 @@ export default function PortfolioPage() {
                             {projects.map((project, index) => (
                                 <motion.div
                                     key={project.title}
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                                    viewport={{ once: true }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.4, delay: index * 0.1 }}
                                     onClick={() => setSelectedProject(project)}
                                     className="group cursor-pointer"
                                 >
@@ -224,7 +209,12 @@ export default function PortfolioPage() {
 
             {/* 프로젝트 상세 모달 */}
             {selectedProject && (
-                <div className="fixed inset-0 bg-black/80 z-50 overflow-y-auto">
+                <motion.div 
+                    className="fixed inset-0 bg-black/80 z-50 overflow-y-auto"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                >
                     <div className="min-h-screen px-4 py-12">
                         <div className="relative max-w-4xl mx-auto bg-gray-900 rounded-2xl overflow-hidden">
                             <button
@@ -361,7 +351,7 @@ export default function PortfolioPage() {
                             </motion.div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             )}
         </div>
     );

@@ -13,7 +13,7 @@ export default function ServicePage() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        const timer = setTimeout(() => setIsLoading(false), 1000);
+        const timer = setTimeout(() => setIsLoading(false), 500);
         return () => clearTimeout(timer);
     }, []);
 
@@ -50,34 +50,20 @@ export default function ServicePage() {
         <div className="min-h-screen bg-black">
             <Navbar />
             <main>
-                <section className="pt-40 pb-20 relative overflow-hidden">
-                    <motion.div 
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3, type: "spring", stiffness: 150 }}
-                    />
+                <section className="pt-40 pb-20">
                     <div className="container mx-auto px-4">
                         <motion.div
-                            style={{ opacity, scale }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4 }}
                             className="max-w-4xl mx-auto text-center"
                         >
-                            <motion.h1 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="text-4xl md:text-5xl font-bold text-white mb-6"
-                            >
+                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                                 마케팅 서비스
-                            </motion.h1>
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: 0.1 }}
-                                className="text-xl text-gray-400"
-                            >
+                            </h1>
+                            <p className="text-xl text-gray-400">
                                 브릿지마케팅의 다양한 서비스를 만나보세요
-                            </motion.p>
+                            </p>
                         </motion.div>
                     </div>
                 </section>
@@ -88,11 +74,10 @@ export default function ServicePage() {
                             {services.map((service, index) => (
                                 <motion.div
                                     key={service.title}
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    className="bg-gray-900/50 rounded-2xl p-8 hover:bg-gray-800/50 transition-colors"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                                    className="group bg-gray-900/50 rounded-2xl p-8 hover:bg-gray-800/50 transition-colors"
                                 >
                                     <div className="flex items-center justify-center mb-6">
                                         <img 
@@ -112,9 +97,8 @@ export default function ServicePage() {
                                             <motion.li
                                                 key={feature}
                                                 initial={{ opacity: 0, x: -20 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
+                                                animate={{ opacity: 1, x: 0 }}
                                                 transition={{ duration: 0.3, delay: index * 0.1 + featureIndex * 0.1 }}
-                                                viewport={{ once: true }}
                                                 className="flex items-center text-gray-400"
                                             >
                                                 <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2" />
@@ -148,10 +132,9 @@ export default function ServicePage() {
                     />
                     <div className="container mx-auto px-4">
                         <motion.div
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4 }}
                             className="max-w-4xl mx-auto text-center"
                         >
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

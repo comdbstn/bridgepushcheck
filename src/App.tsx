@@ -1,16 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MainPage } from "@/pages/main";
-import { ServicePage } from "@/pages/service";
+import ServicePage from "@/pages/service";
 import { EverytimePage } from "@/pages/everytime";
 import { BlindPage } from "@/pages/blind";
 import { TiktokPage } from "@/pages/tiktok";
-import { PortfolioPage } from "@/pages/portfolio";
-import { InsightsPage } from "@/pages/insights";
+import PortfolioPage from "@/pages/portfolio";
+import InsightsPage from "@/pages/insights";
 import { InsightDetailPage } from "@/pages/insight-detail";
+import "./App.css";
 
 function App() {
     return (
-        <Router basename="/service">
+        <Router>
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/service" element={<ServicePage />} />
