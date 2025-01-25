@@ -10,29 +10,23 @@ export function ServicePage() {
     const opacityProgress = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
     return (
-        <>
+        <div className="min-h-screen bg-black">
             <Navbar />
-            <main className="min-h-screen bg-black text-white">
+            <main>
                 {/* 히어로 섹션 */}
-                <section className="relative min-h-[50vh] flex items-center pt-20">
+                <section className="pt-32 pb-24 relative overflow-hidden">
                     <motion.div 
                         className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1 }}
                     />
-                    <div className="container mx-auto px-4 relative">
-                        <motion.div
-                            style={{
-                                scale: scaleProgress,
-                                opacity: opacityProgress
-                            }}
-                            className="max-w-4xl mx-auto text-center"
-                        >
+                    <div className="container mx-auto px-4">
+                        <div className="max-w-4xl mx-auto text-center">
                             <motion.span
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
                                 className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-8 border border-purple-500/20 backdrop-blur-sm"
                             >
                                 Our Services
@@ -40,21 +34,20 @@ export function ServicePage() {
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8 }}
-                                className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent"
+                                transition={{ duration: 0.6, delay: 0.1 }}
+                                className="text-4xl md:text-6xl font-bold mb-8 text-white"
                             >
-                                효과적인 바이럴 마케팅을<br />시작하세요
+                                마케팅 서비스
                             </motion.h1>
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2, duration: 0.8 }}
-                                className="text-xl text-gray-400 mb-12"
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                                className="text-gray-400 text-lg mb-12"
                             >
-                                각 플랫폼에 최적화된 마케팅 전략으로<br />
-                                당신의 비즈니스를 성장시켜 드립니다
+                                브릿지마케팅의 다양한 서비스를 만나보세요
                             </motion.p>
-                        </motion.div>
+                        </div>
                     </div>
                 </section>
 
@@ -237,6 +230,6 @@ export function ServicePage() {
                 </section>
             </main>
             <Footer />
-        </>
+        </div>
     );
 } 

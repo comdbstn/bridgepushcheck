@@ -43,55 +43,48 @@ export function InsightsPage() {
     ];
 
     return (
-        <>
+        <div className="min-h-screen bg-black">
             <Navbar />
-            <main className="min-h-screen bg-black text-white">
+            <main>
                 {/* 히어로 섹션 */}
-                <section className="relative min-h-[50vh] flex items-center pt-20">
+                <section className="pt-32 pb-24 relative overflow-hidden">
                     <motion.div 
                         className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1 }}
                     />
-                    <div className="container mx-auto px-4 relative">
-                        <motion.div
-                            style={{
-                                scale: scaleProgress,
-                                opacity: opacityProgress
-                            }}
-                            className="max-w-4xl mx-auto text-center"
-                        >
+                    <div className="container mx-auto px-4">
+                        <div className="max-w-4xl mx-auto text-center">
                             <motion.span
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
                                 className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-8 border border-purple-500/20 backdrop-blur-sm"
                             >
-                                Marketing Insights
+                                Our Insights
                             </motion.span>
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8 }}
-                                className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent"
+                                transition={{ duration: 0.6, delay: 0.1 }}
+                                className="text-4xl md:text-6xl font-bold mb-8 text-white"
                             >
                                 마케팅 인사이트
                             </motion.h1>
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2, duration: 0.8 }}
-                                className="text-xl text-gray-400 mb-12"
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                                className="text-gray-400 text-lg mb-12"
                             >
-                                브릿지마케팅의 전문가들이 전하는<br />
-                                실전 마케팅 인사이트와 노하우
+                                브릿지마케팅의 전문적인 마케팅 인사이트를 만나보세요
                             </motion.p>
-                        </motion.div>
+                        </div>
                     </div>
                 </section>
 
-                {/* 블로그 포스트 섹션 */}
+                {/* 블로그 포스트 그리드 */}
                 <section className="py-24 relative">
                     <div className="container mx-auto px-4">
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -230,6 +223,6 @@ export function InsightsPage() {
                 </section>
             </main>
             <Footer />
-        </>
+        </div>
     );
 } 
