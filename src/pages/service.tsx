@@ -3,11 +3,16 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { useEffect } from "react";
 
 export function ServicePage() {
     const { scrollYProgress } = useScroll();
     const scaleProgress = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
     const opacityProgress = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="min-h-screen bg-black">
