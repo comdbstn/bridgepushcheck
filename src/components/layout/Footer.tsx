@@ -8,9 +8,9 @@ export function Footer() {
                     <div className="flex flex-col md:flex-row justify-between items-start gap-8">
                         {/* 회사 정보 */}
                         <div className="space-y-2">
-                            <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                                Bridge Marketing
-                            </h3>
+                            <div className="mb-4">
+                                <img src="/logo/bridgemlogo.png" alt="Bridge Marketing" className="h-8" />
+                            </div>
                             <div className="space-y-3 text-gray-600">
                                 <div className="flex items-center gap-2">
                                     <MapPin className="w-4 h-4 text-purple-400 flex-shrink-0" />
