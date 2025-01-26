@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } from "framer-motion";
+import { motion, useTransform, useMotionValue, useMotionTemplate } from "framer-motion";
 import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
@@ -26,7 +26,6 @@ export function MainPage() {
     const [statsCounts, setStatsCounts] = useState([0, 0, 0]);
 
     // 2. Motion Hooks
-    const { scrollYProgress } = useScroll();
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
     const gradientX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
@@ -77,7 +76,7 @@ export function MainPage() {
             });
         }, 500);
         return () => clearTimeout(timer);
-    }, []);
+    }, [statsData]);
 
     // 6. Event Handlers
     const handleMouseMove = (e: React.MouseEvent) => {

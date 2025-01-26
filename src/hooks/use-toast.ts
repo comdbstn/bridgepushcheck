@@ -12,6 +12,17 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement;
 };
 
+type ToastActionElement = React.ReactElement;
+
+export type ToastProps = {
+  id?: string;
+  type?: "default" | "destructive" | "success";
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  action?: ToastActionElement;
+  duration?: number;
+};
+
 const actionTypes = {
   ADD_TOAST: 'ADD_TOAST',
   UPDATE_TOAST: 'UPDATE_TOAST',
@@ -19,30 +30,21 @@ const actionTypes = {
   REMOVE_TOAST: 'REMOVE_TOAST',
 } as const;
 
-let count = 0;
-
-function genId() {
-  count = (count + 1) % Number.MAX_SAFE_INTEGER;
-  return count.toString();
-}
-
-type ActionType = typeof actionTypes;
-
 type Action =
   | {
-      type: ActionType['ADD_TOAST'];
+      type: typeof actionTypes.ADD_TOAST;
       toast: ToasterToast;
     }
   | {
-      type: ActionType['UPDATE_TOAST'];
+      type: typeof actionTypes.UPDATE_TOAST;
       toast: Partial<ToasterToast>;
     }
   | {
-      type: ActionType['DISMISS_TOAST'];
+      type: typeof actionTypes.DISMISS_TOAST;
       toastId?: ToasterToast['id'];
     }
   | {
-      type: ActionType['REMOVE_TOAST'];
+      type: typeof actionTypes.REMOVE_TOAST;
       toastId?: ToasterToast['id'];
     };
 
@@ -137,7 +139,7 @@ function dispatch(action: Action) {
 type Toast = Omit<ToasterToast, 'id'>;
 
 function toast({ ...props }: Toast) {
-  const id = genId();
+  const id = crypto.randomUUID();
 
   const update = (props: ToasterToast) =>
     dispatch({
