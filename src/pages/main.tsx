@@ -3,7 +3,7 @@ import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { Loading } from "@/components/ui/loading";
 
 // 로고 배열 생성
@@ -36,11 +36,11 @@ export function MainPage() {
     const statsRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
 
     // 4. Constants
-    const statsData = [
+    const statsData = useMemo(() => [
         { value: 92, suffix: "%", label: "고객사 재구매율" },
         { value: 34000, suffix: "+", label: "누적 작업횟수" },
         { value: 4.9, suffix: "", label: "평균 만족도" }
-    ];
+    ], []);
 
     // 5. Effect Hooks
     useEffect(() => {
