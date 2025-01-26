@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Clock, Tag, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { X } from "lucide-react";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Loading } from "@/components/ui/loading";

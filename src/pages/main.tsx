@@ -29,8 +29,6 @@ export function MainPage() {
     const { scrollYProgress } = useScroll();
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
-    const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
     const gradientX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
     const gradientY = useTransform(mouseY, [0, window.innerHeight], [0, 100]);
     const background = useMotionTemplate`radial-gradient(circle at ${gradientX}% ${gradientY}%, rgba(147,51,234,0.15), transparent 70%)`;
