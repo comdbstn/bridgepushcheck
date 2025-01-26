@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } from "framer-motion";
 import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";

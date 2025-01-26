@@ -1,8 +1,9 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Calendar, Clock, Tag, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { X } from "lucide-react";
-import { useState, useEffect } from "react";
 import { Loading } from "@/components/ui/loading";
 
 interface Project {
@@ -29,15 +30,11 @@ interface Project {
 
 export default function PortfolioPage() {
     const [isLoading, setIsLoading] = useState(true);
-    const { scrollYProgress } = useScroll();
-    const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
-
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        const timer = setTimeout(() => setIsLoading(false), 500);
+        const timer = setTimeout(() => setIsLoading(false), 300);
         return () => clearTimeout(timer);
     }, []);
 

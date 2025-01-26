@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
@@ -19,9 +19,6 @@ interface Post {
 
 export default function InsightsPage() {
     const [isLoading, setIsLoading] = useState(true);
-    const { scrollYProgress } = useScroll();
-    const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
