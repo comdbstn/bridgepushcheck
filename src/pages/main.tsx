@@ -44,7 +44,6 @@ export function MainPage() {
 
     // 5. Effect Hooks
     useEffect(() => {
-        window.scrollTo(0, 0);
         const timer = setTimeout(() => {
             setIsLoading(false);
             // 로딩이 끝나면 바로 통계 카운트 시작
