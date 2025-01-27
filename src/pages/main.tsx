@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useMotionTemplate, useTransform } from "framer-motion";
 import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useEffect, useRef, useState, useMemo } from "react";
@@ -21,6 +21,40 @@ const clientLogos = [
 ];
 
 export function MainPage() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const shouldRestore = location.state?.shouldRestore;
+    const savedScrollPosition = location.state?.scrollPosition;
+
+    useEffect(() => {
+        if (shouldRestore && savedScrollPosition) {
+            window.scrollTo(0, savedScrollPosition);
+        }
+    }, [shouldRestore, savedScrollPosition]);
+
+    // 브라우저 뒤로가기 처리
+    useEffect(() => {
+        const handlePopState = () => {
+            const currentScroll = window.scrollY;
+            navigate('/', {
+                state: { shouldRestore: true, scrollPosition: currentScroll }
+            });
+        };
+
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, [navigate]);
+
+    const handleServiceClick = (serviceId: string) => {
+        const currentScroll = window.scrollY;
+        return {
+            state: {
+                from: '/',
+                scrollPosition: currentScroll
+            }
+        };
+    };
+
     // 1. State Hooks
     const [isLoading, setIsLoading] = useState(true);
     const [statsCounts, setStatsCounts] = useState([0, 0, 0]);
@@ -607,6 +641,7 @@ export function MainPage() {
                                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
                                     <Link
                                         to={service.link}
+                                        state={handleServiceClick(service.title)}
                                         className="block relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500/50 transition-all duration-500 hover:shadow-lg hover:shadow-purple-500/10 transform-gpu hover:-translate-y-1"
                                     >
                                         <div className={`p-8 bg-gradient-to-br ${service.gradient} relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
@@ -744,6 +779,7 @@ export function MainPage() {
                                     />
                                 </a>
                             </motion.div>
+
                         </div>
                     </motion.div>
                 </section>

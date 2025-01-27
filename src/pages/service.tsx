@@ -1,18 +1,41 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Loading } from "@/components/ui/loading";
 
 export default function ServicePage() {
     const [isLoading, setIsLoading] = useState(true);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const shouldRestore = location.state?.shouldRestore;
+    const savedScrollPosition = location.state?.scrollPosition;
 
     useEffect(() => {
         window.scrollTo(0, 0);
         const timer = setTimeout(() => setIsLoading(false), 500);
         return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        if (shouldRestore && savedScrollPosition) {
+            window.scrollTo(0, savedScrollPosition);
+        }
+    }, [shouldRestore, savedScrollPosition]);
+
+    // 브라우저 뒤로가기 처리
+    useEffect(() => {
+        const handlePopState = () => {
+            const currentScroll = window.scrollY;
+            navigate('/', {
+                state: { shouldRestore: true, scrollPosition: currentScroll }
+            });
+        };
+
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, [navigate]);
 
     if (isLoading) return <Loading />;
 
@@ -42,6 +65,16 @@ export default function ServicePage() {
             link: "/tiktok"
         }
     ];
+
+    const handleServiceClick = (serviceId: string) => {
+        const currentScroll = window.scrollY;
+        return {
+            state: {
+                from: '/services',
+                scrollPosition: currentScroll
+            }
+        };
+    };
 
     return (
         <div className="min-h-screen bg-black">
@@ -110,6 +143,7 @@ export default function ServicePage() {
                                     </div>
                                     <Link
                                         to={service.link}
+                                        state={handleServiceClick(service.title)}
                                         className="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-center transition-colors"
                                     >
                                         자세히 보기

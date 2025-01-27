@@ -14,25 +14,25 @@ import { KakaoChatButton } from "@/components/chat/kakao-chat-button";
 import { useEffect } from "react";
 
 export function BlindPage() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
-  return (
-    <div className="min-h-screen w-full bg-white overflow-hidden">
-      <BackButton />
-      <KakaoChatButton />
-      <Hero />
-      <Products />
-      <Features />
-      <Stats />
-      <Advantages />
-      <Industries />
-      <References />
-      <Process />
-      <Pricing />
-      <QA />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="min-h-screen w-full bg-white overflow-hidden">
+            <BackButton />
+            <KakaoChatButton />
+            <Hero />
+            <Products />
+            <Features />
+            <Stats />
+            <Advantages />
+            <Industries />
+            <References />
+            <Process />
+            <Pricing />
+            <QA />
+            <Footer />
+        </div>
+    );
 }
