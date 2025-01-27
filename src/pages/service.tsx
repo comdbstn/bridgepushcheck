@@ -5,6 +5,15 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Loading } from "@/components/ui/loading";
 
+interface Service {
+    title: string;
+    description: string;
+    features: string[];
+    minPrice: string;
+    image: string;
+    link: string;
+}
+
 export default function ServicePage() {
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
@@ -39,7 +48,7 @@ export default function ServicePage() {
 
     if (isLoading) return <Loading />;
 
-    const services = [
+    const services: Service[] = [
         {
             title: "에브리타임",
             description: "대학생 커뮤니티 1위 에브리타임에서 진행되는 마케팅 서비스입니다.",
@@ -66,11 +75,11 @@ export default function ServicePage() {
         }
     ];
 
-    const handleServiceClick = (serviceId: string) => {
+    const handleServiceClick = () => {
         const currentScroll = window.scrollY;
         return {
             state: {
-                from: '/services',
+                from: '/service',
                 scrollPosition: currentScroll
             }
         };
@@ -143,7 +152,7 @@ export default function ServicePage() {
                                     </div>
                                     <Link
                                         to={service.link}
-                                        state={handleServiceClick(service.title)}
+                                        state={handleServiceClick()}
                                         className="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-center transition-colors"
                                     >
                                         자세히 보기

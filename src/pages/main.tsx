@@ -1,10 +1,33 @@
 import { motion, useMotionValue, useMotionTemplate, useTransform } from "framer-motion";
-import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
+import { ArrowRight, Bot, Zap, Sparkles, Calendar, Clock } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Loading } from "@/components/ui/loading";
+
+interface Service {
+    title: string;
+    description: string;
+    image: string;
+    link: string;
+}
+
+interface Post {
+    id: string;
+    title: string;
+    description: string;
+    thumbnail: string;
+    category: string;
+    date: string;
+    readTime: string;
+}
+
+interface Stats {
+    value: number;
+    suffix: string;
+    label: string;
+}
 
 // 로고 배열 생성
 const clientLogos = [
@@ -45,7 +68,7 @@ export function MainPage() {
         return () => window.removeEventListener('popstate', handlePopState);
     }, [navigate]);
 
-    const handleServiceClick = (serviceId: string) => {
+    const handleServiceClick = () => {
         const currentScroll = window.scrollY;
         return {
             state: {
@@ -641,7 +664,7 @@ export function MainPage() {
                                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
                                     <Link
                                         to={service.link}
-                                        state={handleServiceClick(service.title)}
+                                        state={handleServiceClick()}
                                         className="block relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500/50 transition-all duration-500 hover:shadow-lg hover:shadow-purple-500/10 transform-gpu hover:-translate-y-1"
                                     >
                                         <div className={`p-8 bg-gradient-to-br ${service.gradient} relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>

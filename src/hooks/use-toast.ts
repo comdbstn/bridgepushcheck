@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { ToastAction } from "@/components/ui/toast";
 
 const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;
 
-type ToastActionElement = React.ReactElement;
+export type ToastActionElement = React.ReactElement<typeof ToastAction>
 
 export type ToastProps = {
   id?: string;
@@ -22,8 +23,6 @@ type ToasterToast = ToastProps & {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 };
-
-type ActionType = 'ADD_TOAST' | 'UPDATE_TOAST' | 'DISMISS_TOAST' | 'REMOVE_TOAST';
 
 type Action =
   | {
@@ -131,7 +130,12 @@ function dispatch(action: Action) {
   });
 }
 
-type Toast = Omit<ToasterToast, 'id'>;
+export type Toast = {
+    id: string
+    title?: string
+    description?: string
+    action?: ToastActionElement
+}
 
 function toast({ ...props }: Toast) {
   const id = crypto.randomUUID();
