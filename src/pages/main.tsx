@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Loading } from "@/components/ui/loading";
+import { Analytics } from "@vercel/analytics/react";
 
 // 로고 배열 생성
 const clientLogos = [
@@ -122,6 +123,7 @@ export function MainPage() {
 
     return (
         <>
+            <Analytics />
             <Navbar />
             <main className="min-h-screen bg-black text-white" onMouseMove={handleMouseMove}>
                 {/* 히어로 섹션 */}
