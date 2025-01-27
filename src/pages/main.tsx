@@ -1,33 +1,10 @@
 import { motion, useMotionValue, useMotionTemplate, useTransform } from "framer-motion";
-import { ArrowRight, Bot, Zap, Sparkles, Calendar, Clock } from "lucide-react";
+import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Loading } from "@/components/ui/loading";
-
-interface Service {
-    title: string;
-    description: string;
-    image: string;
-    link: string;
-}
-
-interface Post {
-    id: string;
-    title: string;
-    description: string;
-    thumbnail: string;
-    category: string;
-    date: string;
-    readTime: string;
-}
-
-interface Stats {
-    value: number;
-    suffix: string;
-    label: string;
-}
 
 // 로고 배열 생성
 const clientLogos = [
