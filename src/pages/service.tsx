@@ -176,7 +176,7 @@ export default function ServicePage() {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.4, delay: index * 0.1 }}
-                                        className="group bg-gray-900/50 rounded-2xl p-8 hover:bg-gray-800/50 transition-colors"
+                                        className="group bg-white/5 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 border border-white/10"
                                     >
                                         <div className="flex items-center justify-center mb-6">
                                             <img 
@@ -188,7 +188,7 @@ export default function ServicePage() {
                                         <h3 className="text-2xl font-bold text-white mb-4 text-center">
                                             {service.title}
                                         </h3>
-                                        <p className="text-gray-400 mb-6 text-center">
+                                        <p className="text-gray-300 mb-6 text-center leading-relaxed">
                                             {service.description}
                                         </p>
                                         <ul className="space-y-3 mb-6">
@@ -198,22 +198,22 @@ export default function ServicePage() {
                                                     initial={{ opacity: 0, x: -20 }}
                                                     animate={{ opacity: 1, x: 0 }}
                                                     transition={{ duration: 0.3, delay: index * 0.1 + featureIndex * 0.1 }}
-                                                    className="flex items-center text-gray-400"
+                                                    className="flex items-center text-gray-300"
                                                 >
-                                                    <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2" />
+                                                    <span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2" />
                                                     {feature}
                                                 </motion.li>
                                             ))}
                                         </ul>
                                         <div className="text-center mb-6">
-                                            <span className="text-purple-400 font-semibold">
+                                            <span className="text-purple-300 font-semibold">
                                                 최소 {service.minPrice}
                                             </span>
                                         </div>
                                         <Link
                                             to={service.link}
                                             state={handleServiceClick()}
-                                            className="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-center transition-colors"
+                                            className="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-center transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20"
                                         >
                                             자세히 보기
                                         </Link>
@@ -226,7 +226,7 @@ export default function ServicePage() {
 
                 <section className="py-24 relative overflow-hidden">
                     <motion.div 
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.1),transparent_70%)]"
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.15),transparent_70%)]"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
@@ -241,12 +241,12 @@ export default function ServicePage() {
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                                 지금 바로 시작하세요
                             </h2>
-                            <p className="text-xl text-gray-400 mb-8">
+                            <p className="text-gray-300 mb-8 text-xl leading-relaxed">
                                 브릿지마케팅과 함께 효과적인 마케팅을 시작해보세요
                             </p>
                             <Link
                                 to="/contact"
-                                className="inline-flex items-center justify-center py-3 px-8 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                                className="inline-flex items-center justify-center py-3 px-8 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20"
                             >
                                 상담 시작하기
                             </Link>
