@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Loading } from "@/components/ui/loading";
 import navercafe from "/logo/navercafe.png";
 import naverplace from "/logo/naverplace.png";
+
+type ServiceCategory = "전체" | "네이버" | "커뮤니티" | "인플루언서";
 
 interface Service {
     title: string;
@@ -14,10 +16,12 @@ interface Service {
     minPrice: string;
     image: string;
     link: string;
+    category: ServiceCategory[];
 }
 
 export default function ServicePage() {
     const [isLoading, setIsLoading] = useState(true);
+    const [selectedCategory, setSelectedCategory] = useState<ServiceCategory>("전체");
     const location = useLocation();
     const navigate = useNavigate();
     const shouldRestore = location.state?.shouldRestore;
@@ -57,15 +61,21 @@ export default function ServicePage() {
             features: ["대학생 타겟 마케팅", "실시간 반응 분석", "맞춤형 컨텐츠 제작"],
             minPrice: "1만원",
             image: "/logo/everytime.png",
-            link: "/everytime"
+            link: "/everytime",
+            category: ["전체", "커뮤니티"]
         },
         {
-            title: "네이버 카페 바이럴",
-            description: "맘카페, 뷰티, 지역, 취준생 등 다양한 네이버 카페에서 자연스러운 바이럴 마케팅을 진행하세요",
-            features: ["타겟 카페 분석", "자연스러운 바이럴", "실시간 모니터링"],
+            title: "네이버 카페",
+            description: "국내 최대 커뮤니티 플랫폼 네이버 카페에서 자연스러운 바이럴 마케팅을 진행하세요.",
+            features: [
+                "맘카페/지역카페 타겟팅",
+                "자연스러운 입소문 마케팅",
+                "24시간 모니터링 제공"
+            ],
             minPrice: "3만원",
             image: navercafe,
-            link: "/naver-cafe"
+            link: "/naver-cafe",
+            category: ["전체", "네이버"]
         },
         {
             title: "네이버 플레이스 상위노출",
@@ -73,7 +83,8 @@ export default function ServicePage() {
             features: ["매장 트래픽 증가", "상위노출 최적화", "실시간 순위 분석"],
             minPrice: "5만원",
             image: naverplace,
-            link: "/naver-place"
+            link: "/naver-place",
+            category: ["전체", "네이버"]
         },
         {
             title: "블라인드",
@@ -81,7 +92,8 @@ export default function ServicePage() {
             features: ["직장인 타겟 마케팅", "실시간 모니터링", "전문가 컨설팅"],
             minPrice: "5만원",
             image: "/logo/blind.png",
-            link: "/blind"
+            link: "/blind",
+            category: ["전체", "커뮤니티"]
         },
         {
             title: "틱톡",
@@ -89,9 +101,16 @@ export default function ServicePage() {
             features: ["MZ세대 타겟 마케팅", "트렌드 분석", "바이럴 영상 제작"],
             minPrice: "25만원",
             image: "/logo/tiktok.png",
-            link: "/tiktok"
+            link: "/tiktok",
+            category: ["전체", "인플루언서"]
         }
     ];
+
+    const categories: ServiceCategory[] = ["전체", "네이버", "커뮤니티", "인플루언서"];
+
+    const filteredServices = services.filter(service => 
+        selectedCategory === "전체" ? true : service.category.includes(selectedCategory)
+    );
 
     const handleServiceClick = () => {
         const currentScroll = window.scrollY;
@@ -118,66 +137,90 @@ export default function ServicePage() {
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                                 마케팅 서비스
                             </h1>
-                            <p className="text-xl text-gray-400">
+                            <p className="text-xl text-gray-400 mb-12">
                                 브릿지마케팅의 다양한 서비스를 만나보세요
                             </p>
+                            <div className="flex justify-center gap-4 flex-wrap">
+                                {categories.map((category) => (
+                                    <button
+                                        key={category}
+                                        onClick={() => setSelectedCategory(category)}
+                                        className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                                            selectedCategory === category
+                                                ? "bg-purple-600 text-white"
+                                                : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                                        }`}
+                                    >
+                                        {category}
+                                    </button>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
                 </section>
 
                 <section className="py-24">
                     <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {services.map((service, index) => (
-                                <motion.div
-                                    key={service.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                                    className="group bg-gray-900/50 rounded-2xl p-8 hover:bg-gray-800/50 transition-colors"
-                                >
-                                    <div className="flex items-center justify-center mb-6">
-                                        <img 
-                                            src={service.image} 
-                                            alt={service.title} 
-                                            className="h-12"
-                                        />
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-white mb-4 text-center">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-gray-400 mb-6 text-center">
-                                        {service.description}
-                                    </p>
-                                    <ul className="space-y-3 mb-6">
-                                        {service.features.map((feature, featureIndex) => (
-                                            <motion.li
-                                                key={feature}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ duration: 0.3, delay: index * 0.1 + featureIndex * 0.1 }}
-                                                className="flex items-center text-gray-400"
-                                            >
-                                                <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2" />
-                                                {feature}
-                                            </motion.li>
-                                        ))}
-                                    </ul>
-                                    <div className="text-center mb-6">
-                                        <span className="text-purple-400 font-semibold">
-                                            최소 {service.minPrice}
-                                        </span>
-                                    </div>
-                                    <Link
-                                        to={service.link}
-                                        state={handleServiceClick()}
-                                        className="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-center transition-colors"
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={selectedCategory}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                            >
+                                {filteredServices.map((service, index) => (
+                                    <motion.div
+                                        key={service.title}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                                        className="group bg-gray-900/50 rounded-2xl p-8 hover:bg-gray-800/50 transition-colors"
                                     >
-                                        자세히 보기
-                                    </Link>
-                                </motion.div>
-                            ))}
-                        </div>
+                                        <div className="flex items-center justify-center mb-6">
+                                            <img 
+                                                src={service.image} 
+                                                alt={service.title} 
+                                                className="h-12"
+                                            />
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-white mb-4 text-center">
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-gray-400 mb-6 text-center">
+                                            {service.description}
+                                        </p>
+                                        <ul className="space-y-3 mb-6">
+                                            {service.features.map((feature, featureIndex) => (
+                                                <motion.li
+                                                    key={feature}
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ duration: 0.3, delay: index * 0.1 + featureIndex * 0.1 }}
+                                                    className="flex items-center text-gray-400"
+                                                >
+                                                    <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2" />
+                                                    {feature}
+                                                </motion.li>
+                                            ))}
+                                        </ul>
+                                        <div className="text-center mb-6">
+                                            <span className="text-purple-400 font-semibold">
+                                                최소 {service.minPrice}
+                                            </span>
+                                        </div>
+                                        <Link
+                                            to={service.link}
+                                            state={handleServiceClick()}
+                                            className="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-center transition-colors"
+                                        >
+                                            자세히 보기
+                                        </Link>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
                 </section>
 
