@@ -66,9 +66,9 @@ export function Hero() {
                                 transition={{ duration: 0.6, delay: 0.4 }}
                                 className='text-lg sm:text-xl text-white/90 px-4 font-tway'
                             >
-                                네이버 카페에서 브랜드의 인지도를 높이고
+                                네이버 카페는 국내 최대의 커뮤니티 플랫폼입니다.
                                 <br className='hidden sm:block' />
-                                잠재 고객을 확보하는 최적의 마케팅 서비스를 시작하세요.
+                                자연스러운 바이럴 마케팅을 위한 최적의 플랫폼, 네이버 카페 마케팅을 시작하세요.
                             </motion.p>
                         </div>
 
