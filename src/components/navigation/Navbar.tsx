@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
@@ -25,16 +24,8 @@ export function Navbar() {
                         </span>
                     </Link>
 
-                    {/* 모바일 메뉴 버튼 */}
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden text-white hover:text-purple-400 transition-colors"
-                    >
-                        <Menu className="h-6 w-6" />
-                    </button>
-
-                    {/* 데스크톱 메뉴 */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    {/* 메뉴 */}
+                    <div className="flex items-center space-x-4 sm:space-x-8">
                         <Link
                             to="/service"
                             className={`text-sm font-medium transition-colors ${
@@ -75,56 +66,6 @@ export function Navbar() {
                         </a>
                     </div>
                 </div>
-
-                {/* 모바일 메뉴 */}
-                {isMenuOpen && (
-                    <div className="md:hidden py-4">
-                        <div className="flex flex-col space-y-4">
-                            <Link
-                                to="/service"
-                                className={`text-sm font-medium transition-colors ${
-                                    location.pathname === "/service"
-                                        ? "text-purple-400"
-                                        : "text-gray-300 hover:text-purple-400"
-                                }`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                서비스
-                            </Link>
-                            <Link
-                                to="/portfolio"
-                                className={`text-sm font-medium transition-colors ${
-                                    location.pathname === "/portfolio"
-                                        ? "text-purple-400"
-                                        : "text-gray-300 hover:text-purple-400"
-                                }`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                포트폴리오
-                            </Link>
-                            <Link
-                                to="/insights"
-                                className={`text-sm font-medium transition-colors ${
-                                    location.pathname === "/insights"
-                                        ? "text-purple-400"
-                                        : "text-gray-300 hover:text-purple-400"
-                                }`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                인사이트
-                            </Link>
-                            <a
-                                href="http://pf.kakao.com/_CYGdn/chat"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors inline-block text-center"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                문의하기
-                            </a>
-                        </div>
-                    </div>
-                )}
             </div>
         </nav>
     );
