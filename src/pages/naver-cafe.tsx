@@ -5,6 +5,7 @@ import { Stats } from "@/components/sections/naver-cafe/Stats";
 import { Advantages } from "@/components/sections/naver-cafe/Advantages";
 import { Pricing } from "@/components/sections/naver-cafe/Pricing";
 import { Industries } from "@/components/sections/naver-cafe/Industries";
+import { References } from "@/components/sections/naver-cafe/References";
 import { Process } from "@/components/sections/naver-cafe/Process";
 import { QA } from "@/components/sections/naver-cafe/QA";
 import { Footer } from "@/components/sections/naver-cafe/Footer";
@@ -50,6 +51,7 @@ export function NaverCafeServicePage() {
             <Stats />
             <Advantages />
             <Industries />
+            <References />
             <Process />
             <Pricing />
             <QA />
