@@ -1,5 +1,3 @@
-import { Search, PenTool, Send, LineChart } from "lucide-react";
-
 export function Process() {
     return (
         <section className="py-20 bg-gray-50">
