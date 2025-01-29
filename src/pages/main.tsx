@@ -158,10 +158,18 @@ export function MainPage() {
                                     type: "spring",
                                     stiffness: 150
                                 }}
-                                className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent font-aggro leading-tight"
+                                className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent font-aggro leading-tight"
                             >
-                                당신의 사업을 성장시킬<br />단 하나의 솔루션
+                                Your bridge to success
                             </motion.h1>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1, duration: 0.4 }}
+                                className="text-xl md:text-2xl text-gray-400 mb-12 font-medium"
+                            >
+                                정확한 데이터와 KPI로 가치를 전달합니다
+                            </motion.p>
 
                             {/* 통계 섹션 */}
                             <motion.div
@@ -232,8 +240,10 @@ export function MainPage() {
                                 transition={{ delay: 0.4, duration: 0.4 }}
                                 className="flex flex-col sm:flex-row items-center justify-center gap-6"
                             >
-                                <Link
-                                    to="/service"
+                                <a
+                                    href="http://pf.kakao.com/_CYGdn/chat"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-tway text-lg overflow-hidden"
                                 >
                                     <motion.div
@@ -249,28 +259,29 @@ export function MainPage() {
                                         whileHover={{ x: 5 }}
                                         transition={{ type: "spring", stiffness: 400 }}
                                     >
-                                        서비스 알아보기
+                                        문의하기
                                         <ArrowRight className="w-5 h-5 ml-2" />
                                     </motion.div>
-                                </Link>
-                                <motion.a
-                                    href="http://pf.kakao.com/_CYGdn/chat"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group relative px-8 py-4 border-2 border-purple-600/50 text-purple-400 rounded-xl font-tway text-lg overflow-hidden"
+                                </a>
+                                <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ type: "spring", stiffness: 400 }}
                                 >
-                                    <motion.div
-                                        className="absolute inset-0 bg-purple-600/10"
-                                        initial={false}
-                                        whileHover={{
-                                            opacity: [0, 1],
-                                            transition: { duration: 0.3 }
-                                        }}
-                                    />
-                                    <span className="relative">문의하기</span>
-                                </motion.a>
+                                    <Link
+                                        to="/service"
+                                        className="group relative px-8 py-4 border-2 border-purple-600/50 text-purple-400 rounded-xl font-tway text-lg overflow-hidden block"
+                                    >
+                                        <motion.div
+                                            className="absolute inset-0 bg-purple-600/10"
+                                            initial={false}
+                                            whileHover={{
+                                                opacity: [0, 1],
+                                                transition: { duration: 0.3 }
+                                            }}
+                                        />
+                                        <span className="relative">서비스 알아보기</span>
+                                    </Link>
+                                </motion.div>
                             </motion.div>
                         </div>
                     </div>
