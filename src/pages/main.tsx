@@ -1,9 +1,8 @@
-import { motion, useMotionValue, useMotionTemplate, useTransform } from "framer-motion";
-import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loading } from "@/components/ui/loading";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -83,29 +82,10 @@ const services = [
 
 export function MainPage() {
     const location = useLocation();
-    const navigate = useNavigate();
     const shouldRestore = location.state?.shouldRestore;
     const savedScrollPosition = location.state?.scrollPosition;
     const scrollRef = useRef<HTMLDivElement>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [statsCounts, setStatsCounts] = useState([0, 0, 0]);
-
-    // Motion Hooks
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-    const gradientX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
-    const gradientY = useTransform(mouseY, [0, window.innerHeight], [0, 100]);
-    const background = useMotionTemplate`radial-gradient(circle at ${gradientX}% ${gradientY}%, rgba(147,51,234,0.15), transparent 70%)`;
-
-    // Ref Hooks
-    const statsRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
-
-    // Constants
-    const statsData = useMemo(() => [
-        { value: 92, suffix: "%", label: "고객사 재구매율" },
-        { value: 34000, suffix: "+", label: "누적 작업횟수" },
-        { value: 4.9, suffix: "", label: "평균 만족도" }
-    ], []);
 
     useEffect(() => {
         if (shouldRestore && savedScrollPosition) {
@@ -131,43 +111,9 @@ export function MainPage() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
-            // 로딩이 끝나면 바로 통계 카운트 시작
-            statsData.forEach((stat, index) => {
-                let startTime: number;
-                const endValue = stat.value;
-                const duration = 1.5;
-
-                const animate = (currentTime: number) => {
-                    if (!startTime) startTime = currentTime;
-                    const progress = (currentTime - startTime) / (duration * 1000);
-
-                    if (progress < 1) {
-                        setStatsCounts(prev => {
-                            const newCounts = [...prev];
-                            newCounts[index] = Math.floor(endValue * progress);
-                            return newCounts;
-                        });
-                        requestAnimationFrame(animate);
-                    } else {
-                        setStatsCounts(prev => {
-                            const newCounts = [...prev];
-                            newCounts[index] = endValue;
-                            return newCounts;
-                        });
-                    }
-                };
-                requestAnimationFrame(animate);
-            });
         }, 500);
         return () => clearTimeout(timer);
-    }, [statsData]);
-
-    // Event Handlers
-    const handleMouseMove = (e: React.MouseEvent) => {
-        const { clientX, clientY } = e;
-        mouseX.set(clientX);
-        mouseY.set(clientY);
-    };
+    }, []);
 
     if (isLoading) return <Loading />;
 
