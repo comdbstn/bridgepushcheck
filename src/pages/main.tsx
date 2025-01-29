@@ -1,8 +1,9 @@
-import { ArrowRight } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { motion, useMotionValue, useMotionTemplate, useTransform } from "framer-motion";
+import { ArrowRight, Bot, Zap, Sparkles } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { Loading } from "@/components/ui/loading";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -82,10 +83,29 @@ const services = [
 
 export function MainPage() {
     const location = useLocation();
+    const navigate = useNavigate();
     const shouldRestore = location.state?.shouldRestore;
     const savedScrollPosition = location.state?.scrollPosition;
     const scrollRef = useRef<HTMLDivElement>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [statsCounts, setStatsCounts] = useState([0, 0, 0]);
+
+    // Motion Hooks
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+    const gradientX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
+    const gradientY = useTransform(mouseY, [0, window.innerHeight], [0, 100]);
+    const background = useMotionTemplate`radial-gradient(circle at ${gradientX}% ${gradientY}%, rgba(147,51,234,0.15), transparent 70%)`;
+
+    // Ref Hooks
+    const statsRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
+
+    // Constants
+    const statsData = useMemo(() => [
+        { value: 92, suffix: "%", label: "고객사 재구매율" },
+        { value: 34000, suffix: "+", label: "누적 작업횟수" },
+        { value: 4.9, suffix: "", label: "평균 만족도" }
+    ], []);
 
     useEffect(() => {
         if (shouldRestore && savedScrollPosition) {
@@ -111,9 +131,43 @@ export function MainPage() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
+            // 로딩이 끝나면 바로 통계 카운트 시작
+            statsData.forEach((stat, index) => {
+                let startTime: number;
+                const endValue = stat.value;
+                const duration = 1.5;
+
+                const animate = (currentTime: number) => {
+                    if (!startTime) startTime = currentTime;
+                    const progress = (currentTime - startTime) / (duration * 1000);
+
+                    if (progress < 1) {
+                        setStatsCounts(prev => {
+                            const newCounts = [...prev];
+                            newCounts[index] = Math.floor(endValue * progress);
+                            return newCounts;
+                        });
+                        requestAnimationFrame(animate);
+                    } else {
+                        setStatsCounts(prev => {
+                            const newCounts = [...prev];
+                            newCounts[index] = endValue;
+                            return newCounts;
+                        });
+                    }
+                };
+                requestAnimationFrame(animate);
+            });
         }, 500);
         return () => clearTimeout(timer);
-    }, []);
+    }, [statsData]);
+
+    // Event Handlers
+    const handleMouseMove = (e: React.MouseEvent) => {
+        const { clientX, clientY } = e;
+        mouseX.set(clientX);
+        mouseY.set(clientY);
+    };
 
     if (isLoading) return <Loading />;
 
@@ -121,15 +175,15 @@ export function MainPage() {
         <>
             <Analytics />
             <Navbar />
-            <main className="min-h-screen bg-black">
+            <main className="min-h-screen bg-white">
                 {/* Hero 섹션 */}
                 <section className="pt-32 pb-20 overflow-hidden">
                     <div className="container mx-auto px-4">
                         <div className="max-w-4xl mx-auto text-center">
-                            <h1 className="text-5xl font-bold text-white mb-6">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                                 Your bridge to success
                             </h1>
-                            <p className="text-xl text-gray-400 mb-12">
+                            <p className="text-xl md:text-2xl text-gray-600 mb-12">
                                 정확한 데이터와 KPI로 가치를 전달합니다
                             </p>
                             <Link
@@ -141,13 +195,13 @@ export function MainPage() {
                             </Link>
                         </div>
 
-                        <div className="mt-20 grid grid-cols-3 gap-8 max-w-4xl mx-auto">
+                        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                             {stats.map((stat, index) => (
                                 <div key={index} className="text-center">
-                                    <div className="text-4xl font-bold text-purple-600 mb-2">
+                                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600 mb-2">
                                         {stat.value}
                                     </div>
-                                    <div className="text-gray-400">
+                                    <div className="text-sm sm:text-base md:text-lg text-gray-600">
                                         {stat.label}
                                     </div>
                                 </div>
@@ -157,12 +211,12 @@ export function MainPage() {
                 </section>
 
                 {/* Portfolio 섹션 */}
-                <section className="py-20 bg-gray-900 overflow-hidden">
+                <section className="py-20 bg-gray-50 overflow-hidden">
                     <div className="container mx-auto px-4 mb-12">
-                        <h2 className="text-3xl font-bold text-center text-white mb-4">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
                             다양한 고객사와 함께했습니다
                         </h2>
-                        <p className="text-lg text-center text-gray-400">
+                        <p className="text-lg text-center text-gray-600">
                             브릿지마케팅은 수많은 기업들과 함께 성장해왔습니다
                         </p>
                     </div>
@@ -184,31 +238,31 @@ export function MainPage() {
                 </section>
 
                 {/* Features 섹션 */}
-                <section className="py-20 bg-black">
+                <section className="py-20 bg-white">
                     <div className="container mx-auto px-4">
                         <div className="max-w-4xl mx-auto text-center mb-16">
-                            <h2 className="text-3xl font-bold text-white mb-4">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                                 브릿지마케팅만의 특별함
                             </h2>
-                            <p className="text-lg text-gray-400">
+                            <p className="text-lg text-gray-600">
                                 차별화된 서비스로 고객의 성공을 이끌어냅니다
                             </p>
                         </div>
-                        <div className="grid grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                             {features.map((feature, index) => (
                                 <div 
                                     key={index}
-                                    className="group p-8 bg-gray-900 rounded-2xl hover:bg-gray-800 transition-all duration-300"
+                                    className="group p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200"
                                 >
-                                    <div className="w-12 h-12 bg-purple-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600/30">
-                                        <span className="text-xl font-bold text-purple-400 group-hover:text-purple-300">
+                                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-colors duration-300">
+                                        <span className="text-xl font-bold text-purple-600 group-hover:text-white transition-colors duration-300">
                                             {index + 1}
                                         </span>
                                     </div>
-                                    <h3 className="text-xl font-bold text-white mb-4">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-4">
                                         {feature.title}
                                     </h3>
-                                    <p className="text-gray-400">
+                                    <p className="text-gray-600 leading-relaxed">
                                         {feature.description}
                                     </p>
                                 </div>
@@ -218,22 +272,22 @@ export function MainPage() {
                 </section>
 
                 {/* Services 섹션 */}
-                <section className="py-20 bg-gray-900">
+                <section className="py-20 bg-gray-50">
                     <div className="container mx-auto px-4">
                         <div className="max-w-4xl mx-auto text-center mb-16">
-                            <h2 className="text-3xl font-bold text-white mb-4">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                                 맞춤형 마케팅 서비스
                             </h2>
-                            <p className="text-lg text-gray-400">
+                            <p className="text-lg text-gray-600">
                                 각 플랫폼의 특성을 고려한 최적의 마케팅 솔루션을 제공합니다
                             </p>
                         </div>
-                        <div className="grid grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                             {services.map((service, index) => (
                                 <Link 
                                     key={index}
                                     to={service.link}
-                                    className="group p-8 bg-black rounded-2xl hover:bg-gray-800 transition-all duration-300"
+                                    className="group p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200"
                                 >
                                     <div className="flex items-center justify-center mb-8">
                                         <img 
@@ -242,23 +296,23 @@ export function MainPage() {
                                             className="h-12 w-auto"
                                         />
                                     </div>
-                                    <h3 className="text-xl font-bold text-white mb-6 text-center">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
                                         {service.title}
                                     </h3>
                                     <ul className="space-y-4">
                                         {service.features.map((feature, featureIndex) => (
                                             <li 
                                                 key={featureIndex}
-                                                className="flex items-center text-gray-400"
+                                                className="flex items-center text-gray-600"
                                             >
-                                                <svg className="w-5 h-5 text-purple-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg className="w-5 h-5 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                                                 </svg>
                                                 {feature}
                                             </li>
                                         ))}
                                     </ul>
-                                    <div className="mt-8 flex items-center justify-center text-purple-500 group-hover:text-purple-400">
+                                    <div className="mt-8 flex items-center justify-center text-purple-600 group-hover:text-purple-700 transition-colors">
                                         자세히 보기
                                         <ArrowRight className="ml-2 w-4 h-4" />
                                     </div>
