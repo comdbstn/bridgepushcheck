@@ -1,8 +1,5 @@
-import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Navbar } from "@/components/navigation/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Loading } from "@/components/ui/loading";
 import { useState, useEffect } from "react";
 import { BackButton } from "@/components/navigation/back-button";
@@ -31,7 +28,8 @@ interface InsightPost {
 export function InsightDetailPage() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [isLoading, setIsLoading] = useState(true);
+    const [currentPost, setCurrentPost] = useState<InsightPost | null>(null);
+    const [loading, setLoading] = useState(true);
 
     const posts: InsightPost[] = [
         {
@@ -204,19 +202,18 @@ export function InsightDetailPage() {
         }
     ];
 
-    const currentPost = posts.find(post => post.id === id);
-    const recentPosts = posts.filter(post => post.id !== id).slice(0, 3);
-
     useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 500);
+        const timer = setTimeout(() => setLoading(false), 500);
         return () => clearTimeout(timer);
-    }, []);
-
-    if (isLoading) return <Loading />;
+    }, [id]);
 
     const handleGoBack = () => {
         navigate('/insights');
     };
+
+    if (loading) {
+        return <Loading />;
+    }
 
     if (!currentPost) {
         return (
