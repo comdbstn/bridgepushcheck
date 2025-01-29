@@ -56,16 +56,18 @@ export function NaverCafeServicePage() {
             <Process />
             <Pricing />
             <QA />
-            <section className="mt-16">
-                <h2 className="text-2xl font-bold mb-8">레퍼런스</h2>
+            <section className="container mx-auto px-4 py-16">
+                <h2 className="text-3xl font-bold text-center mb-12">브릿지마케팅의 네이버 카페 레퍼런스</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {referenceImages.map((image) => (
-                        <div key={image.id} className="relative aspect-video overflow-hidden rounded-lg shadow-lg">
+                        <div key={image.id} className="relative aspect-video overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <Image
                                 src={image.src}
                                 alt={image.alt}
                                 fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover"
+                                priority
                             />
                         </div>
                     ))}
