@@ -1,28 +1,4 @@
-import { motion } from "framer-motion";
 import { Search, PenTool, Send, LineChart } from "lucide-react";
-
-const process = [
-    {
-        icon: Search,
-        title: "타겟 분석",
-        description: "타겟 고객이 활동하는 네이버 카페 분석 및 선정"
-    },
-    {
-        icon: PenTool,
-        title: "컨텐츠 기획",
-        description: "카페별 특성에 맞는 자연스러운 바이럴 컨텐츠 기획"
-    },
-    {
-        icon: Send,
-        title: "바이럴 실행",
-        description: "전문 작가진의 자연스러운 바이럴 마케팅 진행"
-    },
-    {
-        icon: LineChart,
-        title: "성과 분석",
-        description: "실시간 모니터링 및 데이터 기반 성과 분석 리포트 제공"
-    }
-];
 
 export function Process() {
     return (
