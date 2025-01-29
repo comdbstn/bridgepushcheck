@@ -2,27 +2,27 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { X } from "lucide-react";
 
-const references = [
+const referenceImages = [
     {
         id: 1,
-        image: "/naver_cafe_reference/1.jpeg",
-        alt: "네이버 카페 레퍼런스 1",
+        src: '/images/references/cafe/caferef1.png',
+        alt: '네이버 카페 레퍼런스 1'
     },
     {
         id: 2,
-        image: "/naver_cafe_reference/2.jpeg",
-        alt: "네이버 카페 레퍼런스 2",
+        src: '/images/references/cafe/caferef2.png',
+        alt: '네이버 카페 레퍼런스 2'
     },
     {
         id: 3,
-        image: "/naver_cafe_reference/3.jpeg",
-        alt: "네이버 카페 레퍼런스 3",
+        src: '/images/references/cafe/caferef3.png',
+        alt: '네이버 카페 레퍼런스 3'
     },
     {
         id: 4,
-        image: "/naver_cafe_reference/4.png",
-        alt: "네이버 카페 레퍼런스 4",
-    },
+        src: '/images/references/cafe/caferef4.png',
+        alt: '네이버 카페 레퍼런스 4'
+    }
 ];
 
 export function References() {
@@ -30,38 +30,29 @@ export function References() {
 
     return (
         <>
-            <section className='py-20 bg-gradient-to-br from-green-50 to-white'>
-                <div className='container mx-auto px-4'>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className='text-4xl font-bold text-center mb-4 font-aggro'
-                    >
-                        레퍼런스
-                    </motion.h2>
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
-                        {references.map((ref) => (
-                            <motion.div
-                                key={ref.id}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5 }}
-                                viewport={{ once: true }}
-                                className='relative group cursor-pointer'
-                                onClick={() => setSelectedImage(ref.image)}
+            <section className="py-20 bg-gray-50">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">브릿지마케팅의 네이버 카페 레퍼런스</h2>
+                        <p className="text-lg text-gray-600">
+                            실제 진행했던 프로젝트들을 확인해보세요<br />
+                            다양한 산업군에서의 성공 사례를 보유하고 있습니다
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                        {referenceImages.map((image) => (
+                            <div 
+                                key={image.id} 
+                                className="group relative aspect-video overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
                             >
                                 <img
-                                    src={ref.image}
-                                    alt={ref.alt}
-                                    className='rounded-lg shadow-lg w-full aspect-[4/3] object-cover object-top hover:shadow-xl transition-all duration-300'
+                                    src={image.src}
+                                    alt={image.alt}
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
                                 />
-                                <div className='absolute inset-0 bg-black/0 group-hover:bg-black/20 rounded-lg transition-all duration-300 flex items-center justify-center'>
-                                    <span className='text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 rounded-full text-sm font-medium'>
-                                        크게 보기
-                                    </span>
-                                </div>
-                            </motion.div>
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300" />
+                            </div>
                         ))}
                     </div>
                 </div>
