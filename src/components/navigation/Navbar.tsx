@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export function Navbar() {
