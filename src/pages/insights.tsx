@@ -31,33 +31,33 @@ export default function InsightsPage() {
     const posts: Post[] = [
         {
             id: "1",
-            title: "바이럴 마케팅의 새로운 트렌드와 브릿지마케팅의 전략",
-            description: "2024년 바이럴 마케팅의 핵심 트렌드와 브릿지마케팅만의 차별화된 전략을 소개합니다",
-            thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000",
-            category: "바이럴 마케팅",
-            date: "2024.03.15",
-            readTime: "8분",
-            tags: ["바이럴마케팅", "브릿지마케팅", "마케팅전략"]
+            title: "에브리타임 마케팅 완벽 가이드: 대학생 마케팅의 새로운 지평",
+            description: "대학생 마케팅의 핵심 채널 에브리타임, 월간 활성 사용자 450만 명을 보유한 이 플랫폼의 마케팅 전략을 상세히 공개합니다.",
+            thumbnail: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000",
+            category: "마케팅 가이드",
+            date: "2024.01.15",
+            readTime: "10분",
+            tags: ["대학생 마케팅", "에브리타임", "커뮤니티 마케팅"]
         },
         {
             id: "2",
-            title: "에브리타임 마케팅으로 MZ세대 공략하기",
-            description: "대학생 타겟 마케팅의 핵심 플랫폼, 에브리타임 마케팅 전략 가이드",
-            thumbnail: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000",
-            category: "에브리타임 마케팅",
-            date: "2024.03.10",
-            readTime: "7분",
-            tags: ["에브리타임마케팅", "대학생마케팅", "MZ세대"]
+            title: "블라인드로 시작하는 B2B 마케팅: 직장인 커뮤니티 공략 가이드",
+            description: "500만 직장인이 선택한 블라인드, B2B 마케팅의 새로운 기회를 제시합니다. 블라인드를 통한 브랜드 신뢰도 구축과 리드 확보 전략을 공개합니다.",
+            thumbnail: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000",
+            category: "B2B 마케팅",
+            date: "2024.01.10",
+            readTime: "12분",
+            tags: ["B2B 마케팅", "블라인드", "브랜드 신뢰도", "리드 제너레이션"]
         },
         {
             id: "3",
-            title: "틱톡 마케팅으로 글로벌 시장 공략하기",
-            description: "숏폼 콘텐츠의 강자, 틱톡을 활용한 글로벌 마케팅 전략",
+            title: "틱톡 마케팅의 모든 것: MZ세대 공략을 위한 숏폼 콘텐츠 전략",
+            description: "월간 활성 사용자 10억 명을 보유한 틱톡, Z세대의 80%가 사용하는 이 플랫폼에서 성공적인 마케팅 전략을 공개합니다.",
             thumbnail: "https://images.unsplash.com/photo-1596558450268-9c27524ba856?q=80&w=1000",
-            category: "틱톡 마케팅",
-            date: "2024.03.05",
-            readTime: "6분",
-            tags: ["틱톡마케팅", "숏폼", "글로벌마케팅"]
+            category: "소셜 마케팅",
+            date: "2024.01.05",
+            readTime: "15분",
+            tags: ["틱톡", "숏폼", "MZ세대", "바이럴 마케팅", "소셜미디어"]
         },
         {
             id: "4",
