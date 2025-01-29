@@ -12,7 +12,6 @@ import { Footer } from "@/components/sections/naver-cafe/Footer";
 import { BackButton } from "@/components/navigation/back-button";
 import { KakaoChatButton } from "@/components/chat/kakao-chat-button";
 import { useEffect } from "react";
-import Image from "next/image";
 
 const referenceImages = [
     {
@@ -61,13 +60,11 @@ export function NaverCafeServicePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {referenceImages.map((image) => (
                         <div key={image.id} className="relative aspect-video overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <Image
+                            <img
                                 src={image.src}
                                 alt={image.alt}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                className="object-cover"
-                                priority
+                                className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                         </div>
                     ))}
