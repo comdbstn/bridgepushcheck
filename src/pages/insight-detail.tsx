@@ -28,7 +28,6 @@ interface InsightPost {
 export function InsightDetailPage() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [currentPost, setCurrentPost] = useState<InsightPost | null>(null);
     const [loading, setLoading] = useState(true);
 
     const posts: InsightPost[] = [
@@ -202,8 +201,12 @@ export function InsightDetailPage() {
         }
     ];
 
+    const currentPost = posts.find(post => post.id === id);
+
     useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 500);
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 500);
         return () => clearTimeout(timer);
     }, [id]);
 
