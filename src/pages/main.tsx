@@ -176,7 +176,7 @@ export function MainPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.4 }}
-                                className="grid grid-cols-3 gap-8 my-16"
+                                className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 my-16"
                             >
                                 {statsData.map((stat, index) => (
                                     <motion.div
