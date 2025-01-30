@@ -65,7 +65,7 @@ export default function ServicePage() {
             description: "맘카페, 뷰티, 지역, 취준생 등 다양한 네이버 카페에서 진행되는 바이럴 마케팅 서비스입니다.",
             features: ["타겟 카페 분석", "자연스러운 바이럴", "실시간 모니터링"],
             minPrice: "3만원",
-            image: "/logo/naver.png",
+            image: "/logo/navercafe.png",
             link: "/naver-cafe",
             category: "naver"
         },
@@ -74,7 +74,7 @@ export default function ServicePage() {
             description: "네이버 지도와 검색에서 매장의 노출도를 높여 방문자 수를 증가시키는 서비스입니다.",
             features: ["매장 트래픽 증가", "상위노출 최적화", "실시간 순위 분석"],
             minPrice: "5만원",
-            image: "/logo/naver.png",
+            image: "/logo/naverplace.png",
             link: "/naver-place",
             category: "naver"
         },
