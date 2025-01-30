@@ -360,26 +360,28 @@ export function MainPage() {
                                 <motion.div
                                     key={row}
                                     className="flex gap-8 py-4"
-                                    initial={{ x: row % 2 === 0 ? "0%" : "-100%" }}
-                                    animate={{ x: row % 2 === 0 ? "-100%" : "0%" }}
+                                    animate={{
+                                        x: row % 2 === 0 ? [0, "-100%"] : ["-100%", 0]
+                                    }}
                                     transition={{
-                                        duration: 50,
+                                        duration: 150,
                                         repeat: Infinity,
-                                        ease: "linear"
+                                        ease: "linear",
+                                        repeatType: "loop"
                                     }}
                                 >
-                                    {[...clientLogos, ...clientLogos].slice(row * 13, (row + 1) * 13).map((logo, index) => (
-                    <div 
+                                    {Array(10).fill([...clientLogos]).flat().slice(row * 13, (row + 1) * 13).map((logo, index) => (
+                                        <div 
                                             key={index}
                                             className="flex-shrink-0"
-                    >
-                            <img
-                                src={logo}
+                                        >
+                                            <img
+                                                src={logo}
                                                 alt={`Client ${index + 1}`}
                                                 className="h-[60px] w-[150px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                            />
+                                            />
                                         </div>
-                        ))}
+                                    ))}
                                 </motion.div>
                             ))}
                             <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
