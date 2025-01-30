@@ -393,15 +393,21 @@ export function MainPage() {
 
                 {/* 마케팅 패러다임 섹션 */}
                 <section className="py-24 relative overflow-hidden">
-                    <motion.div
-                        className="absolute inset-0"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/10 to-black" />
-                    </motion.div>
+                    <div className="absolute inset-0">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.1),transparent_70%)]" />
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.2, 0.4, 0.2]
+                            }}
+                            transition={{
+                                duration: 8,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-indigo-600/10 to-transparent blur-3xl"
+                        />
+                    </div>
                     <div className="container mx-auto px-4 relative">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -410,6 +416,15 @@ export function MainPage() {
                             transition={{ duration: 0.8 }}
                             className="text-center mb-16"
                         >
+                            <motion.span
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                                className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-6 border border-purple-500/20 backdrop-blur-sm"
+                            >
+                                Marketing Paradigm
+                            </motion.span>
                             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent">
                                 마케팅의 패러다임
                             </h2>
@@ -461,39 +476,42 @@ export function MainPage() {
                                     className="group relative"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                                    <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-800 group-hover:border-purple-500/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-500 h-full">
-                                        <div className="flex items-center gap-4 mb-6">
-                                            {item.icon}
-                                            <h3 className="text-2xl font-bold text-white">{item.title}</h3>
-                        </div>
-                                        {item.stats ? (
-                                            <div className="space-y-4 mb-6">
-                                                {item.stats.map((stat, i) => (
-                                                    <motion.div
-                                                        key={stat.label}
-                                                        initial={{ opacity: 0, x: -20 }}
-                                                        whileInView={{ opacity: 1, x: 0 }}
-                                                        viewport={{ once: true }}
-                                                        transition={{ delay: 0.4 + i * 0.1 }}
-                                                        className="flex items-center justify-between"
-                                >
-                                                        <span className="text-gray-400">{stat.label}</span>
-                                                        <span className="text-2xl font-bold text-purple-400">{stat.value}</span>
-                                                    </motion.div>
-                                                ))}
-                                    </div>
-                                        ) : (
-                                            <>
-                                                <div className="text-4xl md:text-5xl font-bold text-purple-400 mb-2">
-                                                    {item.value}
-                                                </div>
-                                                <div className="text-xl text-gray-300 mb-6">{item.description}</div>
-                                            </>
-                                        )}
+                                    <div className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-xl border border-purple-500/10 group-hover:border-purple-500/30 rounded-2xl p-8 transition-all duration-500 h-full">
+                                        <div className="relative mb-8">
+                                            <motion.div
+                                                animate={{
+                                                    scale: [1, 1.2, 1],
+                                                    opacity: [0.5, 0.8, 0.5]
+                                                }}
+                                                transition={{
+                                                    duration: 3,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut"
+                                                }}
+                                                className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full"
+                                            />
+                                            <div className="relative p-4 bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-xl backdrop-blur-sm border border-purple-500/20 group-hover:border-purple-500/40 transition-all duration-500 inline-block">
+                                                {item.icon}
+                                            </div>
+                                        </div>
+                                        <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-purple-400 group-hover:to-indigo-400 transition-all duration-500 mb-4">
+                                            {item.title}
+                                        </h3>
+                                        <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent mb-2">
+                                            {item.value}
+                                        </div>
+                                        <div className="text-xl text-gray-300 mb-6">{item.description}</div>
                                         <p className="text-gray-400 whitespace-pre-line leading-relaxed">
                                             {item.subtext}
-                                    </p>
-                                </div>
+                                        </p>
+                                        <motion.div
+                                            initial={{ scaleX: 0 }}
+                                            whileInView={{ scaleX: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.8 }}
+                                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                                        />
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>
