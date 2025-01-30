@@ -85,7 +85,7 @@ export function MainPage() {
             statsData.forEach((stat, index) => {
                 let startTime: number;
                 const endValue = stat.value;
-                const duration = 1.5;
+                const duration = 0.8;
 
                 const animate = (currentTime: number) => {
                     if (!startTime) startTime = currentTime;
@@ -94,7 +94,9 @@ export function MainPage() {
                     if (progress < 1) {
                         setStatsCounts(prev => {
                             const newCounts = [...prev];
-                            newCounts[index] = Math.floor(endValue * progress);
+                            newCounts[index] = Number.isInteger(endValue) 
+                                ? Math.floor(endValue * progress)
+                                : Number((endValue * progress).toFixed(1));
                             return newCounts;
                         });
                         requestAnimationFrame(animate);
