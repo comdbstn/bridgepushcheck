@@ -682,7 +682,12 @@ export function MainPage() {
                                     icon: "/logo/everytime.png",
                                     title: "에브리타임",
                                     description: "대학생 타겟 바이럴 마케팅",
-                                    features: ["학교별 타겟팅", "실제 재학생 마케팅", "높은 도달률"],
+                                    features: [
+                                        "실제 재학생 타겟팅",
+                                        "높은 도달률",
+                                        "학교별 타겟팅",
+                                        "국비지원, 병원, 서비스"
+                                    ],
                                     gradient: "from-[#FFD1D1] to-[#FFE5E5]",
                                     link: "/everytime"
                                 },
@@ -690,7 +695,12 @@ export function MainPage() {
                                     icon: "/logo/blind.png",
                                     title: "블라인드",
                                     description: "직장인 타겟 바이럴 마케팅",
-                                    features: ["직장인 타겟팅", "자연스러운 바이럴", "높은 신뢰도"],
+                                    features: [
+                                        "직장인 타겟팅",
+                                        "높은 결제율",
+                                        "자연스러운 바이럴",
+                                        "금융, 채용, 서비스"
+                                    ],
                                     gradient: "from-[#E5F7FF] to-[#F5FBFF]",
                                     link: "/blind"
                                 },
@@ -698,7 +708,12 @@ export function MainPage() {
                                     icon: "/logo/tiktok.png",
                                     title: "틱톡",
                                     description: "MZ세대 타겟 바이럴 마케팅",
-                                    features: ["MZ세대 타겟팅", "숏폼 콘텐츠", "높은 전환율"],
+                                    features: [
+                                        "MZ 타겟팅",
+                                        "높은 전환율",
+                                        "숏폼 컨텐츠",
+                                        "뷰티, 성형, 화장품"
+                                    ],
                                     gradient: "from-[#00F2EA] to-[#FF0050]",
                                     link: "/tiktok"
                                 }
