@@ -360,8 +360,9 @@ export function MainPage() {
                                 <motion.div
                                     key={row}
                                     className="flex gap-8 py-4"
+                                    initial={{ x: row % 2 === 0 ? "-10%" : "-90%" }}
                                     animate={{
-                                        x: row % 2 === 0 ? [0, "-100%"] : ["-100%", 0]
+                                        x: row % 2 === 0 ? ["-10%", "-100%"] : ["-90%", "0%"]
                                     }}
                                     transition={{
                                         duration: 150,
@@ -501,8 +502,42 @@ export function MainPage() {
 
                 {/* 포인트 섹션 */}
                 <section className="py-24 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/5 to-black" />
+                    <div className="absolute inset-0">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.1),transparent_70%)]" />
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.2, 0.4, 0.2]
+                            }}
+                            transition={{
+                                duration: 8,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-indigo-600/10 to-transparent blur-3xl"
+                        />
+                    </div>
                     <div className="container mx-auto px-4 relative">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="text-center mb-16"
+                        >
+                            <motion.span
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                                className="inline-block px-6 py-3 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-6 border border-purple-500/20 backdrop-blur-sm"
+                            >
+                                Our Strengths
+                            </motion.span>
+                            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+                                브릿지마케팅의 강점
+                            </h2>
+                        </motion.div>
                         <div className="grid md:grid-cols-3 gap-12">
                             {[
                                 {
@@ -542,7 +577,7 @@ export function MainPage() {
                                     className="group relative"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                                    <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-800 group-hover:border-purple-500/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-500 h-full">
+                                    <div className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-xl border border-purple-500/10 group-hover:border-purple-500/30 rounded-2xl p-8 transition-all duration-500 h-full">
                                         <div className="flex items-center gap-4 mb-8">
                                             <div className="relative">
                                                 <motion.div
@@ -557,26 +592,31 @@ export function MainPage() {
                                                     }}
                                                     className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full"
                                                 />
-                                                <div className="relative rounded-xl bg-gradient-to-br from-purple-500/10 to-indigo-500/10 p-4">
+                                                <div className="relative p-4 bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-xl backdrop-blur-sm border border-purple-500/20 group-hover:border-purple-500/40 transition-all duration-500">
                                                     <div className="text-purple-400 group-hover:text-purple-300 transition-colors">
                                                         {point.icon}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h3 className="text-2xl font-bold text-white">{point.title}</h3>
+                                            <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-purple-400 group-hover:to-indigo-400 transition-all duration-500">
+                                                {point.title}
+                                            </h3>
                                         </div>
                                         <div className="space-y-4">
                                             {point.description.map((text, i) => (
-                                                <motion.p
+                                                <motion.div
                                                     key={i}
                                                     initial={{ opacity: 0, x: -20 }}
                                                     whileInView={{ opacity: 1, x: 0 }}
                                                     viewport={{ once: true }}
                                                     transition={{ delay: 0.4 + i * 0.1 }}
-                                                    className="text-gray-400 leading-relaxed whitespace-pre-line"
+                                                    className="flex items-start gap-3 group/item"
                                                 >
-                                                    {text}
-                                                </motion.p>
+                                                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 mt-2 group-hover/item:scale-125 transition-transform duration-300" />
+                                                    <span className="text-gray-400 group-hover/item:text-gray-300 transition-colors duration-300">
+                                                        {text}
+                                                    </span>
+                                                </motion.div>
                                             ))}
                                         </div>
                                         <motion.div
@@ -584,7 +624,7 @@ export function MainPage() {
                                             whileInView={{ scaleX: 1 }}
                                             viewport={{ once: true }}
                                             transition={{ duration: 0.8 }}
-                                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"
+                                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"
                                         />
                                     </div>
                                 </motion.div>
