@@ -376,12 +376,13 @@ export function MainPage() {
                                     {Array(10).fill([...clientLogos]).flat().slice(row * 13, (row + 1) * 13).map((logo, index) => (
                                         <div 
                                             key={index}
-                                            className="flex-shrink-0"
+                                            className="flex-shrink-0 w-[150px] h-[60px] flex items-center justify-center bg-black/50 rounded-lg backdrop-blur-sm"
                                         >
                                             <img
                                                 src={logo}
                                                 alt={`Client ${index + 1}`}
-                                                className="h-[60px] w-[150px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                                className="w-[120px] h-[48px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                                loading="lazy"
                                             />
                                         </div>
                                     ))}
