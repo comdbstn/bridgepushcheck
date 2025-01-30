@@ -11,14 +11,15 @@ import { Analytics } from "@vercel/analytics/react";
 const timestamp = Date.now();
 const clientLogos = [
     `/logo/0.png?t=${timestamp}`, `/logo/1.png?t=${timestamp}`, `/logo/2.png?t=${timestamp}`, `/logo/3.png?t=${timestamp}`, 
-    `/logo/4.png?t=${timestamp}`, `/logo/5.png?t=${timestamp}`, `/logo/6.png?t=${timestamp}`, `/logo/7.png?t=${timestamp}`, 
-    `/logo/8.png?t=${timestamp}`, `/logo/9.png?t=${timestamp}`, `/logo/10.png?t=${timestamp}`, `/logo/11.png?t=${timestamp}`, `/logo/12.png?t=${timestamp}`, 
-    `/logo/13.png?t=${timestamp}`, `/logo/14.png?t=${timestamp}`, `/logo/15.png?t=${timestamp}`, `/logo/16.png?t=${timestamp}`, 
-    `/logo/17.png?t=${timestamp}`, `/logo/18.png?t=${timestamp}`, `/logo/19.png?t=${timestamp}`, `/logo/20.png?t=${timestamp}`,
-    `/logo/21.png?t=${timestamp}`, `/logo/22.png?t=${timestamp}`, `/logo/23.png?t=${timestamp}`, `/logo/24.png?t=${timestamp}`, 
-    `/logo/25.png?t=${timestamp}`, `/logo/26.png?t=${timestamp}`, `/logo/27.png?t=${timestamp}`, `/logo/28.png?t=${timestamp}`, 
-    `/logo/29.png?t=${timestamp}`, `/logo/30.png?t=${timestamp}`, `/logo/31.png?t=${timestamp}`, `/logo/32.png?t=${timestamp}`,
-    `/logo/33.png?t=${timestamp}`, `/logo/34.png?t=${timestamp}`, `/logo/35.png?t=${timestamp}`, `/logo/36.png?t=${timestamp}`
+    `/logo/4.png?t=${timestamp}`, `/logo/5.png?t=${timestamp}`, `/logo/6.png?t=${timestamp}`, `/logo/8.png?t=${timestamp}`, 
+    `/logo/9.png?t=${timestamp}`, `/logo/10.png?t=${timestamp}`, `/logo/11.png?t=${timestamp}`, `/logo/13.png?t=${timestamp}`, 
+    `/logo/14.png?t=${timestamp}`, `/logo/15.png?t=${timestamp}`, `/logo/16.png?t=${timestamp}`, `/logo/17.png?t=${timestamp}`, 
+    `/logo/18.png?t=${timestamp}`, `/logo/19.png?t=${timestamp}`, `/logo/20.png?t=${timestamp}`, `/logo/21.png?t=${timestamp}`,
+    `/logo/22.png?t=${timestamp}`, `/logo/23.png?t=${timestamp}`, `/logo/24.png?t=${timestamp}`, `/logo/25.png?t=${timestamp}`, 
+    `/logo/26.png?t=${timestamp}`, `/logo/27.png?t=${timestamp}`, `/logo/28.png?t=${timestamp}`, `/logo/29.png?t=${timestamp}`, 
+    `/logo/30.png?t=${timestamp}`, `/logo/31.png?t=${timestamp}`, `/logo/32.png?t=${timestamp}`, `/logo/33.png?t=${timestamp}`,
+    `/logo/34.png?t=${timestamp}`, `/logo/35.png?t=${timestamp}`, `/logo/36.png?t=${timestamp}`, `/logo/7.png?t=${timestamp}`,
+    `/logo/12.png?t=${timestamp}`
 ];
 
 export function MainPage() {
