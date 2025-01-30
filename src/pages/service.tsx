@@ -12,10 +12,12 @@ interface Service {
     minPrice: string;
     image: string;
     link: string;
+    category: string;
 }
 
 export default function ServicePage() {
     const [isLoading, setIsLoading] = useState(true);
+    const [selectedCategory, setSelectedCategory] = useState("all");
     const location = useLocation();
     const navigate = useNavigate();
     const shouldRestore = location.state?.shouldRestore;
@@ -55,7 +57,8 @@ export default function ServicePage() {
             features: ["대학생 타겟 마케팅", "실시간 반응 분석", "맞춤형 컨텐츠 제작"],
             minPrice: "1만원",
             image: "/logo/everytime.png",
-            link: "/everytime"
+            link: "/everytime",
+            category: "community"
         },
         {
             title: "네이버 카페",
@@ -63,7 +66,8 @@ export default function ServicePage() {
             features: ["타겟 카페 분석", "자연스러운 바이럴", "실시간 모니터링"],
             minPrice: "3만원",
             image: "/logo/naver.png",
-            link: "/naver-cafe"
+            link: "/naver-cafe",
+            category: "naver"
         },
         {
             title: "네이버 플레이스",
@@ -71,7 +75,8 @@ export default function ServicePage() {
             features: ["매장 트래픽 증가", "상위노출 최적화", "실시간 순위 분석"],
             minPrice: "5만원",
             image: "/logo/naver.png",
-            link: "/naver-place"
+            link: "/naver-place",
+            category: "naver"
         },
         {
             title: "블라인드",
@@ -79,7 +84,8 @@ export default function ServicePage() {
             features: ["직장인 타겟 마케팅", "실시간 모니터링", "전문가 컨설팅"],
             minPrice: "5만원",
             image: "/logo/blind.png",
-            link: "/blind"
+            link: "/blind",
+            category: "community"
         },
         {
             title: "틱톡",
@@ -87,9 +93,21 @@ export default function ServicePage() {
             features: ["MZ세대 타겟 마케팅", "트렌드 분석", "바이럴 영상 제작"],
             minPrice: "25만원",
             image: "/logo/tiktok.png",
-            link: "/tiktok"
+            link: "/tiktok",
+            category: "influencer"
         }
     ];
+
+    const categories = [
+        { id: "all", name: "전체" },
+        { id: "naver", name: "네이버" },
+        { id: "community", name: "커뮤니티" },
+        { id: "influencer", name: "인플루언서" }
+    ];
+
+    const filteredServices = selectedCategory === "all" 
+        ? services 
+        : services.filter(service => service.category === selectedCategory);
 
     const handleServiceClick = () => {
         const currentScroll = window.scrollY;
@@ -116,9 +134,26 @@ export default function ServicePage() {
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                                 마케팅 서비스
                             </h1>
-                            <p className="text-xl text-gray-400">
+                            <p className="text-xl text-gray-400 mb-12">
                                 브릿지마케팅의 다양한 서비스를 만나보세요
                             </p>
+                            <div className="flex flex-wrap justify-center gap-4">
+                                {categories.map((category) => (
+                                    <motion.button
+                                        key={category.id}
+                                        onClick={() => setSelectedCategory(category.id)}
+                                        className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                                            selectedCategory === category.id
+                                                ? "bg-purple-600 text-white"
+                                                : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                                        }`}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        {category.name}
+                                    </motion.button>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
                 </section>
@@ -126,55 +161,55 @@ export default function ServicePage() {
                 <section className="py-24">
                     <div className="container mx-auto px-4">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {services.map((service, index) => (
-                                    <motion.div
-                                        key={service.title}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.4, delay: index * 0.1 }}
-                                        className="group bg-gray-900/50 rounded-2xl p-8 hover:bg-gray-800/50 transition-colors"
+                            {filteredServices.map((service, index) => (
+                                <motion.div
+                                    key={service.title}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                                    className="group bg-gray-900/50 rounded-2xl p-8 hover:bg-gray-800/50 transition-colors"
+                                >
+                                    <div className="flex items-center justify-center mb-6">
+                                        <img 
+                                            src={service.image} 
+                                            alt={service.title} 
+                                            className="h-12"
+                                        />
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-white mb-4 text-center">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-gray-400 mb-6 text-center">
+                                        {service.description}
+                                    </p>
+                                    <ul className="space-y-3 mb-6">
+                                        {service.features.map((feature, featureIndex) => (
+                                            <motion.li
+                                                key={feature}
+                                                initial={{ opacity: 0, x: -20 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ duration: 0.3, delay: index * 0.1 + featureIndex * 0.1 }}
+                                                className="flex items-center text-gray-400"
+                                            >
+                                                <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2" />
+                                                {feature}
+                                            </motion.li>
+                                        ))}
+                                    </ul>
+                                    <div className="text-center mb-6">
+                                        <span className="text-purple-400 font-semibold">
+                                            최소 {service.minPrice}
+                                        </span>
+                                    </div>
+                                    <Link
+                                        to={service.link}
+                                        state={handleServiceClick()}
+                                        className="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-center transition-colors"
                                     >
-                                        <div className="flex items-center justify-center mb-6">
-                                            <img 
-                                                src={service.image} 
-                                                alt={service.title} 
-                                                className="h-12"
-                                            />
-                                        </div>
-                                        <h3 className="text-2xl font-bold text-white mb-4 text-center">
-                                            {service.title}
-                                        </h3>
-                                        <p className="text-gray-400 mb-6 text-center">
-                                            {service.description}
-                                        </p>
-                                        <ul className="space-y-3 mb-6">
-                                            {service.features.map((feature, featureIndex) => (
-                                                <motion.li
-                                                    key={feature}
-                                                    initial={{ opacity: 0, x: -20 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    transition={{ duration: 0.3, delay: index * 0.1 + featureIndex * 0.1 }}
-                                                    className="flex items-center text-gray-400"
-                                                >
-                                                    <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2" />
-                                                    {feature}
-                                                </motion.li>
-                                            ))}
-                                        </ul>
-                                        <div className="text-center mb-6">
-                                            <span className="text-purple-400 font-semibold">
-                                                최소 {service.minPrice}
-                                            </span>
-                                        </div>
-                                        <Link
-                                            to={service.link}
-                                            state={handleServiceClick()}
-                                            className="block w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-center transition-colors"
-                                        >
-                                            자세히 보기
-                                        </Link>
-                                    </motion.div>
-                                ))}
+                                        자세히 보기
+                                    </Link>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </section>
