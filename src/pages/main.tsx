@@ -8,17 +8,18 @@ import { Loading } from "@/components/ui/loading";
 import { Analytics } from "@vercel/analytics/react";
 
 // 로고 배열 생성
+const timestamp = Date.now();
 const clientLogos = [
-    "/logo/0.png", "/logo/1.jpg", "/logo/2.png", "/logo/3.png", 
-    "/logo/4.jpg", "/logo/5.png", "/logo/6.png", "/logo/7.svg", 
-    "/logo/8.jpg", "/logo/9.png", "/logo/10.png", "/logo/12.png", 
-    "/logo/13.png", "/logo/14.png", "/logo/15.png", "/logo/16.png", 
-    "/logo/17.png", "/logo/18.png", "/logo/19.jpg", "/logo/20.png",
-    "/logo/21.png", "/logo/22.png", "/logo/23.png", "/logo/24.png", 
-    "/logo/25.jpg", "/logo/26.png", "/logo/27.png", "/logo/28.jpg", 
-    "/logo/29.png", "/logo/30.png", "/logo/31.png", "/logo/32.png",
-    "/logo/33.webp", "/logo/34.png", "/logo/35.png", "/logo/36.png",
-    "/logo/37.webp", "/logo/38.png", "/logo/39.jpg"
+    `/logo/0.png?t=${timestamp}`, `/logo/1.jpg?t=${timestamp}`, `/logo/2.png?t=${timestamp}`, `/logo/3.png?t=${timestamp}`, 
+    `/logo/4.jpg?t=${timestamp}`, `/logo/5.png?t=${timestamp}`, `/logo/6.png?t=${timestamp}`, `/logo/7.svg?t=${timestamp}`, 
+    `/logo/8.jpg?t=${timestamp}`, `/logo/9.png?t=${timestamp}`, `/logo/10.png?t=${timestamp}`, `/logo/12.png?t=${timestamp}`, 
+    `/logo/13.png?t=${timestamp}`, `/logo/14.png?t=${timestamp}`, `/logo/15.png?t=${timestamp}`, `/logo/16.png?t=${timestamp}`, 
+    `/logo/17.png?t=${timestamp}`, `/logo/18.png?t=${timestamp}`, `/logo/19.jpg?t=${timestamp}`, `/logo/20.png?t=${timestamp}`,
+    `/logo/21.png?t=${timestamp}`, `/logo/22.png?t=${timestamp}`, `/logo/23.png?t=${timestamp}`, `/logo/24.png?t=${timestamp}`, 
+    `/logo/25.jpg?t=${timestamp}`, `/logo/26.png?t=${timestamp}`, `/logo/27.png?t=${timestamp}`, `/logo/28.jpg?t=${timestamp}`, 
+    `/logo/29.png?t=${timestamp}`, `/logo/30.png?t=${timestamp}`, `/logo/31.png?t=${timestamp}`, `/logo/32.png?t=${timestamp}`,
+    `/logo/33.webp?t=${timestamp}`, `/logo/34.png?t=${timestamp}`, `/logo/35.png?t=${timestamp}`, `/logo/36.png?t=${timestamp}`,
+    `/logo/37.webp?t=${timestamp}`, `/logo/38.png?t=${timestamp}`, `/logo/39.jpg?t=${timestamp}`
 ];
 
 export function MainPage() {
@@ -376,12 +377,12 @@ export function MainPage() {
                                     {Array(10).fill([...clientLogos]).flat().slice(row * 13, (row + 1) * 13).map((logo, index) => (
                                         <div 
                                             key={index}
-                                            className="flex-shrink-0 w-[150px] h-[60px] flex items-center justify-center bg-black/50 rounded-lg backdrop-blur-sm"
+                                            className="flex-shrink-0 w-[150px] h-[60px] flex items-center justify-center bg-black/50 rounded-lg backdrop-blur-sm border border-purple-500/10 hover:border-purple-500/30 transition-all duration-300"
                                         >
                                             <img
                                                 src={logo}
                                                 alt={`Client ${index + 1}`}
-                                                className="w-[120px] h-[48px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                                className="w-[120px] h-[48px] object-contain opacity-80 hover:opacity-100 transition-all duration-300"
                                                 loading="lazy"
                                             />
                                         </div>
