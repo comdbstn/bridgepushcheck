@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import { MessageSquare, FileSearch, Upload, BarChart } from "lucide-react";
 
 const steps = [

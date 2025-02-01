@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { motion, useScroll } from "framer-motion";
 import { useRef } from "react";
-import { MessageSquare, FileEdit, Upload, BarChart, ArrowRight } from "lucide-react";
+import { MessageSquare, FileSearch, Upload, BarChart } from "lucide-react";
 
 const steps = [
     {
@@ -14,7 +14,7 @@ const steps = [
     },
     {
         number: 2,
-        icon: FileEdit,
+        icon: FileSearch,
         title: "초안 검토 및 수정",
         description:
             "구매자 측에서 준비한 매장 정보를 바탕으로 네이버 플레이스의 분위기와 감성에 맞게 수정하는 절차를 거칩니다. 구매자 측의 확인이 완료되면 최종 컨텐츠가 확정됩니다.",
