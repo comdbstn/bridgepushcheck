@@ -1,9 +1,21 @@
 import { motion } from "framer-motion";
+import { useCountAnimation } from "@/hooks/use-count-animation";
+import { formatNumber } from "@/lib/utils";
 import { MessageCircle } from "lucide-react";
 
 export function Hero() {
+    const { count: totalUsers, ref: totalRef } = useCountAnimation(500);
+    const { count: koreanUsers, ref: koreanRef } = useCountAnimation(300);
+    const { count: mau, ref: mauRef } = useCountAnimation(200);
+
     return (
-        <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#FF812D] to-[#FF6F1E]">
+        <section className='relative min-h-[100vh] w-full flex items-center bg-gradient-to-br from-[#03C75A] via-[#02B54A] to-[#019B3C] overflow-hidden'>
+            {/* Background patterns */}
+            <div className='absolute inset-0 overflow-hidden'>
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI1MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IHgxPSIxMDAlIiB5MT0iMjEuMTgyJSIgeDI9IjUwJSIgeTI9IjEwMCUiIGlkPSJhIj48c3RvcCBzdG9wLWNvbG9yPSIjRkZGIiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0ZGRiIgc3RvcC1vcGFjaXR5PSIwIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNLTM1Ljg5IDQ4NC4yMzdDLTEwLjI0NyA1MjIuMDg0IDIyNy4xNDIgNTE3LjMwMiAyNjcuMTAzIDUwOS4zMzFjNi42MDktMS4zMjEgMTguNDk1LTMuNjA3IDM1LjY1OC02Ljg1OCAxNDQuMDEtMjcuMjMgMjE3LjI0OC0xMDkuNDIgMzA2Ljk0NS0xMDkuNDIgODkuNjk3IDAgMTc0LjE1MSAxMC43MzMgMzY5LjI4NCA3Mi4yMyAxOTUuMTMyIDYxLjQ5NSAyOTUuMDExIDY5LjIzIDM5OS4wNTUgNTMuMjNDMTQ4Mi4wNDIgNDgxLjE4NSAxNTQ0IDQ1OS4xMTIgMTU0NCA0NTkuMTEyVjBILTYwLjA5MXY0MzkuNDk2YzEuNzMgOC44MzggMTEuNTMgMjUuNDYyIDI0LjIwMSA0NC43NDF6IiBmaWxsPSJ1cmwoI2EpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIG9wYWNpdHk9Ii4wNSIvPjwvc3ZnPg==')] bg-cover bg-center opacity-10 animate-pulse" />
+                <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
+            </div>
+
             <div className='container mx-auto px-4 sm:px-6 lg:px-8 relative pt-20 sm:pt-0'>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -16,7 +28,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="font-['Changa'] text-[28px] sm:text-[50px] font-bold tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-[#FFE5D9] to-[#FFFFFF] select-none"
+                            className="font-['Changa'] text-[28px] sm:text-[50px] font-bold tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-[#E5FFE8] to-[#FFFFFF] select-none"
                         >
                             BRIDGE MARKETING
                         </motion.p>
@@ -25,7 +37,7 @@ export function Hero() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.3 }}
-                                src='/logo/navercafe.png'
+                                src='/logo/naver-cafe.png'
                                 alt='네이버 카페 로고'
                                 className='h-28 rounded-2xl'
                             />
@@ -33,7 +45,7 @@ export function Hero() {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
-                                className="font-['Changa'] text-[50px] sm:text-[130px] font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-[#FFE5D9] via-[#FFFFFF] to-[#FFF5F0] select-none leading-none"
+                                className="font-['Changa'] text-[50px] sm:text-[130px] font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-[#E5FFE8] via-[#FFFFFF] to-[#F5FFF7] select-none leading-none"
                             >
                                 CAFE
                             </motion.h1>
@@ -45,7 +57,7 @@ export function Hero() {
                                 transition={{ duration: 0.6, delay: 0.3 }}
                                 className='text-3xl sm:text-5xl font-bold text-white font-aggro'
                             >
-                                대한민국 최대 커뮤니티 마케팅
+                                커뮤니티 마케팅의 새로운 기준
                             </motion.h2>
 
                             <motion.p
@@ -54,40 +66,34 @@ export function Hero() {
                                 transition={{ duration: 0.6, delay: 0.4 }}
                                 className='text-lg sm:text-xl text-white/90 px-4 font-tway'
                             >
-                                3,000만 이상의 사용자가 활동하는 네이버 카페에서 시작하세요.
+                                네이버 카페는 대한민국 최대의 커뮤니티 플랫폼입니다.
                                 <br className='hidden sm:block' />
-                                맘카페, 지역카페, 취미카페 등 다양한 타겟층에 도달하는 최적의 마케팅 솔루션을 제공합니다.
+                                타겟 고객층이 모여있는 카페에서 효과적인 마케팅을 시작하세요.
                             </motion.p>
                         </div>
 
                         <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-12 pb-8 sm:pb-0'>
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.5 }}
-                                className='bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white'
-                            >
-                                <h3 className='text-2xl sm:text-4xl font-bold mb-2'>3,000만+</h3>
-                                <p className='text-sm sm:text-base text-white/80'>월간 활성 사용자</p>
-                            </motion.div>
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.6 }}
-                                className='bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white'
-                            >
-                                <h3 className='text-2xl sm:text-4xl font-bold mb-2'>15만+</h3>
-                                <p className='text-sm sm:text-base text-white/80'>활성 카페 수</p>
-                            </motion.div>
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.7 }}
-                                className='bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white'
-                            >
-                                <h3 className='text-2xl sm:text-4xl font-bold mb-2'>99%</h3>
-                                <p className='text-sm sm:text-base text-white/80'>광고 만족도</p>
-                            </motion.div>
+                            {[
+                                { number: totalUsers, suffix: "만+", label: "월간 활성 카페", ref: totalRef },
+                                { number: koreanUsers, suffix: "만+", label: "일간 방문자", ref: koreanRef },
+                                { number: mau, suffix: "만+", label: "월간 게시글", ref: mauRef },
+                            ].map((stat, index) => (
+                                <motion.div
+                                    key={stat.label}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                                    className='p-4 sm:p-6 mx-4 sm:mx-0 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 group'
+                                    ref={stat.ref}
+                                >
+                                    <h3 className='text-2xl sm:text-4xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300 font-aggro'>
+                                        <span className='text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60'>
+                                            {formatNumber(stat.number, stat.suffix)}
+                                        </span>
+                                    </h3>
+                                    <p className='text-white/80'>{stat.label}</p>
+                                </motion.div>
+                            ))}
                         </div>
 
                         <motion.div
@@ -100,7 +106,7 @@ export function Hero() {
                                 href='http://pf.kakao.com/_CYGdn/chat'
                                 target='_blank'
                                 rel='noopener noreferrer'
-                                className='inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-white/90 text-[#FF812D] rounded-full font-bold text-lg transition-all duration-300 hover:scale-105'
+                                className='inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-white/90 text-[#03C75A] rounded-full font-bold text-lg transition-all duration-300 hover:scale-105'
                             >
                                 <MessageCircle className='w-5 h-5' />더 빠른 성장을 원하시나요?
                             </a>
