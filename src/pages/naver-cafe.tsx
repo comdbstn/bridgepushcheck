@@ -34,7 +34,7 @@ interface ServiceDetail {
     }[];
 }
 
-export function NaverCafePage() {
+export function NaverCafeServicePage() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

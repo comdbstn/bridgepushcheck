@@ -41,10 +41,49 @@ export function Hero() {
                         />
                     </motion.div>
 
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mb-12">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            className="p-6 bg-white/10 backdrop-blur-sm rounded-lg"
+                            ref={campusRef}
+                        >
+                            <h3 className="text-3xl font-bold text-amber-800 mb-2 font-aggro">
+                                {formatNumber(campusCount)}개
+                            </h3>
+                            <p className="text-gray-600 font-tway">전국 캠퍼스</p>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                            className="p-6 bg-white/10 backdrop-blur-sm rounded-lg"
+                            ref={percentageRef}
+                        >
+                            <h3 className="text-3xl font-bold text-amber-800 mb-2 font-aggro">
+                                {formatNumber(userPercentage)}%
+                            </h3>
+                            <p className="text-gray-600 font-tway">20대 사용자 비율</p>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.5 }}
+                            className="p-6 bg-white/10 backdrop-blur-sm rounded-lg"
+                            ref={monthlyRef}
+                        >
+                            <h3 className="text-3xl font-bold text-amber-800 mb-2 font-aggro">
+                                {formatNumber(monthlyUsers)}만+
+                            </h3>
+                            <p className="text-gray-600 font-tway">월간 활성 사용자</p>
+                        </motion.div>
+                    </div>
+
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
                         className="flex justify-center gap-4"
                     >
                         <a
