@@ -1,141 +1,104 @@
+import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Check } from "lucide-react";
-import { motion } from "framer-motion";
 
 const plans = [
     {
         name: "Basic",
-        price: "₩10,000",
-        description: "단발성 홍보가 필요한 소규모 프로젝트에 적합",
+        price: "50만원",
+        description: "소규모 마케팅이 필요한 기업을 위한 패키지",
         features: [
-            "1개 대학 게시글 1회",
-            "홍보게시판 사용",
-            "국내 모든 대학 배포 가능",
-            "24시간 이내 업로드",
-            "기본 리포트 제공",
+            "5개 학교 게시글 작성",
+            "기본 컨텐츠 제작",
+            "주간 리포트 제공",
+            "기본 키워드 최적화",
+            "1:1 전담 매니저",
         ],
-        highlighted: false,
-        ctaText: "시작하기",
     },
     {
-        name: "Pro",
-        price: "₩900,000",
-        description: "대규모 마케팅 캠페인을 위한 최적의 선택",
+        name: "Standard",
+        price: "150만원",
+        description: "중규모 마케팅이 필요한 기업을 위한 패키지",
         features: [
-            "100개 대학 게시글 1회",
-            "또는 10개 대학 10회",
-            "홍보게시판 사용",
-            "맞춤형 이미지/카피",
-            "프리미엄 리포트 제공",
+            "20개 학교 게시글 작성",
+            "맞춤형 컨텐츠 제작",
+            "실시간 모니터링",
+            "상세 키워드 최적화",
+            "일일 리포트 제공",
+            "SEO 최적화",
+        ],
+    },
+    {
+        name: "Premium",
+        price: "500만원",
+        description: "대규모 마케팅이 필요한 기업을 위한 패키지",
+        features: [
+            "무제한 학교 게시글 작성",
+            "프리미엄 컨텐츠 제작",
+            "실시간 대시보드 제공",
+            "고급 키워드 최적화",
             "전담 매니저 배정",
+            "성과 분석 컨설팅",
+            "24/7 긴급 대응",
         ],
-        highlighted: true,
-        ctaText: "시작하기",
-        badge: "BEST CHOICE",
-    },
-    {
-        name: "Enterprise",
-        price: "별도문의",
-        description: "맞춤형 솔루션이 필요한 기업 고객을 위한 플랜",
-        features: [
-            "무제한 대학 게시글",
-            "맞춤형 마케팅 전략",
-            "전용 담당자 배정",
-            "실시간 데이터 분석",
-            "VIP 고객 지원",
-            "우선 처리",
-        ],
-        highlighted: false,
-        ctaText: "문의하기",
     },
 ];
 
 export function Pricing() {
     return (
-        <section className='py-20 bg-gradient-to-br from-gray-50 to-white overflow-hidden'>
-            <div className='container mx-auto px-4'>
-                <div className='text-center max-w-3xl mx-auto mb-16'>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className='text-4xl font-bold mb-4 font-aggro'
-                    >
-                        합리적인 가격으로 시작하세요
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className='text-gray-600 font-tway'
-                    >
-                        프로젝트 규모와 목표에 맞는 최적의 플랜을 선택하세요
-                    </motion.p>
-                </div>
+        <section className="py-24 relative overflow-hidden bg-gradient-to-br from-amber-50 to-white">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-12"
+                >
+                    <span className="text-amber-600 font-semibold text-lg font-tway mb-4 block">
+                        PRICING
+                    </span>
+                    <h2 className="text-4xl font-bold mb-4 font-aggro">
+                        가격 안내
+                    </h2>
+                    <p className="text-gray-600 max-w-2xl mx-auto font-tway">
+                        합리적인 가격으로 효과적인 에브리타임 마케팅을 시작하세요.
+                        <br />
+                        귀사의 예산과 목표에 맞는 최적의 플랜을 제안드립니다.
+                    </p>
+                </motion.div>
 
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto'>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {plans.map((plan, index) => (
                         <motion.div
                             key={plan.name}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className='relative'
+                            transition={{ delay: index * 0.1 }}
                         >
-                            {plan.badge && (
-                                <div className='absolute -top-4 left-1/2 transform -translate-x-1/2'>
-                                    <span className='bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] text-white text-sm font-bold px-4 py-1 rounded-full'>
-                                        {plan.badge}
-                                    </span>
+                            <Card className="p-8 h-full hover:shadow-lg transition-all duration-300">
+                                <h3 className="text-2xl font-bold mb-2 font-aggro">{plan.name}</h3>
+                                <div className="text-3xl font-bold text-amber-600 mb-4">
+                                    {plan.price}
+                                    <span className="text-base font-normal text-gray-600">/월</span>
                                 </div>
-                            )}
-
-                            <Card
-                                className={`h-full ${
-                                    plan.highlighted
-                                        ? "border-2 border-[#FF416C] shadow-lg scale-105 relative z-10"
-                                        : "border border-gray-200"
-                                } hover:shadow-xl transition-all duration-300`}
-                            >
-                                <div className='p-8'>
-                                    <h3 className='text-2xl font-bold mb-2 font-tway'>{plan.name}</h3>
-                                    <div className='mb-4'>
-                                        <span className='text-4xl font-bold'>{plan.price}</span>
-                                        {plan.name !== "Enterprise" && <span className='text-gray-600'>/회</span>}
-                                    </div>
-                                    <p className='text-gray-600 mb-6 font-tway'>{plan.description}</p>
-
-                                    <a
-                                        href='http://pf.kakao.com/_CYGdn/chat'
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        className={`w-full block text-center py-3 ${
-                                            plan.highlighted
-                                                ? "bg-gradient-to-r from-[#C62917] to-[#E54B3C] hover:from-[#E54B3C] hover:to-[#C62917]"
-                                                : "bg-gray-900 hover:bg-gray-800"
-                                        } text-white rounded-full font-bold transition-all duration-300 hover:scale-[1.02] mb-8`}
-                                    >
-                                        {plan.ctaText}
-                                    </a>
-
-                                    <div className='space-y-4'>
-                                        {plan.features.map((feature) => (
-                                            <div key={feature} className='flex items-center gap-3'>
-                                                <div
-                                                    className={`rounded-full p-1 ${
-                                                        plan.highlighted
-                                                            ? "bg-[#FF416C]/10 text-[#FF416C]"
-                                                            : "bg-gray-100 text-gray-600"
-                                                    }`}
-                                                >
-                                                    <Check className='w-4 h-4' />
-                                                </div>
-                                                <span className='text-gray-600 font-tway'>{feature}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                <p className="text-gray-600 mb-6 font-tway">{plan.description}</p>
+                                <ul className="space-y-4 mb-8">
+                                    {plan.features.map((feature, i) => (
+                                        <li key={i} className="flex items-start">
+                                            <Check className="w-5 h-5 text-amber-600 mr-2 flex-shrink-0" />
+                                            <span className="text-gray-600 font-tway">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <a
+                                    href="http://pf.kakao.com/_CYGdn/chat"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block w-full py-3 px-6 bg-gradient-to-r from-amber-600 to-green-600 hover:from-amber-700 hover:to-green-700 text-white rounded-lg text-center transition-colors font-tway"
+                                >
+                                    문의하기
+                                </a>
                             </Card>
                         </motion.div>
                     ))}
