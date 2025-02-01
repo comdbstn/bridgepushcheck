@@ -8,12 +8,12 @@ import { Industries } from "@/components/sections/naver-place/Industries";
 import { References } from "@/components/sections/naver-place/References";
 import { Process } from "@/components/sections/naver-place/Process";
 import { QA } from "@/components/sections/naver-place/QA";
-import { Footer } from "@/components/sections/naver-place/Footer";
+import { Footer } from "@/components/layout/Footer";
 import { BackButton } from "@/components/navigation/back-button";
 import { KakaoChatButton } from "@/components/chat/kakao-chat-button";
 import { useEffect } from "react";
 
-export function NaverPlacePage() {
+export default function NaverPlaceServicePage() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

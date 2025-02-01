@@ -5,6 +5,7 @@ import { EverytimePage } from "@/pages/everytime";
 import { BlindPage } from "@/pages/blind";
 import { TiktokPage } from "@/pages/tiktok";
 import NaverCafeServicePage from "@/pages/naver-cafe";
+import NaverPlaceServicePage from "@/pages/naver-place";
 import PortfolioPage from "@/pages/portfolio";
 import InsightsPage from "@/pages/insights";
 import { InsightDetailPage } from "@/pages/insight-detail";
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/blind" element={<BlindPage />} />
                 <Route path="/tiktok" element={<TiktokPage />} />
                 <Route path="/naver-cafe" element={<NaverCafeServicePage />} />
+                <Route path="/naver-place" element={<NaverPlaceServicePage />} />
                 <Route path="/portfolio" element={<PortfolioPage />} />
             </Routes>
         </Router>
