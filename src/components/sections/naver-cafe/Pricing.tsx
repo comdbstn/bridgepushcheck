@@ -5,55 +5,65 @@ import { Check } from "lucide-react";
 const plans = [
     {
         name: "Basic",
-        price: "30만원",
-        description: "소규모 마케팅을 위한 기본 플랜",
+        price: "50만원",
+        description: "소규모 마케팅이 필요한 기업을 위한 패키지",
         features: [
-            "3개 카페 바이럴",
+            "5개 카페 게시글 작성",
             "기본 컨텐츠 제작",
             "주간 리포트 제공",
-            "기본 타겟팅"
-        ]
+            "기본 키워드 최적화",
+            "1:1 전담 매니저",
+        ],
     },
     {
         name: "Standard",
-        price: "100만원",
-        description: "효과적인 마케팅을 위한 표준 플랜",
+        price: "150만원",
+        description: "중규모 마케팅이 필요한 기업을 위한 패키지",
         features: [
-            "10개 카페 바이럴",
+            "20개 카페 게시글 작성",
             "맞춤형 컨텐츠 제작",
             "실시간 모니터링",
-            "상세 타겟팅",
-            "일일 리포트 제공"
-        ]
+            "상세 키워드 최적화",
+            "일일 리포트 제공",
+            "SEO 최적화",
+        ],
     },
     {
         name: "Premium",
-        price: "300만원",
-        description: "프리미엄 마케팅을 위한 고급 플랜",
+        price: "500만원",
+        description: "대규모 마케팅이 필요한 기업을 위한 패키지",
         features: [
-            "무제한 카페 바이럴",
+            "무제한 카페 게시글 작성",
             "프리미엄 컨텐츠 제작",
             "실시간 대시보드 제공",
-            "정밀 타겟팅",
+            "고급 키워드 최적화",
             "전담 매니저 배정",
-            "성과 분석 컨설팅"
-        ]
-    }
+            "성과 분석 컨설팅",
+            "24/7 긴급 대응",
+        ],
+    },
 ];
 
 export function Pricing() {
     return (
-        <section className="py-20 bg-gradient-to-br from-white to-[#E5FFE8]">
-            <div className="container mx-auto px-4">
+        <section className="py-24 relative overflow-hidden bg-gradient-to-br from-green-50 to-white">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                 >
-                    <h2 className="text-4xl font-bold mb-4 font-aggro">가격 안내</h2>
+                    <span className="text-green-600 font-semibold text-lg font-tway mb-4 block">
+                        PRICING
+                    </span>
+                    <h2 className="text-4xl font-bold mb-4 font-aggro">
+                        가격 안내
+                    </h2>
                     <p className="text-gray-600 max-w-2xl mx-auto font-tway">
-                        합리적인 가격으로 효과적인 네이버 카페 마케팅을 시작하세요
+                        합리적인 가격으로 효과적인 네이버 카페 마케팅을 시작하세요.
+                        <br />
+                        귀사의 예산과 목표에 맞는 최적의 플랜을 제안드립니다.
                     </p>
                 </motion.div>
 
@@ -66,29 +76,28 @@ export function Pricing() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                         >
-                            <Card className="p-8 bg-white hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-                                <div className="mb-8">
-                                    <h3 className="text-2xl font-bold mb-2 font-aggro">{plan.name}</h3>
-                                    <p className="text-gray-600 mb-4 font-tway">{plan.description}</p>
-                                    <div className="text-3xl font-bold text-[#03AC0E] font-aggro">{plan.price}</div>
+                            <Card className="p-8 h-full hover:shadow-lg transition-all duration-300">
+                                <h3 className="text-2xl font-bold mb-2 font-aggro">{plan.name}</h3>
+                                <div className="text-3xl font-bold text-green-600 mb-4">
+                                    {plan.price}
+                                    <span className="text-base font-normal text-gray-600">/월</span>
                                 </div>
-                                <div className="flex-grow">
-                                    <ul className="space-y-4">
-                                        {plan.features.map((feature) => (
-                                            <li key={feature} className="flex items-center text-gray-600 font-tway">
-                                                <Check className="w-5 h-5 text-[#03AC0E] mr-2 flex-shrink-0" />
-                                                {feature}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                <p className="text-gray-600 mb-6 font-tway">{plan.description}</p>
+                                <ul className="space-y-4 mb-8">
+                                    {plan.features.map((feature, i) => (
+                                        <li key={i} className="flex items-start">
+                                            <Check className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" />
+                                            <span className="text-gray-600 font-tway">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                                 <a
                                     href="http://pf.kakao.com/_CYGdn/chat"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="mt-8 block w-full py-3 px-6 bg-gradient-to-r from-[#03AC0E] to-[#02891B] hover:from-[#02891B] hover:to-[#03AC0E] text-white rounded-lg text-center transition-all duration-300 hover:scale-105 font-bold"
+                                    className="block w-full py-3 px-6 bg-green-600 hover:bg-green-700 text-white rounded-lg text-center transition-colors font-tway"
                                 >
-                                    시작하기
+                                    문의하기
                                 </a>
                             </Card>
                         </motion.div>

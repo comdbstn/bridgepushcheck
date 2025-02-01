@@ -1,64 +1,64 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { Baby, Building2, Briefcase, GraduationCap, Heart, MapPin } from "lucide-react";
+import { GraduationCap, Building2, Stethoscope, ShoppingBag, Briefcase, Gamepad2 } from "lucide-react";
 
 const industries = [
     {
-        icon: Baby,
-        title: "육아",
-        description: "맘카페를 통한 육아 용품, 교육 서비스 홍보"
+        icon: GraduationCap,
+        title: "교육",
+        items: ["학원", "교육기관", "온라인 강의", "교재/교구"],
     },
     {
         icon: Building2,
         title: "부동산",
-        description: "지역 카페를 통한 부동산, 인테리어 홍보"
+        items: ["아파트", "상가", "분양", "임대"],
+    },
+    {
+        icon: Stethoscope,
+        title: "의료/건강",
+        items: ["병원", "의료기기", "건강식품", "운동"],
+    },
+    {
+        icon: ShoppingBag,
+        title: "쇼핑",
+        items: ["패션", "뷰티", "육아용품", "생활용품"],
     },
     {
         icon: Briefcase,
-        title: "취업",
-        description: "취준생 카페를 통한 교육, 채용 정보 홍보"
+        title: "비즈니스",
+        items: ["창업", "프랜차이즈", "자영업", "투자"],
     },
     {
-        icon: GraduationCap,
-        title: "교육",
-        description: "학부모 카페를 통한 교육 서비스 홍보"
+        icon: Gamepad2,
+        title: "문화/여가",
+        items: ["여행", "취미", "공연", "전시"],
     },
-    {
-        icon: Heart,
-        title: "뷰티",
-        description: "뷰티 카페를 통한 화장품, 미용 서비스 홍보"
-    },
-    {
-        icon: MapPin,
-        title: "지역",
-        description: "지역 카페를 통한 맛집, 서비스 홍보"
-    }
 ];
 
 export function Industries() {
     return (
-        <section className='py-20 bg-gradient-to-br from-white to-[#E5FFE8]'>
-            <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-                <motion.h2
+        <section className="py-24 relative overflow-hidden bg-gradient-to-br from-green-50 to-white">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className='text-4xl font-bold text-center mb-4 font-aggro'
+                    className="text-center mb-12"
                 >
-                    추천 업종
-                </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className='text-gray-600 text-center mb-12 max-w-2xl mx-auto px-4 font-tway'
-                >
-                    네이버 카페의 다양한 타겟층을 활용하여 
-                    <br />
-                    효과적인 마케팅을 진행할 수 있는 업종을 소개합니다
-                </motion.p>
+                    <span className="text-green-600 font-semibold text-lg font-tway mb-4 block">
+                        INDUSTRIES
+                    </span>
+                    <h2 className="text-4xl font-bold mb-4 font-aggro">
+                        다양한 산업군의 마케팅
+                    </h2>
+                    <p className="text-gray-600 max-w-2xl mx-auto font-tway">
+                        각 산업별 특성을 고려한 맞춤형 마케팅 전략을 제공합니다.
+                        <br />
+                        업종별 전문가가 최적의 마케팅 솔루션을 제시합니다.
+                    </p>
+                </motion.div>
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {industries.map((industry, index) => (
                         <motion.div
                             key={industry.title}
@@ -67,10 +67,20 @@ export function Industries() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                         >
-                            <Card className='p-6 bg-white/50 backdrop-blur-sm border-none hover:bg-white/80 transition-colors'>
-                                <industry.icon className='w-12 h-12 text-[#03AC0E] mb-4' />
-                                <h3 className='text-xl font-bold mb-2 font-aggro'>{industry.title}</h3>
-                                <p className='text-gray-600 font-tway'>{industry.description}</p>
+                            <Card className="p-6 hover:shadow-lg transition-all duration-300">
+                                <industry.icon className="w-12 h-12 text-green-600 mb-4" />
+                                <h3 className="text-xl font-bold mb-4 font-aggro">{industry.title}</h3>
+                                <ul className="space-y-2">
+                                    {industry.items.map((item, i) => (
+                                        <li
+                                            key={i}
+                                            className="text-gray-600 font-tway flex items-center"
+                                        >
+                                            <span className="w-1.5 h-1.5 bg-green-600 rounded-full mr-2" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
                             </Card>
                         </motion.div>
                     ))}

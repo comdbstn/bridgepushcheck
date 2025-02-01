@@ -17,33 +17,33 @@ import { Line, Doughnut } from "react-chartjs-2";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement);
 
 const userGrowthData = {
-    labels: ["2020년", "2021년", "2022년", "2023년", "2024년"],
+    labels: ["2016년 3월", "2020년 1월", "2024년 2월"],
     datasets: [
         {
-            label: "월간 순방문자 수(만)",
-            data: [3200, 3600, 4000, 4300, 4500],
-            borderColor: "#2DB400",
-            backgroundColor: "rgba(45, 180, 0, 0.1)",
+            label: "사용자 수(만)",
+            data: [100, 400, 700],
+            borderColor: "#FF0000",
+            backgroundColor: "rgba(255, 0, 0, 0.1)",
             fill: true,
             tension: 0.3,
             borderWidth: 3,
             pointRadius: 6,
-            pointBackgroundColor: "#2DB400",
+            pointBackgroundColor: "#FF0000",
         },
     ],
 };
 
-const categoryDistributionData = {
-    labels: ["맘카페", "지역카페", "취미카페", "팬카페", "기타"],
+const campusDistributionData = {
+    labels: ["수도권", "영남권", "충청권", "호남권", "강원/제주"],
     datasets: [
         {
-            data: [35, 25, 20, 15, 5],
+            data: [127, 98, 82, 76, 14],
             backgroundColor: [
-                "#2DB400", // 네이버 그린
-                "#1EC800", // 밝은 그린
-                "#00C73C", // 라이트 그린
-                "#00B843", // 민트 그린
-                "#19CE60", // 연한 그린
+                "#FF6B6B", // 붉은 계열
+                "#4ECDC4", // 청록색
+                "#45B7D1", // 하늘색
+                "#96CEB4", // 민트색
+                "#FFEEAD", // 연한 노란색
             ],
             borderWidth: 0,
         },
@@ -104,7 +104,7 @@ const doughnutOptions: ChartOptions<"doughnut"> = {
 
 export function Stats() {
     return (
-        <section className='py-20 bg-gradient-to-br from-white via-green-50 to-white'>
+        <section className='py-20 bg-gradient-to-br from-white via-pink-50 to-white'>
             <div className='container mx-auto px-4'>
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
@@ -112,7 +112,7 @@ export function Stats() {
                     viewport={{ once: true }}
                     className='text-4xl font-bold text-center mb-12 font-aggro'
                 >
-                    네이버 카페 성장 지표
+                    에브리타임 성장 지표
                 </motion.h2>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto'>
                     <motion.div
@@ -121,7 +121,7 @@ export function Stats() {
                         viewport={{ once: true }}
                         className='bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300'
                     >
-                        <h3 className='text-xl font-bold mb-4 text-green-600'>연간 방문자 성장</h3>
+                        <h3 className='text-xl font-bold mb-4 text-[#e1595e]'>연간 사용자 성장</h3>
                         <div className='h-[300px]'>
                             <Line options={lineOptions} data={userGrowthData} />
                         </div>
@@ -133,9 +133,9 @@ export function Stats() {
                         viewport={{ once: true }}
                         className='bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300'
                     >
-                        <h3 className='text-xl font-bold mb-4 text-green-600'>카페 카테고리 분포</h3>
+                        <h3 className='text-xl font-bold mb-4 text-[#e1595e]'>캠퍼스 분포</h3>
                         <div className='h-[300px]'>
-                            <Doughnut options={doughnutOptions} data={categoryDistributionData} />
+                            <Doughnut options={doughnutOptions} data={campusDistributionData} />
                         </div>
                     </motion.div>
 
@@ -147,9 +147,9 @@ export function Stats() {
                     >
                         <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                             {[
-                                { label: "월간 순방문자 수", value: "4,500만+" },
-                                { label: "누적 가입자 수", value: "4,800만+" },
-                                { label: "활성 카페 수", value: "1,000만+" },
+                                { label: "전국 캠퍼스", value: "397개" },
+                                { label: "누적 가입자 수", value: "700만+" },
+                                { label: "월간 사용자 수", value: "280만+" },
                             ].map((stat, index) => (
                                 <motion.div
                                     key={stat.label}
@@ -158,9 +158,9 @@ export function Stats() {
                                     transition={{ delay: index * 0.1 }}
                                     viewport={{ once: true }}
                                 >
-                                    <Card className='p-6 text-center border-2 border-green-600 hover:shadow-lg transition-all duration-300'>
+                                    <Card className='p-6 text-center border-2 border-[#e1595e] hover:shadow-lg transition-all duration-300'>
                                         <h4 className='text-lg font-medium mb-2 text-gray-600'>{stat.label}</h4>
-                                        <p className='text-3xl font-bold text-green-600'>{stat.value}</p>
+                                        <p className='text-3xl font-bold text-[#e1595e]'>{stat.value}</p>
                                     </Card>
                                 </motion.div>
                             ))}
@@ -170,4 +170,4 @@ export function Stats() {
             </div>
         </section>
     );
-} 
+}

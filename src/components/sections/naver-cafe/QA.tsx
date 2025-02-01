@@ -1,52 +1,59 @@
 import { motion } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Plus } from "lucide-react";
 import { useState } from "react";
 
 const faqs = [
     {
-        question: "네이버 카페 마케팅은 어떤 효과가 있나요?",
-        answer: "네이버 카페 마케팅은 타겟층에 직접적인 홍보가 가능하며, 실제 사용자들의 자연스러운 후기를 통해 신뢰도를 높일 수 있습니다. 또한 네이버 검색 시 상위 노출 효과도 기대할 수 있습니다."
+        question: "어떤 카페에서 마케팅이 진행되나요?",
+        answer: "맘카페, 지역카페, 취미카페, 팬카페 등 다양한 카테고리의 카페에서 마케팅을 진행합니다. 귀사의 제품이나 서비스에 가장 적합한 카페를 선정하여 효과적인 마케팅을 진행합니다.",
     },
     {
-        question: "마케팅 진행 기간은 얼마나 걸리나요?",
-        answer: "기본적으로 1개월 단위로 진행되며, 게시글 수와 마케팅 규모에 따라 진행 기간이 조정될 수 있습니다. 일반적으로 효과를 보기 위해서는 최소 3개월 이상의 진행을 추천드립니다."
+        question: "마케팅 기간은 얼마나 걸리나요?",
+        answer: "기본적으로 한 달 단위로 진행되며, 선택하신 패키지와 마케팅 규모에 따라 진행 기간이 조정될 수 있습니다. 일반적으로 게시글 작성은 1-2주 내에 완료되며, 이후 모니터링과 피드백이 지속적으로 이루어집니다.",
     },
     {
-        question: "어떤 업종에 효과적인가요?",
-        answer: "육아용품, 교육 서비스, 부동산, 취업 정보, 뷰티, 지역 서비스 등 다양한 업종에 효과적입니다. 특히 타겟층이 명확한 업종에서 높은 효과를 보입니다."
+        question: "컨텐츠는 어떻게 제작되나요?",
+        answer: "전문 작성자가 카페별 특성과 회원들의 성향을 고려하여 자연스러운 컨텐츠를 제작합니다. 원고 초안을 검토하실 수 있으며, 피드백을 반영하여 수정이 가능합니다.",
     },
     {
-        question: "게시글은 어떤 방식으로 작성되나요?",
-        answer: "실제 카페 회원들의 자연스러운 경험담 형식으로 작성됩니다. 사진, 상세한 후기, 장단점 분석 등이 포함되어 신뢰도 높은 컨텐츠를 제작합니다."
+        question: "효과는 어떻게 측정되나요?",
+        answer: "조회수, 댓글, 공감 수 등의 기본 지표와 함께, 유입률, 전환율 등 세부적인 성과 지표를 제공합니다. 주간/월간 리포트를 통해 상세한 성과 분석 결과를 확인하실 수 있습니다.",
     },
     {
-        question: "성과 분석은 어떻게 진행되나요?",
-        answer: "매주 게시글 작성 현황, 조회수, 댓글 수, 검색 노출 순위 등의 데이터를 종합적으로 분석하여 보고서를 제공합니다. 필요한 경우 전략 조정도 함께 진행됩니다."
-    }
+        question: "즉시 시작 가능한가요?",
+        answer: "상담 신청 후 1-2일 내에 전담 매니저가 배정되어 마케팅 전략 수립이 시작됩니다. 계약 체결 후 평균 3-4일 내에 첫 컨텐츠 업로드가 가능합니다.",
+    },
+    {
+        question: "위험 요소는 없나요?",
+        answer: "15년 이상의 네이버 카페 마케팅 노하우를 바탕으로, 카페의 규정을 준수하며 안전하게 마케팅을 진행합니다. 모든 컨텐츠는 전문가의 검수를 거쳐 업로드됩니다.",
+    },
 ];
 
 export function QA() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <section className="py-20 bg-gradient-to-br from-[#FFF5F0] to-white">
-            <div className="container mx-auto px-4">
-                <motion.h2
+        <section className="py-24 relative overflow-hidden bg-gradient-to-br from-white to-green-50">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-4xl font-bold text-center mb-4 font-aggro"
+                    className="text-center mb-12"
                 >
-                    자주 묻는 질문
-                </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-gray-600 text-center mb-12 max-w-2xl mx-auto font-tway"
-                >
-                    네이버 카페 마케팅에 대해 자주 묻는 질문들을 모았습니다
-                </motion.p>
+                    <span className="text-green-600 font-semibold text-lg font-tway mb-4 block">
+                        Q&A
+                    </span>
+                    <h2 className="text-4xl font-bold mb-4 font-aggro">
+                        자주 묻는 질문
+                    </h2>
+                    <p className="text-gray-600 max-w-2xl mx-auto font-tway">
+                        네이버 카페 마케팅에 대해 자주 묻는 질문들을 모았습니다.
+                        <br />
+                        더 자세한 내용은 카카오톡 채널을 통해 문의해주세요.
+                    </p>
+                </motion.div>
 
                 <div className="max-w-3xl mx-auto">
                     {faqs.map((faq, index) => (
@@ -58,27 +65,32 @@ export function QA() {
                             transition={{ delay: index * 0.1 }}
                             className="mb-4"
                         >
-                            <button
+                            <Card
+                                className="overflow-hidden cursor-pointer hover:shadow-md transition-all duration-300"
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
                             >
-                                <span className="text-lg font-bold text-gray-800 text-left font-tway">{faq.question}</span>
-                                {openIndex === index ? (
-                                    <Minus className="w-5 h-5 text-[#FF812D] flex-shrink-0" />
-                                ) : (
-                                    <Plus className="w-5 h-5 text-[#FF812D] flex-shrink-0" />
-                                )}
-                            </button>
-                            {openIndex === index && (
-                                <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: "auto" }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    className="p-4 bg-white/50 rounded-lg mt-2"
-                                >
-                                    <p className="text-gray-600 font-tway">{faq.answer}</p>
-                                </motion.div>
-                            )}
+                                <div className="p-6">
+                                    <div className="flex items-center justify-between">
+                                        <h3 className="text-lg font-bold font-tway">{faq.question}</h3>
+                                        <Plus
+                                            className={`w-5 h-5 text-green-600 transition-transform duration-300 ${
+                                                openIndex === index ? "rotate-45" : ""
+                                            }`}
+                                        />
+                                    </div>
+                                    {openIndex === index && (
+                                        <motion.p
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: "auto" }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="mt-4 text-gray-600 font-tway"
+                                        >
+                                            {faq.answer}
+                                        </motion.p>
+                                    )}
+                                </div>
+                            </Card>
                         </motion.div>
                     ))}
                 </div>

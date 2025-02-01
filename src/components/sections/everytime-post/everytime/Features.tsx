@@ -3,30 +3,30 @@ import { motion } from "framer-motion";
 
 const features = [
     {
-        image: "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80&w=400",
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=400",
         title: "정확한 타겟팅",
-        description: "맘카페, 지역카페, 취미카페 등 관심사 기반 맞춤 타겟팅",
+        description: "학교, 학년, 단과대학별 맞춤 타겟팅으로 효율적인 광고 집행",
     },
     {
-        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=400",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=400",
         title: "높은 도달률",
-        description: "월간 순방문자 4,500만 명의 국내 최대 커뮤니티 플랫폼",
+        description: "대학생 10명 중 8명이 사용하는 플랫폼으로 확실한 노출 보장",
     },
     {
-        image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=400",
+        image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=400",
         title: "합리적인 비용",
-        description: "기존 온라인 마케팅 채널 대비 최대 60% 비용 절감",
+        description: "기존 대학생 마케팅 채널 대비 최대 70% 비용 절감",
     },
     {
-        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=400",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
         title: "전문 컨설팅",
-        description: "15년 이상의 네이버 카페 마케팅 노하우로 최적의 전략 제시",
+        description: "10년 이상의 대학생 마케팅 노하우로 최적의 광고 전략 제시",
     },
 ];
 
 export function Features() {
     return (
-        <section className='py-20 relative overflow-hidden bg-gradient-to-br from-white to-green-50'>
+        <section className='py-20 relative overflow-hidden bg-gradient-to-br from-white to-pink-50'>
             <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export function Features() {
                     viewport={{ once: true }}
                     className='text-4xl font-bold text-center mb-4 font-aggro'
                 >
-                    네이버 카페 마케팅의 강점
+                    에브리타임 마케팅의 강점
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ export function Features() {
                     viewport={{ once: true }}
                     className='text-gray-600 text-center mb-12 max-w-2xl mx-auto px-4 font-tway'
                 >
-                    온라인 마케팅의 새로운 기준을 제시합니다. 
+                    대학생 마케팅의 새로운 기준을 제시합니다. 
                     <br />
                     정확한 타겟팅과 높은 도달률로 귀사의 마케팅 목표를 달성하세요.
                 </motion.p>
@@ -75,4 +75,4 @@ export function Features() {
             </div>
         </section>
     );
-} 
+}
