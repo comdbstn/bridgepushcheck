@@ -13,7 +13,7 @@ import { Footer } from "@/components/layout/Footer";
 import { BackButton } from "@/components/navigation/back-button";
 import { KakaoChatButton } from "@/components/chat/kakao-chat-button";
 
-export function NaverCafeServicePage() {
+export default function NaverCafeServicePage() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

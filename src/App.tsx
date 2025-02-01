@@ -4,7 +4,7 @@ import ServicePage from "@/pages/service";
 import { EverytimePage } from "@/pages/everytime";
 import { BlindPage } from "@/pages/blind";
 import { TiktokPage } from "@/pages/tiktok";
-import { NaverCafeServicePage } from "@/pages/naver-cafe";
+import NaverCafeServicePage from "@/pages/naver-cafe";
 import PortfolioPage from "@/pages/portfolio";
 import InsightsPage from "@/pages/insights";
 import { InsightDetailPage } from "@/pages/insight-detail";
